@@ -14,6 +14,9 @@ class Usuarios
 	private $grupo_id= "";
 	private $permisos="";
 	private $cambio="";
+	private $tipo_usuario="";
+	private $img_perfil="";
+
 
 
 	function __construct($conexion)
@@ -188,7 +191,8 @@ class Usuarios
 				if($res = $query->fetch_object()){
 					$this->usuario = $res->user;
 					$this->id = $res->id;
-					$this->tipo_user = $res->cambio;
+					$this->tipo_usuario = $res->tipo_user;
+					$this->img_perfil =$res->img_perfil;
 					$this->asignarValoresSession();
 				}
 				return true;
@@ -229,9 +233,9 @@ class Usuarios
 	function asignarValoresSession(){
 		$_SESSION["usuario"]=$this->usuario;
 		$_SESSION["id"]=$this->id;
-		$_SESSION["grupo_id"]=$this->grupo_id;
-		$_SESSION["cambio"]=$this->cambio;
-		$_SESSION["permisos"]=$this->permisos["permisos"];
+		$_SESSION["tipo_usuario"]=$this->tipo_usuario;
+		//$_SESSION["cambio"]=$this->cambio;
+		//$_SESSION["permisos"]=$this->permisos["permisos"];
 		
 	}
 
