@@ -11,11 +11,11 @@ if (isset($_POST["cambiarClave"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-     <meta name="description" content="manejador de multiples banca">
+     <meta name="description" content="Agimerca">
     <meta name="author" content="Eudy Arias programador">
-    <link rel="icon" href="http://eudy.260mb.net/eudyarias/img/eudyicono.png">
+    <link rel="icon" href="img/eudyicono.png">
 
-    <title id="titulosPH">Inicio-Product Handler</title>
+    <title id="titulosPH">Inicio-Agimerca</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

@@ -14,8 +14,8 @@
           <ul class="nav navbar-nav">
             
             <li class="active" id="idMenuFactura">
-              <a href="factura.php"
-              class="<?php if (isset($_SESSION["permisos"]["generarfactura"]) && $_SESSION["permisos"]["generarfactura"]["leer"] == 1) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>">
+              <a href="inicio.php"
+              class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>">
               <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               <?php echo $label->MenuFactura; ?>
               </a>

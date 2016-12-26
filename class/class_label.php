@@ -187,7 +187,7 @@ class Labeles
 
 		$this->FooterDerechos="Todos los derechos reservados para Programador: Eudy Arias.";
 
-		$this->MenuFactura="Factura";
+		$this->MenuFactura="Inicio";
 	    $this->MenuProducto="Productos";
 	    $this->MenuAdministrador="Administrador";
 	    $this->MenuAdministradorAnularFactura="Anular factura";

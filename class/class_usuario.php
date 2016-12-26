@@ -174,7 +174,7 @@ class Usuarios
 
 		$validarUser = $this->comprobarUserPass($p);
 		if ($validarUser) {
-			header("location:factura.php");
+			header("location:inicio.php");
 		}else{
 			return 1;
 		}
@@ -234,6 +234,7 @@ class Usuarios
 		$_SESSION["usuario"]=$this->usuario;
 		$_SESSION["id"]=$this->id;
 		$_SESSION["tipo_usuario"]=$this->tipo_usuario;
+		$_SESSION["img_perfil"]=$this->img_perfil;
 		//$_SESSION["cambio"]=$this->cambio;
 		//$_SESSION["permisos"]=$this->permisos["permisos"];
 		
