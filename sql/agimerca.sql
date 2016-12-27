@@ -34,7 +34,18 @@ CREATE TABLE `carpeta_gallerias` (
   `user_id_editado` int(11) DEFAULT NULL,
   `fecha_editado` datetime DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
-  `nombre` varchar(200) DEFAULT NULL
+  `nombre` varchar(200) DEFAULT NULL,
+
+  /*nelson/tracamandaca
+  Agrege este campo en este punto para no interferir 
+  con el codigo creado anterior mente. Mas bien para no reescribir el orden de los select \
+  del lado del programa
+  */
+  `estado` enum('activo','desactivado') NOT NULL DEFAULT 'activo',  
+
+  -- nelson/tracamandaca
+  -- la clave foranea ultra necesaria
+  constraint foreign key(user_id_creado) references usuarios(id) on delete cascade on update cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -186,7 +197,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `user`, `clave`, `fecha_creado`, `descripcion`, `embed_video`, `tipo_user`, `estado`, `img_perfil`) VALUES
-(1, 'eudy', 'e10adc3949ba59abbe56e057f20f883e', '2016-12-25 21:02:50', 'prueba', 'no tengo', 'normal', 'activo', '');
+(1, 'eudy', 'e10adc3949ba59abbe56e057f20f883e', '2016-12-25 21:02:50', 'prueba', 'no tengo', 'normal', 'activo', ''),
+(2, 'esmarlin', '123', 'now()', 'prueba', 'no tengo', 'normal', 'activo', '');
 
 -- --------------------------------------------------------
 

@@ -66,7 +66,7 @@
 				    <label for="boton">Agregar un nuevo album</label>
 				    <br/>
 				    <!-- Redireccionamiento -->
-				    <a class="btn btn-success" href="crear_galeria.php">inicio</a>
+				    <a class="btn btn-success" href="crear_galeria.php">Ir a crear</a>
 				  </div>
 			</form>
 	</div>

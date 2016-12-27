@@ -25,10 +25,8 @@
 	<?php	}	?>
 </div>
 <?php 
-																																																												 while(){
-		
-}
-	?>
+	
+?>
 <div style="display:none;" id="comentario<?php echo $contador; ?>" class="row">
 	<form method="post" action="" >
 		<input type="hidden"  id="mostrar<?php echo $contador; ?>" value="0"/>

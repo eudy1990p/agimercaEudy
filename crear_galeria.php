@@ -7,6 +7,7 @@
 	require_once("header.php");
 	require_once("class/Modelos/Galerias.php");
 	require_once("class/Modelos/Usuarios.php");
+	require_once("class/Modelos/CarpetaGalerias.php");
 	//require_once("class/class_usuario.php");
 
 	if(isset($_POST)){
@@ -47,9 +48,14 @@
 
 			$usuario = new UsuariosNelson($usuario_actual);
 
-			echo "<h1>$usuario->clave<h1/>"."<br>";
-			echo "<h1>$usuario->user<h1/>"."<br>";
-			echo "<h1>$usuario->tipo<h1/>"."<br>";
+			// echo "<h1>$usuario->id<h1/>"."<br>";
+			// echo "<h1>$usuario->user<h1/>"."<br>";
+			// echo "<h1>$usuario->clave<h1/>"."<br>";
+			// echo "<h1>$usuario->tipo<h1/>"."<br>";
+			// echo "<h1>$usuario->descripcion<h1/>"."<br>";
+			// echo "<h1>$usuario->video<h1/>"."<br>";
+			// echo "<h1>$usuario->estado<h1/>"."<br>";
+
 			?>
 
 			<form action="" method="post" enctype="multipart/form-data">
@@ -57,18 +63,41 @@
 
 				<div class="form-group">
 					<label>Nombre del album</label>
-					<input class="form-control" type="input" required="required"></input>
+					<input class="form-control" name='nombre' type="input" required="required"></input>
 				</div>
 
 				<div class="form-group">
 					<label>Elige las imagenes</label>
-					<input type="file" multiple="multiple"></input>
+					<input type="file" name='imagenes' multiple="multiple"></input>
 				</div>
 
 
-				<input class="btn btn-success" type="submit" value="Crear"></input>
-
+				<input class="btn btn-success" name="enviar" type="submit" value="Crear"></input>
 			</form>
+
+			<?php 
+
+				$galeria = new CarpetaGalerias();
+				
+				// debug==================================================
+				// echo "<h3 class='alert alert-success'>$_SESSION[id]</h3>";
+
+				if(isset($_POST['enviar'])){
+
+
+					$datos = array(
+
+						'usuario' => $_SESSION["id"], 
+						'nombre'  => $_POST["nombre"]
+					);
+
+					//guardo un nuevo objeto CarpetaGalerias.
+					CarpetaGalerias::guardar($datos);
+
+					echo "<h3 class='alert alert-success'>Datos guardados con exito</h3>";
+				}
+			?>
+
 	</div>
 
 
@@ -80,7 +109,7 @@
 				<img width="300" src="img/Imagen_no_disponible.jpg" alt="Imagen perfil">
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
-		  <a href="#" class="list-group-item">Ver albunes</a>
+		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
 		  <a href="#" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
