@@ -67,8 +67,8 @@
 				</div>
 
 				<div class="form-group">
-					<label>Elige las imagenes</label>
-					<input type="file" name='imagenes' multiple="multiple"></input>
+					<label class="control-label">Elige las imagenes</label>
+					<input  name="imagenes[]" required="" type="file" multiple/>
 				</div>
 
 
@@ -77,23 +77,48 @@
 
 			<?php 
 
-				$galeria = new CarpetaGalerias();
+				//$galeria = new CarpetaGalerias();
 				
 				// debug==================================================
 				// echo "<h3 class='alert alert-success'>$_SESSION[id]</h3>";
 
 				if(isset($_POST['enviar'])){
-
-
+					$c = new Conexion();
+					//--------------------------------
 					$datos = array(
 
 						'usuario' => $_SESSION["id"], 
 						'nombre'  => $_POST["nombre"]
 					);
-
 					//guardo un nuevo objeto CarpetaGalerias.
 					CarpetaGalerias::guardar($datos);
+					//--------------------------------
+					// $url="droga";
+					// $datos_imagen = array(
+					// 	'usuario' 		=> $_SESSION["id"],
+					// 	'url_img' 	=> $url,
+					// 	'id_carpeta'	=>  CarpetaGalerias::getUltimo()
+					// );
+					// Galeria::crear($datos_imagen);
+					$directorio_imagenes="imagenes_galeria/";
+					foreach ($_FILES["imagenes"]["error"] as $clave => $error){
+						static $contador = 0;
 
+						$_FILES['imagenes']['name'][$clave]=$contador."_".CarpetaGalerias::getUltimo()."_recurso.png";
+						$url = $_FILES['imagenes']['name'][$clave];
+						$contador++;
+
+						$directorio_de_imagenes = $directorio_imagenes . basename($_FILES['imagenes']['name'][$clave]);
+						move_uploaded_file($_FILES['imagenes']['tmp_name'][$clave],$directorio_de_imagenes);
+
+						$datos_imagen = array(
+							'usuario' 		=> $_SESSION["id"],
+							'url_img' 	=> $url,
+							'id_carpeta'	=>  CarpetaGalerias::getUltimo()
+						);	
+						Galeria::crear($datos_imagen);
+					}
+					//--------------------------------
 					echo "<h3 class='alert alert-success'>Datos guardados con exito</h3>";
 				}
 			?>

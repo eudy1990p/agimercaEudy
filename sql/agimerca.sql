@@ -29,7 +29,7 @@ USE `agimerca_db`;
 --
 
 CREATE TABLE `carpeta_gallerias` (
-  `id` int(11) NOT NULL,
+  `id` int(11) primary key NOT NULL AUTO_INCREMENT,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
   `fecha_editado` datetime DEFAULT NULL,
@@ -108,6 +108,7 @@ CREATE TABLE `galerias` (
   `url_img` varchar(200) DEFAULT NULL,
   `perfil` int(1) DEFAULT NULL,
   `carpeta_id` int(11) DEFAULT NULL
+  constraint foreign key(carpeta_id) references carpeta_gallerias(id);
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

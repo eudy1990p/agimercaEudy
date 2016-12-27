@@ -25,6 +25,11 @@
 
 
 		function __construct($id){
+			//Constructor vacio
+		}
+
+		//octiene la galeria por el id.
+		public static function getGalerias($id){
 			$c = new Conexion();
 
 			$sql = "SELECT * from galerias where id = $id";
@@ -41,13 +46,15 @@
 				$this->perfil		 =	$datos['perfil'];
 				$this->carpeta_id	 =	$datos['carpeta_id'];
 			}
-
 		}
-
-
 		
-		public function crear(){
+		public static function crear($datos){
+			$c = new Conexion();
 
+			//El perfil no me acuerdo que es... asi que lo deje en default.
+			$sql = "INSERT into galerias values (default,$datos[usuario],default,now(),default,'$datos[url_img]',default,$datos[id_carpeta])";
+
+			mysqli_query($c->getContect(),$sql) or die("Error al crear galeria: ".mysqli_error($c->getContect()));
 		}
 
 

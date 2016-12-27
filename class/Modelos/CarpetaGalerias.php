@@ -62,7 +62,19 @@
 			
 		}
 
-		// public static function clausu
+		//
+		public static function getUltimo(){
+			$c = new Conexion();
+
+			$sql = "select max(id) as ultimo from carpeta_gallerias";
+
+			$resultado = mysqli_query($c->getContect(),$sql) 
+			or die("Error al insertar galleria: ".mysqli_error($c->getContect()));
+
+			$datos = mysqli_fetch_row($resultado);
+
+			return $datos[0];
+		}
 
 	}
 
