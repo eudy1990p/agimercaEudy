@@ -1,6 +1,13 @@
 <?php
+
+	//Nelson.
+	// Inicio las secciones
+	// session_start();
+
 	require_once("header.php");
-	require_once("class/examples/Galeria.php");
+	require_once("class/Modelos/Galerias.php");
+	require_once("class/Modelos/Usuarios.php");
+	//require_once("class/class_usuario.php");
 
 	if(isset($_POST)){
 		if(isset($_POST["agregar_post"])){
@@ -25,13 +32,24 @@
 
 	<div class="row">
 		<div class="col-xs-8">
-<!-- 
+
 			<?php 
-				$galeria = new Galeria(1);// Se carga con id 1
-				echo "prueba de importacion";
-				echo "<br>";
-				echo $galeria->user_creador;
-			?> -->
+
+				//debug=============================================nelson
+				// $galeria = new Galeria(1);// Se carga con id 1
+				// echo "prueba de importacion";
+				// echo "<br>";
+				// echo $galeria->user_creador;
+
+				// echo "session actual:".$_SESSION["usuario"];
+
+				// $usuario_actual = $_SESSION["usuario"];
+
+				// $usuario = new UsuariosNelson($usuario_actual);
+
+				// echo "<br>";
+				// echo "<h1>$usuario->clave<h1/>";
+			?>
 
 			<form action="" method="post" enctype="multipart/form-data">
 

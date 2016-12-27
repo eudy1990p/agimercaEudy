@@ -7,15 +7,23 @@
 class Usuarios
 {
 	
-	private $c;
-	private $TblGrupo="";
-	private $usuario="";
-	private $id="";
-	private $grupo_id= "";
-	private $permisos="";
-	private $cambio="";
-	private $tipo_usuario="";
-	private $img_perfil="";
+	/*	Nelson.	tracamandaca
+	*	Estos miembros de la clase usuarios
+	*	Estaban declarados como privados lo que es correcto
+	*	pero como no se lleva a cabo ningun control con ellos
+	*	los redeclare como publicos para mayor facilidad de uso
+	*	de los mismos.
+	*/
+
+	public $c;
+	public $TblGrupo="";
+	public $usuario="";
+	public $id="";
+	public $grupo_id= "";
+	public $permisos="";
+	public $cambio="";
+	public $tipo_usuario="";
+	public $img_perfil="";
 
 
 
@@ -182,9 +190,10 @@ class Usuarios
 
 	function comprobarUserPass($p){
 		// La funcion md5 me a dado problemas al momento de guardar y desencriptar para los usuarios.
+		//Me he dado el gusto de eliminarlo a hasta nuevo aviso para labores de debug con las seccion del usuario.
 		$sql = "select * 
 		from usuarios as u
-		where u.user = '".$p["user"]."' and u.clave = '".md5($p["clave"])."' and estado='activo' ";
+		where u.user = '".$p["user"]."' and u.clave = '".$p["clave"]."' and estado='activo' ";
 		$query = $this->c->query($sql);
 		if ($query) {
 			if ($query->num_rows > 0) {
