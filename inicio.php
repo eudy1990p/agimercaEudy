@@ -47,7 +47,7 @@
 				<img width="300" src="img/Imagen_no_disponible.jpg" alt="Imagen perfil">
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
-		  <a href="#" class="list-group-item">Ver albunes</a>
+		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
 		  <a href="#" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
