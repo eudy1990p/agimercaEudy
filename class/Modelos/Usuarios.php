@@ -19,30 +19,30 @@
 		public $fecha_creado = 'sin fecha creado';
 		public $descripcion = 'si descripcion';
 		public $video = 'sin url en video';
-		public $tipo  = 'sin tipo en video';
+		public $tipo  = 'sin tipo ';
 		public $estado = 'sin estado';
 		public $img	= 'sin url en imagen de perfil';
 
 		//El constructor principal es para la cuenta del usuario.
 		function __construct($cuenta)
 		{
-			$sql = "SELECT * from usuarios where cuenta = $cuenta";
+			$sql = "SELECT * from usuarios where user = 'esmarlin'";
 
 			$c = new Conexion();
 
 
-			$resultado = mysqli_query($c->getContect(),$sql) or die("Error mysql en usuarios: ".mysqli_error($resultado));
+			$resultado = mysqli_query($c->getContect(),$sql) or die("Error mysql en usuarios: ".mysqli_error($c->getContect()));
 
 			while ($datos = mysqli_fetch_array($resultado)) {
-				$id 			= $datos['id'];
-				$user 			= $datos['user'];
-				$clave 			= $datos['clave'];
-				$fecha_creado 	= $datos['fecha_creado'];
-				$descripcion 	= $datos['descripcion'];
-				$video 			= $datos['embed_video'];
-				$tipo 			= $datos['tipo_user'];
-				$estado 		= $datos['estado'];
-				$img 			= $datos['img_perfil'];
+				$this->id 			= $datos['id'];
+				$this->user 		= $datos['user'];
+				$this->clave 		= $datos['clave'];
+				$this->fecha_creado = $datos['fecha_creado'];
+				$this->descripcion 	= $datos['descripcion'];
+				$this->video 		= $datos['embed_video'];
+				$this->tipo 		= $datos['tipo_user'];
+				$this->estado 		= $datos['estado'];
+				$this->img 			= $datos['img_perfil'];
 			}
 		}
 

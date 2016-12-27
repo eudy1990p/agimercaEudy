@@ -41,14 +41,15 @@
 				// echo "<br>";
 				// echo $galeria->user_creador;
 
-				// echo "session actual:".$_SESSION["usuario"];
+			echo "session actual:".$_SESSION["usuario"];
 
-				// $usuario_actual = $_SESSION["usuario"];
+			$usuario_actual = $_SESSION["usuario"];
 
-				// $usuario = new UsuariosNelson($usuario_actual);
+			$usuario = new UsuariosNelson($usuario_actual);
 
-				// echo "<br>";
-				// echo "<h1>$usuario->clave<h1/>";
+			echo "<h1>$usuario->clave<h1/>"."<br>";
+			echo "<h1>$usuario->user<h1/>"."<br>";
+			echo "<h1>$usuario->tipo<h1/>"."<br>";
 			?>
 
 			<form action="" method="post" enctype="multipart/form-data">
