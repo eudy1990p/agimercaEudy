@@ -181,6 +181,7 @@ class Usuarios
 	}
 
 	function comprobarUserPass($p){
+		// La funcion md5 me a dado problemas al momento de guardar y desencriptar para los usuarios.
 		$sql = "select * 
 		from usuarios as u
 		where u.user = '".$p["user"]."' and u.clave = '".md5($p["clave"])."' and estado='activo' ";
