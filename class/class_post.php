@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Productos
+class Post
 {
 	
 	private $c;
@@ -15,8 +15,29 @@ class Productos
 		$this->c = $conexion;
 	}
 	function setIdUser($id){ $this->id = $id; }
+	
 	function getPost(){
-		$sql = "SELECT p.id,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id";
+		$sql = "SELECT p.id,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id limit 50";
+		$query = $this->c->query($sql);
+		if ($query) {
+			return $query;
+		}else{
+			echo $this->c->error;
+			die("Error en la consulta");
+		}
+	}
+	function getComentarioPost($idPost){
+		$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
+		$query = $this->c->query($sql);
+		if ($query) {
+			return $query;
+		}else{
+			echo $this->c->error;
+			die("Error en la consulta");
+		}
+	}
+	function getInventario(){
+		$sql = "select id,nombre,cantidad_vigente as cantidad,codigo,precio_venta as precio,url from inventarios where e_p != 'eliminado';";
 		$query = $this->c->query($sql);
 		if ($query) {
 			return $query;
@@ -56,16 +77,16 @@ class Productos
 		}
 	}
 
-	function setProducto($p,$f=""){
+	function setPost($p,$f=""){
 		$this->setIdUser($_SESSION["id"]);
-
+		
 		if (isset($p["add"])) {
 
 			$query = $this->addProducto($p,$f);
-			if ($query == 3) { return 3; }
-			if ($query == 1) { return 1; }
-			die("1234567");
-		}elseif (isset($p["eliminar"])) {
+			//if ($query == 3) { return 3; }
+			//if ($query == 1) { return 1; }
+			//die("1234567");
+		}/*elseif (isset($p["eliminar"])) {
 			$this->eliminarProducto($p);
 		}elseif (isset($p["edit"])) {
 			$query = $this->editProducto($p,$f);
@@ -73,7 +94,7 @@ class Productos
 		}elseif (isset($p["anular"])) {
 			$query = $this->anularProducto($p);
 			if ($query) { return 1;	}
-		}
+		}*/
 	}
 
 
@@ -161,39 +182,13 @@ class Productos
 	function addProducto($p,$f=""){
 		$url="";
 		$respImg = $this->uploadImgProducto($f);
+		
 		if ($respImg == 3) {	return 3; }
-		if (isset($f["imgProducto"]) && !empty($f["imgProducto"])) { $url = "url = '".$respImg."',"; }
-
-		$sql = "select id from inventarios where codigo = '".$p["codigo"]."' ";
-
-		$query = $this->c->query($sql);
-		if ($query) {
-			
-			if ($query->num_rows > 0) {
-				$res = $query->fetch_object();
-				$precio="";
-				if (isset($p["precio"]) && !empty($p["precio"])) {
-					$precio = ", `precio_venta` = '".$p["precio"]."' ";
-				}
-				$sqlUpdate="UPDATE `inventarios`
-							SET
-							$url
-							`f_e` = now(),
-							`cantidad_vigente` = cantidad_vigente+".$p["cantidad"].",
-							`u_id_e` = '$this->id'
-							$precio
-							,
-							`e_p` = 'activo'
-							WHERE id = '$res->id' ;";
-				//$this->verQuery($sqlUpdate);
-				$queryUpdate = $this->c->query($sqlUpdate);
-				if ($queryUpdate) {
-					$this->addCompra($p,$res->id);
-				}
-				
-			}else{
-
-				$sqlInsert="INSERT INTO `inventarios`
+		
+		if (isset($f["imgProducto"]) && !empty($f["imgProducto"])) { 
+			$url = "url = '".$respImg."',";										
+		}
+		/*$sqlInsert="INSERT INTO `inventarios`
 					(`id`,
 					`nombre`,
 					`f_c`,
@@ -215,21 +210,21 @@ class Productos
 					
 					'".$p["precio"]."',
 					'activo'
-					);";
-
+					);";*/
+		$sqlInsert ="INSERT INTO 
+		 posts(user_id_creado ,  `fecha_creado`, `post`, `categoria_post`, `img_url`) 
+		VALUES 
+		('".$this->id."',now(),'".$p["post"]."','1','".$respImg."')";
+		
+		
 				//$this->verQuery($sqlInsert);
 				$query = $this->c->query($sqlInsert);
 				if ($query) {
-					$this->addCompra($p,$this->c->insert_id);
+					echo "Todo bien";
 				}else{
 					echo $this->c->error;
 					die("Error en la consulta1");
 				}
-
-			}
-		}
-
-		return 1;
 		
 	}
 

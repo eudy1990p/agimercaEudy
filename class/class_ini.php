@@ -11,6 +11,7 @@ Do you ever heard about PSR-0 ?
 	require_once("class_producto.php");
 	require_once("class_factura.php");
 	require_once("class_empresa.php");
+	require_once("class_post.php");
 
 	$label = new Labeles("spanish");
 	$conexion = new Conexion();
@@ -19,6 +20,7 @@ Do you ever heard about PSR-0 ?
 	$producto = new Productos($conexion->getContect());
 	$factura = new Facturas($conexion->getContect());
 	$empresa = new Empresa($conexion->getContect());
+	$post = new Post($conexion->getContect());
 	
 
 ?>
