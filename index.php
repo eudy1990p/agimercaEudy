@@ -45,9 +45,12 @@ how about, learn "programming"? ;)
     <![endif]-->
   </head>
 
-  <body>
+  <body style="background-image: url(img/fondo.jpg);
+    background-size: cover;">
 
-    <div class="container">
+    <div class="container" style="    background-color: rgba(51, 51, 51, 0.51);
+    padding-bottom: 10%;
+    color: white;">
 
       <?php if (isset($resp)) {
         if ($resp == '1') {
@@ -62,15 +65,19 @@ how about, learn "programming"? ;)
         <input type="hidden" name="login">
         <h2 class="form-signin-heading">Agimerca-<?php echo $label->LoginTitle; ?></h2>
         <label for="inputEmail" class="sr-only"><?php echo $label->LoginEmail; ?></label>
-        <input type="text" id="inputEmail" name="user" class="form-control" placeholder="<?php echo $label->LoginEmail; ?>" required autofocus>
+        <input type="text" id="inputEmail" name="user" class="form-control" placeholder="<?php echo $label->LoginEmail; ?>" required autofocus><br/>
+				
         <label for="inputPassword" class="sr-only"><?php echo $label->LoginClave; ?> </label>
         <input type="password" id="inputPassword" name="clave" class="form-control" placeholder="<?php echo $label->LoginClave; ?>" required>
+				
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> <?php echo $label->LoginRecordarClave; ?>
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $label->LoginBtnEntrar; ?> </button>
+        <button class="btn btn-lg btn-success btn-block" type="submit"><?php echo $label->LoginBtnEntrar; ?> </button>
+				<br/>
+				<a class="btn btn-lg btn-primary btn-block" href="registro.php"><?php echo "Registrarte"; ?> </a>
       </form>
 
     </div> <!-- /container -->

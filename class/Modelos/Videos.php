@@ -1,6 +1,6 @@
 <?php 
 
-	require_once("/../class_conexion.php");
+//	require_once("/../class_conexion.php");
 
 	/**
 	* 

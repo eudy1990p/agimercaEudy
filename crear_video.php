@@ -119,6 +119,7 @@
 
 
 	<div class="col-xs-4">
+<<<<<<< HEAD
 		
 		<div class="list-group">
 		   <a href="#" class="list-group-item thumbnail">
@@ -129,6 +130,9 @@
 		  <a href="galeria_videos.php" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
+=======
+				<?php require_once("menuizquierdo.php"); ?>
+>>>>>>> origin/master
 	</div>
 	
 	

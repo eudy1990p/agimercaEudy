@@ -43,9 +43,12 @@ how about, learn "programming"? ;)
     <![endif]-->
   </head>
 
-  <body>
+  <body  style="background-image: url(img/fondo.jpg);
+    background-size: cover;">
 
-    <div class="container">
+    <div class="container" style="    background-color: rgba(51, 51, 51, 0.51);
+    padding-bottom: 10%;
+    color: white;">
 
 
       <form action="" method="post" enctype="multipart/form-data" class="form-signin">
