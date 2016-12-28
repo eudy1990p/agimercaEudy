@@ -15,7 +15,7 @@
 	  
 	<div class="page-header">
 		        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
-		        	Galeria
+		        	Videos
 		        	<!-- Esto es una variable generica que eudy utilizo.
 		        		Comentado por nelson. -->
 	                <!-- <?php echo $label->MenuFactura; ?> -->
@@ -26,13 +26,13 @@
 		<div class="col-xs-8">
 
 			<div class="row">
-				<h1>Albunes creados</h1>
+				<h1>Videos</h1>
 				
 				<!-- Aqui va codigo php -->
 				
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h2>Galeria del album</h2>
+						<h2>Coleccion de videos</h2>
 					</div>
 					
 					<div class="panel-body">
@@ -82,7 +82,7 @@
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
 		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
-		  <a href="galeria_videos.php" class="list-group-item">Mis videos</a>
+		  <a href="#" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
 

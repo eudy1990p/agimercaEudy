@@ -60,7 +60,9 @@ CREATE TABLE `carpeta_videos` (
   `user_id_editado` int(11) DEFAULT NULL,
   `fecha_editado` datetime DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
-  `nombre` varchar(200) DEFAULT NULL
+  `nombre` varchar(200) DEFAULT NULL,
+  `estado` enum('activo','desactivado') NOT NULL DEFAULT 'activo',
+  constraint foreign key(user_id_creado) references usuarios(id) on delete cascade on update cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -215,6 +217,7 @@ CREATE TABLE `videos` (
   `fecha_creado` datetime DEFAULT NULL,
   `url_video` text,
   `carpeta_id` int(11) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
