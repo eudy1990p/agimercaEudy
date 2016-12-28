@@ -62,11 +62,12 @@
 
 
 				<div class="form-group">
-					<label>Nombre de la coleccion de videos</label>
+					<label class="control-label">Nombre de la coleccion de videos</label>
 					<input class="form-control" name='nombre' type="input" required="required"></input>
 				</div>
 
 				<div class="form-group">
+					<label class="text-danger control-label">Solo url/s de youtube</label><br/>
 					<label class="control-label">Escribe aqui las url de los videos</label>
 					<textarea class="form-control" name="url_videos"></textarea>
 				</div>
@@ -125,7 +126,7 @@
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
 		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
-		  <a href="ver_videos.php" class="list-group-item">Mis videos</a>
+		  <a href="galeria_videos.php" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
 	</div>

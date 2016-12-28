@@ -26,7 +26,7 @@
 		<div class="col-xs-8">
 
 			<div class="row">
-				<h1>Colecciones ve videos</h1>
+				<h1>Colecciones de videos</h1>
 				
 				<!-- Aqui va codigo php -->
 				

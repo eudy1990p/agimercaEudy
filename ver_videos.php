@@ -1,6 +1,6 @@
 <?php
 	require_once("header.php");
-	require_once("class/class_conexion.php");
+	//require_once("class/class_conexion.php");
 	if(isset($_POST)){
 		if(isset($_POST["agregar_post"])){
 			
@@ -43,24 +43,29 @@
 
 								$sql = '';
 								if(isset($_POST['id_album_video'])){
-									$_SESSION['album_actual']=$_POST['id_album_video'];
+									$_SESSION['album_actual_video']=$_POST['id_album_video'];
 									$sql = "SELECT * from videos where carpeta_id='$_POST[id_album_video]'";	
 								}else{
-									$sql = "SELECT * from videos where carpeta_id=".$_SESSION['album_actual'];	
+									$sql = "SELECT * from videos where carpeta_id=".$_SESSION['album_actual_video'];	
 								}
 
 								$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 
+								//Los videos embebidos de youtube no tienen el mismo enlace estandar.
+								//por lo tanto es necesario crear
 								while($datos = mysqli_fetch_array($resultado)){
+									$datos['url_video']=str_replace("https://www.youtube.com/watch?v=","",$datos['url_video']);
 									echo 
 									"
-									  <a href='$datos[url_video]'>$datos[url_video]</a>
+									  <iframe width='700' height='480' src='https://www.youtube.com/embed/$datos[url_video]' frameborder='1' allowfullscreen>
+									  </iframe>
 									"
 									;
 								}
 							}
 						?>
 					</div>
+
 
 				</div>
 

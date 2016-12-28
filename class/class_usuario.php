@@ -233,7 +233,7 @@ class Usuarios
 		$sql = "select * 
 		from usuarios as u
 		where u.user = '".$p["user"]."' and u.clave = '".md5($p["clave"])."' and estado='activo' ";
-		
+		echo "Consulta: ".$sql;
 		$query = $this->c->query($sql);
 		if ($query) {
 			if ($query->num_rows > 0) {

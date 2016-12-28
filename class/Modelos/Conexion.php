@@ -6,7 +6,7 @@
 	$conexion = mysqli_connect("localhost","root","","agimerca_db")
 	or die ("fallo al conectar con la base de datos: ".mysqli_error($conexion));
 
-	class Conexion
+	class ConexionNelson
 	{
 
 		// metodo estatico para conectar.
