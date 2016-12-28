@@ -119,20 +119,7 @@
 
 
 	<div class="col-xs-4">
-<<<<<<< HEAD
-		
-		<div class="list-group">
-		   <a href="#" class="list-group-item thumbnail">
-				<img width="300" src="img/Imagen_no_disponible.jpg" alt="Imagen perfil">
-			</a>
-		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
-		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
-		  <a href="galeria_videos.php" class="list-group-item">Mis videos</a>
-		  <a href="#" class="list-group-item">Mis publicaciones</a>
-		</div>
-=======
-				<?php require_once("menuizquierdo.php"); ?>
->>>>>>> origin/master
+		<?php require_once("menuizquierdo.php"); ?>
 	</div>
 	
 	
