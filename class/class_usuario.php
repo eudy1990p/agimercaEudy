@@ -42,6 +42,50 @@ class Usuarios
 			die("Error en la consulta");
 		}
 	}
+	
+	function uploadImgProducto($f){
+		if (isset($f["ImgPerfil"]) && !empty($f["ImgPerfil"])) {
+			
+			$array = explode(".",$f["ImgPerfil"]["name"] );
+			$total = count($array) - 1;
+			$extencion = $array[$total];
+			$nuevoNombre = date("dmYHis");
+			$nombreArchivo = $nuevoNombre.".".$extencion;
+			
+			if ($f["ImgPerfil"]["size"] <= 6291456) {
+				
+				$ruta = "img_perfil/".$nombreArchivo;
+				if(copy($f["ImgPerfil"]["tmp_name"], $ruta)){ return $ruta; }else{ return "img/Imagen_no_disponible.jpg"; }
+			
+		}else{ return 3; }
+		}else{ return "img/Imagen_no_disponible.jpg"; }	
+	}
+	function addUsuarioConImagen($p,$f=""){
+		
+		$url="";
+		$respImg = $this->uploadImgProducto($f);
+		
+		if ($respImg == 3) {	return 3; }
+		
+		if (isset($f["ImgPerfil"]) && !empty($f["ImgPerfil"])) { 
+			$url = "url = '".$respImg."',";										
+		}
+		$sqlInsert ="INSERT INTO 
+		 usuarios(user ,  clave, fecha_creado, estado, img_perfil,tipo_user) 
+		VALUES 
+		('".$p["user"]."','".md5($p["clave"])."',now(),'activo','".$respImg."','normal')";
+		
+		
+				//$this->verQuery($sqlInsert);
+				$query = $this->c->query($sqlInsert);
+				if ($query) {
+					echo "Todo bien";
+				}else{
+					echo $this->c->error;
+					die("Error en la consulta1");
+				}
+		
+	}
 
 	function getUsuarios(){
 

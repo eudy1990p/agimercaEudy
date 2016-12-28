@@ -65,7 +65,7 @@
 		
 		<div class="list-group">
 		   <a href="#" class="list-group-item thumbnail">
-				<img width="300" src="img/Imagen_no_disponible.jpg" alt="Imagen perfil">
+				<img width="300" src="<?php echo $_SESSION["img_perfil"]; ?>" alt="Imagen perfil">
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
 		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
