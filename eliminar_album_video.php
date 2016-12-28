@@ -1,6 +1,7 @@
 <?php
 	require_once("header.php");
 	require_once("class/class_conexion.php");
+	require_once("class/Modelos/CarpetaVideos.php");
 	if(isset($_POST)){
 		if(isset($_POST["agregar_post"])){
 			
@@ -26,43 +27,30 @@
 		<div class="col-xs-8">
 
 			<div class="row">
-				<h1>Colecciones ve videos</h1>
-				
 				<!-- Aqui va codigo php -->
-				
 				<?php 
-					$c = new Conexion();
+					if($_POST){
+						if($_POST['accion']=='eliminar'){
+							CarpetaVideos::desactivar($_SESSION['album_actual']);
 
-					$sql = "select * from carpeta_videos where user_id_creado=".$_SESSION['id']." and estado ='activo'";
-
-					$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
-
-					while ($datos = mysqli_fetch_array($resultado)) {
-
-						echo 
-						"
-							<form action='ver_videos.php' method='post'>
-								<div class='col-xs-4'>
-									<h3>$datos[nombre]</h3>
-									<button class='btn btn-link btn-lg' name='id_album_video' type='submit' value='$datos[id]'>ver</button>
-									<br/>
-									<span>fecha publicacion: $datos[fecha_creado]</span>
+							echo "
+								<div class='alert alert-success'>
+									<strong>Realizado! </strong>Se elimino la coleccion de videos
+									<br>
+									<a href='galeria_videos.php' class='alert-link'>Regresar a la galeria de videos</a>.
 								</div>
-							<form/>
-						";
+							";
+						}elseif($_POST['accion']=='agregar'){
+							
+						}
 					}
 				?>
 
+				
+
 			</div>
+
 			<hr/>
-			<form action="" method="post" enctype="multipart/form-data">
-				  <div class="form-group">
-				    <label for="boton">Agregar coleccion de videos</label>
-				    <br/>
-				    <!-- Redireccionamiento -->
-				    <a class="btn btn-success" href="crear_video.php">Ir a crear</a>
-				  </div>
-			</form>
 	</div>
 
 

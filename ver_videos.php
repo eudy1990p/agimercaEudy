@@ -42,11 +42,11 @@
 								$c = new Conexion();
 
 								$sql = '';
-								if(isset($_POST['id_album'])){
-									$_SESSION['album_actual']=$_POST['id_album'];
-									$sql = "SELECT * from galerias where carpeta_id='$_POST[id_album]'";	
+								if(isset($_POST['id_album_video'])){
+									$_SESSION['album_actual']=$_POST['id_album_video'];
+									$sql = "SELECT * from videos where carpeta_id='$_POST[id_album_video]'";	
 								}else{
-									$sql = "SELECT * from galerias where carpeta_id=".$_SESSION['album_actual'];	
+									$sql = "SELECT * from videos where carpeta_id=".$_SESSION['album_actual'];	
 								}
 
 								$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
@@ -54,17 +54,14 @@
 								while($datos = mysqli_fetch_array($resultado)){
 									echo 
 									"
-									  <div class='col-xs-4'>
-									    <a href='#' class='thumbnail'>
-									      <img src='imagenes_galeria/$datos[url_img]'>
-									    </a>
-									  </div>
+									  <a href='$datos[url_video]'>$datos[url_video]</a>
 									"
 									;
 								}
 							}
 						?>
 					</div>
+
 				</div>
 
 			</div>
@@ -82,7 +79,7 @@
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
 		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
-		  <a href="#" class="list-group-item">Mis videos</a>
+		  <a href="galeria_videos.php" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
 
@@ -102,7 +99,7 @@
 									</button>
 								</div>
 							</form> -->
-							<form action="eliminar_album.php" method="post">
+							<form action="eliminar_album_video.php" method="post">
 								<div class="form-group">
 									<button type="submit" name="accion" value="eliminar" class="form-control btn btn-danger" >
 										Eliminar este album

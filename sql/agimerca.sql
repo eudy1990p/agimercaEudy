@@ -55,7 +55,7 @@ CREATE TABLE `carpeta_gallerias` (
 --
 
 CREATE TABLE `carpeta_videos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL primary key AUTO_INCREMENT,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
   `fecha_editado` datetime DEFAULT NULL,
@@ -210,14 +210,14 @@ INSERT INTO `usuarios` (`id`, `user`, `clave`, `fecha_creado`, `descripcion`, `e
 --
 
 CREATE TABLE `videos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
   `fecha_editado` datetime DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
   `url_video` text,
-  `carpeta_id` int(11) DEFAULT NULL
-
+  `carpeta_id` int(11) DEFAULT NULL,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

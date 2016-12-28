@@ -5,9 +5,9 @@
 	// session_start();
 
 	require_once("header.php");
-	require_once("class/Modelos/Galerias.php");
+	require_once("class/Modelos/Videos.php");
 	require_once("class/Modelos/Usuarios.php");
-	require_once("class/Modelos/CarpetaGalerias.php");
+	require_once("class/Modelos/CarpetaVideos.php");
 	//require_once("class/class_usuario.php");
 
 	if(isset($_POST)){
@@ -17,10 +17,10 @@
 	}
 ?>
 
-
+<!--No sera necesario para esta seccion. 
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
-	<script type='text/javascript' src="js/jspdf.debug.js"></script>  	
+	<script type='text/javascript' src="js/jspdf.debug.js"></script>  	 -->
 	  
 	<div class="page-header">
 		        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
@@ -67,8 +67,8 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label">Elige las imagenes</label>
-					<input  name="imagenes[]" required="" type="list" multiple/>
+					<label class="control-label">Escribe aqui las url de los videos</label>
+					<textarea class="form-control" name="url_videos"></textarea>
 				</div>
 
 
@@ -91,32 +91,22 @@
 						'nombre'  => $_POST["nombre"]
 					);
 					//guardo un nuevo objeto CarpetaGalerias.
-					CarpetaGalerias::guardar($datos);
+					CarpetaVideos::guardar($datos);
 					//--------------------------------
-					// $url="droga";
-					// $datos_imagen = array(
-					// 	'usuario' 		=> $_SESSION["id"],
-					// 	'url_img' 	=> $url,
-					// 	'id_carpeta'	=>  CarpetaGalerias::getUltimo()
-					// );
-					// Galeria::crear($datos_imagen);
-					$directorio_imagenes="imagenes_galeria/";
-					foreach ($_FILES["imagenes"]["error"] as $clave => $error){
-						static $contador = 0;
 
-						$_FILES['imagenes']['name'][$clave]=$contador."_".CarpetaGalerias::getUltimo()."_recurso.png";
-						$url = $_FILES['imagenes']['name'][$clave];
-						$contador++;
 
-						$directorio_de_imagenes = $directorio_imagenes . basename($_FILES['imagenes']['name'][$clave]);
-						move_uploaded_file($_FILES['imagenes']['tmp_name'][$clave],$directorio_de_imagenes);
+					$textarea_line = str_replace("\n", "<br>",$_POST['url_videos']);
+					
+					$url_s = explode("<br>", $textarea_line);
 
-						$datos_imagen = array(
-							'usuario' 		=> $_SESSION["id"],
-							'url_img' 	=> $url,
-							'id_carpeta'	=>  CarpetaGalerias::getUltimo()
-						);	
-						Galeria::crear($datos_imagen);
+					for ($i=0; $i <sizeof($url_s); $i++) { 
+						$datos = [
+							'usuario' 	=> $_SESSION["id"],
+							'url_video'  => $url_s[$i],
+							'id_carpeta'	=> CarpetaVideos::getUltimo()
+						];
+
+						Videos::crear($datos);
 					}
 					//--------------------------------
 					echo "<h3 class='alert alert-success'>Datos guardados con exito</h3>";
@@ -135,7 +125,7 @@
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
 		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
-		  <a href="#" class="list-group-item">Mis videos</a>
+		  <a href="ver_videos.php" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
 	</div>

@@ -52,7 +52,7 @@
 			$c = new Conexion();
 
 			//El perfil no me acuerdo que es... asi que lo deje en default.
-			$sql = "INSERT into videos values (default,$datos[usuario],default,now(),default,'$datos[url_img]',default,$datos[id_carpeta])";
+			$sql = "INSERT into videos values (default,$datos[usuario],default,now(),default,'$datos[url_video]',$datos[id_carpeta])";
 
 			mysqli_query($c->getContect(),$sql) or die("Error al crear galeria: ".mysqli_error($c->getContect()));
 		}
