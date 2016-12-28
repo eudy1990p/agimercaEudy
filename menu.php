@@ -41,7 +41,7 @@
                 </li>
                 <li class="divider"></li>
 								 <li>
-                  <a href="#"
+                  <a href="galeria_videos.php"
                    class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
                   > 
                   <?php echo "Mis videos"; ?>

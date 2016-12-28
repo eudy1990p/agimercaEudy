@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `carpeta_videos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `carpeta_videos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
   `fecha_editado` datetime DEFAULT NULL,
