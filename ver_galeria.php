@@ -41,7 +41,13 @@
 							if(isset($_POST)){
 								$c = new Conexion();
 
-								$sql = "SELECT * from galerias where carpeta_id='$_POST[id_album]'";
+								$sql = '';
+								if(isset($_POST['id_album'])){
+									$_SESSION['album_actual']=$_POST['id_album'];
+									$sql = "SELECT * from galerias where carpeta_id='$_POST[id_album]'";	
+								}else{
+									$sql = "SELECT * from galerias where carpeta_id=".$_SESSION['album_actual'];	
+								}
 
 								$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 
@@ -79,6 +85,32 @@
 		  <a href="#" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>
+
+		<aside class="container-fluid">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Acciones para el album
+					</div>
+					<div class="panel-body">
+						<label class="form-label">Reaccion</label>
+						
+							<div class="form-group">
+								<button type="submit" name="accion" value="agregar" class="form-control btn btn-success" >
+									Agregar otra foto
+								</button>
+							</div>
+							<form action="eliminar_album.php" method="post">
+								<div class="form-group">
+									<button type="submit" name="accion" value="eliminar" class="form-control btn btn-danger" >
+										Eliminar este album
+									</button>
+								</div>
+							</form>
+
+
+					</div>
+				</div>
+			</aside>
 	</div>
 	
 	

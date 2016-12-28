@@ -1,6 +1,7 @@
 <?php
 	require_once("header.php");
 	require_once("class/class_conexion.php");
+	require_once("class/Modelos/CarpetaGalerias.php");
 	if(isset($_POST)){
 		if(isset($_POST["agregar_post"])){
 			
@@ -26,43 +27,21 @@
 		<div class="col-xs-8">
 
 			<div class="row">
-				<h1>Albunes creados</h1>
-				
 				<!-- Aqui va codigo php -->
-				
 				<?php 
-					$c = new Conexion();
+							if($_POST){
+								if($_POST['accion']=='eliminar'){
+									CarpetaGalerias::desactivar($_SESSION['album_actual']);
+								}
+							}
+						?>
 
-					$sql = "select * from carpeta_gallerias where user_id_creado=".$_SESSION['id']." and estado ='activo'";
-
-					$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
-
-					while ($datos = mysqli_fetch_array($resultado)) {
-
-						echo 
-						"
-							<form action='ver_galeria.php' method='post'>
-								<div class='col-xs-4'>
-									<h3>$datos[nombre]</h3>
-									<button class='btn btn-link btn-lg' name='id_album' type='submit' value='$datos[id]'>ver</button>
-									<br/>
-									<span>fecha publicacion: $datos[fecha_creado]</span>
-								</div>
-							<form/>
-						";
-					}
-				?>
+						<h3 class="alert alert-success">Galeria eliminada con exito</h3>
+						<a class="link" href="galeria_imagenes.php">Regresar a la galeria</a>
 
 			</div>
+
 			<hr/>
-			<form action="" method="post" enctype="multipart/form-data">
-				  <div class="form-group">
-				    <label for="boton">Agregar un nuevo album</label>
-				    <br/>
-				    <!-- Redireccionamiento -->
-				    <a class="btn btn-success" href="crear_galeria.php">Ir a crear</a>
-				  </div>
-			</form>
 	</div>
 
 
@@ -74,7 +53,7 @@
 				<img width="300" src="img/Imagen_no_disponible.jpg" alt="Imagen perfil">
 			</a>
 		  <a href="#" class="list-group-item">Cambiar Contrase&ntilde;a</a>
-		  <a href="#" class="list-group-item">Ver albunes</a>
+		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
 		  <a href="#" class="list-group-item">Mis videos</a>
 		  <a href="#" class="list-group-item">Mis publicaciones</a>
 		</div>

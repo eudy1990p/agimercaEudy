@@ -62,6 +62,16 @@
 			
 		}
 
+		//Cambia el estado del album
+		public static function desactivar($id){
+			$c = new Conexion();
+
+			$sql ="UPDATE carpeta_gallerias set estado = 'desactivado' where id=".$id;
+
+			$resultado = mysqli_query($c->getContect(),$sql) 
+			or die("Error al insertar galleria: ".mysqli_error($c->getContect()));
+		}
+
 		//
 		public static function getUltimo(){
 			$c = new Conexion();
