@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://eudy.260mb.net">Product Handler</a>
+          <a class="navbar-brand" href="http://eudy.260mb.net">Agimerca</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -21,6 +21,47 @@
               </a>
             </li>
 
+						 <li class="dropdown" id="idMenuAjuste">
+              <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <?php echo $label->MenuAjuste; ?> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="cambiar_clave.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Cambiar Contrase&ntilde;a"; ?>
+                  </a>
+                </li>
+								<li class="divider"></li>
+								 <li>
+                  <a href="galeria_imagenes.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Ver albunes"; ?>
+                  </a>
+                </li>
+                <li class="divider"></li>
+								 <li>
+                  <a href="#"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Mis videos"; ?>
+                  </a>
+                </li>
+                <li class="divider"></li>
+								 <li>
+                  <a href="publicaciones.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Mis publicaciones"; ?>
+                  </a>
+                </li>
+                
+               
+              </ul>
+            </li>
+						
+						
+						<!--
             <li id="idMenuProducto">
               <a href="producto.php"
                class="<?php if (isset($_SESSION["permisos"]["manejarproducto"]) && $_SESSION["permisos"]["manejarproducto"]["leer"] == 1) { ?><?php }else{ ?>sinPrivilegios <?php } ?>">
@@ -28,7 +69,7 @@
               <?php echo $label->MenuProducto; ?>
               </a>
           </li>
-           <!-- <li><a href="#contact">Contact</a></li> -->
+           <!-- <li><a href="#contact">Contact</a></li> --
             <li class="dropdown" id="idMenuAdministrador">
               <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false">  
                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
@@ -50,7 +91,7 @@
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
                 <li><a href="#">One more separated link</a></li>
-              -->
+              --
               </ul>
             </li>
 
@@ -75,12 +116,12 @@
                   </a>
                 </li>
                 
-                <!--<li class="divider"></li>
+                <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>-->
+                <li><a href="#">One more separated link</a></li>
               </ul>
-            </li>
+            </li>-->
 
           </ul>
         </div><!--/.nav-collapse -->

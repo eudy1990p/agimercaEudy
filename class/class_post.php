@@ -121,14 +121,14 @@ $sqlInsert ="INSERT INTO
 
 
 	function editProducto($p,$f=""){
-
+		$this->setIdUser($_SESSION["id"]);
 		$url="";
 		$respImg = $this->uploadImgProducto($f); // do you ever heard about Unrestricted File Upload  Vulnerabilities ?
 		if ($respImg == 3) {	return 3; }
-		if (isset($f["imgProducto"]) && !empty($f["imgProducto"])) { $url = "url = '".$respImg."',"; }
+		if (isset($f["imgProducto"]) && !empty($f["imgProducto"]) && ($f["imgProducto"]["error"] != 4) ) { $url = "img_url = '".$respImg."',"; }
 
 		
-		$update = "update inventarios set f_e=now(), u_id_e = '$this->id', $url nombre='".$p["nombre"]."', precio_venta='".$p["precio"]."' where id='".$p["idRegistro"]."';";
+		$update = "update posts set fecha_editado=now(), user_id_editado = '$this->id', ".$url." post='".$p["post"]."' where id='".$p["idpost"]."';";
 		$query = $this->c->query($update);
 		if ($query) {
 			return $query ;
@@ -185,6 +185,7 @@ $sqlInsert ="INSERT INTO
 	}
 	function uploadImgProducto($f){
 		if (isset($f["imgProducto"]) && !empty($f["imgProducto"])) {
+			if($f["imgProducto"]["error"] != 4){
 			
 			$array = explode(".",$f["imgProducto"]["name"] );
 			$total = count($array) - 1;
@@ -198,6 +199,9 @@ $sqlInsert ="INSERT INTO
 				if(copy($f["imgProducto"]["tmp_name"], $ruta)){ return $ruta; }else{ return "img/Imagen_no_disponible.jpg"; }
 			
 			}else{ return 3; }
+		}else{
+				return "";
+			}
 		}else{ return "img/Imagen_no_disponible.jpg"; }	
 	}
 	function addProducto($p,$f=""){

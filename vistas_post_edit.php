@@ -105,6 +105,8 @@ while($resComent = mysqli_fetch_object($resultComent)){
 			$("#accion").val("editar_post");
 			$("#idpost").val(idpost);
 			$("#btpublicar").html("Editar publicaci&oacute;n");
+			//$("#post").focus();
+		$( "body" ).scrollTop( 0 );
 	}
 	
 	function agregarVariabeTextBox(cuerpo){

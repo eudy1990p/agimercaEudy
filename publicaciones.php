@@ -10,6 +10,7 @@
 			//$post->setPost($_POST,$_FILES);
 		}
 		if(isset($_POST["accion"]) && ($_POST["accion"] == "editar_post")){
+			$post->editProducto($_POST,$_FILES);
 			//$post->setPost($_POST,$_FILES);
 		}
 	}
@@ -21,7 +22,7 @@
 	  
 <div class="page-header">
 	        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
-                  <?php echo $label->MenuFactura; ?></h1>
+                  <?php echo "Mi perfil"; ?></h1>
 </div>
 
 <div class="row">
