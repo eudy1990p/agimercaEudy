@@ -79,6 +79,7 @@ class Usuarios
 				//$this->verQuery($sqlInsert);
 				$query = $this->c->query($sqlInsert);
 				if ($query) {
+					comprobarUserPass($p);
 					echo "Todo bien";
 				}else{
 					echo $this->c->error;
@@ -162,16 +163,10 @@ class Usuarios
 
 	function editUsuario($p){
 
-		if (isset($p["clave"])) {
-			if (empty($p["clave"])) {
-				$string = "";
-			}else{
-				$string = ",clave = '".md5($p["clave"])."'";
-			}
-		}
-		$update = "update usuarios set f_e=now(), u_id_e = '1' ".$string." , grupo_id= '".$p["grupo"]."' where id='".$p["idRegistro"]."';";
+		$update = "update usuarios set clave = '".md5($p["clave"])."'  where id='".$_SESSION["id"]."';";
 		$query = $this->c->query($update);
 		if ($query) {
+			echo "Todo bien";
 			return $query ;
 		}else{
 			echo $this->c->error;
@@ -237,7 +232,8 @@ class Usuarios
 		//Me he dado el gusto de eliminarlo a hasta nuevo aviso para labores de debug con las seccion del usuario.
 		$sql = "select * 
 		from usuarios as u
-		where u.user = '".$p["user"]."' and u.clave = '".$p["clave"]."' and estado='activo' ";
+		where u.user = '".$p["user"]."' and u.clave = '".md5($p["clave"])."' and estado='activo' ";
+		
 		$query = $this->c->query($sql);
 		if ($query) {
 			if ($query->num_rows > 0) {
