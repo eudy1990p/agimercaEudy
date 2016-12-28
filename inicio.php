@@ -48,10 +48,10 @@
 				$get = $post->getPost();
 				$contador=0;
 				while($res = mysqli_fetch_array($get)){
-					allpost($res["img_url"],$res["user"],$res["post"],$contador,$post);
+					allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);
 					$contador++;
 				}
-				//allpost("p","d","d");
+				//$img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",
 			?>
 			
 

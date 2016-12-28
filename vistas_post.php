@@ -1,4 +1,4 @@
-<?php function  allpost($img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
+<?php function   allpost($img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
 <hr/>
 <div class="row" style="background-color: rgba(232, 232, 232, 0.3);padding: 6px;">
 	<div class="col-xs-2">
