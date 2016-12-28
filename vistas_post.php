@@ -1,14 +1,17 @@
-<?php function   allpost($img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
+<?php 
+
+die("rr");
+function   allpost($img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
 <hr/>
 <div class="row" style="background-color: rgba(232, 232, 232, 0.3);padding: 6px;">
 	<div class="col-xs-2">
-		<img width="50" src="<?php echo $img_usuario ; ?>" class="img-responsive img-circle" alt="Usuario" />
+		<img width="50" src="<?php echo $img_usuario; ?>" class="img-responsive img-circle" alt="Usuario" />
 	</div>
 	<div class="col-xs-8"  valign="center">
-		<stron><?php echo $nombre_usuario ; ?></stron>
+		<stron><?php echo $nombre_usuario; ?></stron>
 	</div>
 	<div class="col-xs-2"  valign="center">
-		<button onclick="mostarComentario('<?php echo $contador ;?>')" class="btn btn-default" >Comentar</button>
+		<button onclick="mostarComentario('<?php echo $contador; ?>')" class="btn btn-default" >Comentar</button>
 	</div>
 	
 	<?php if($imagen != "img/Imagen_no_disponible.jpg"){	?>

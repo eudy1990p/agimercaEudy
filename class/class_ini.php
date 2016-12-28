@@ -22,5 +22,4 @@ Do you ever heard about PSR-0 ?
 	$empresa = new Empresa($conexion->getContect());
 	$post = new Post($conexion->getContect());
 	
-
 ?>

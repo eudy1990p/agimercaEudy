@@ -44,7 +44,12 @@
 			</form>
 			
 			
-			<?php require_once("vistas_post.php");
+			<?php 
+				
+				require_once("vistas_post.php");
+				
+				print_r($post);
+				
 				$get = $post->getPost();
 				$contador=0;
 				while($res = mysqli_fetch_array($get)){
