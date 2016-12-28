@@ -27,7 +27,9 @@ class Post
 		}
 	}
 	function getComentarioPost($idPost){
-		$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
+		//$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
+		$sql ="SELECT * FROM comentarios as c left join usuarios as u on c.user_id_creado = u.id WHERE post_id = '"+$idPost+"' limit 5";
+		
 		$query = $this->c->query($sql);
 		if ($query) {
 			return $query;

@@ -48,7 +48,7 @@
 				$get = $post->getPost();
 				$contador=0;
 				while($res = mysqli_fetch_array($get)){
-					allpost($res["img_url"],$res["user"],$res["post"],$contador);
+					allpost($res["img_url"],$res["user"],$res["post"],$contador,$post);
 					$contador++;
 				}
 				//allpost("p","d","d");
