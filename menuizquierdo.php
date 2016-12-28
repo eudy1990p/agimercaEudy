@@ -5,5 +5,5 @@
 		  <a href="cambiar_clave.php" class="list-group-item">Cambiar Contrase&ntilde;a</a>
 		  <a href="galeria_imagenes.php" class="list-group-item">Ver albunes</a>
 		  <a href="#" class="list-group-item">Mis videos</a>
-		  <a href="#" class="list-group-item">Mis publicaciones</a>
+		  <a href="publicaciones.php" class="list-group-item">Mis publicaciones</a>
 		</div>

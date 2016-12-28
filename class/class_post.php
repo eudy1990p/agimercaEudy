@@ -15,8 +15,9 @@ class Post
 	}
 	function setIdUser($id){ $this->id = $id; }
 	
-	function getPost(){
-		$sql = "SELECT p.id,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id limit 50";
+	function getPost($where="",$limit="limit 50"){
+		$sql = "SELECT p.id,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id ".$where." ".$limit."";
+		//echo $sql;
 		$query = $this->c->query($sql);
 		if ($query) {
 			return $query;
