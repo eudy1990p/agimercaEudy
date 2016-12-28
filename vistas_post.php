@@ -1,7 +1,6 @@
 <?php 
 
-die("rr");
-function   allpost($img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
+function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
 <hr/>
 <div class="row" style="background-color: rgba(232, 232, 232, 0.3);padding: 6px;">
 	<div class="col-xs-2">
@@ -21,27 +20,41 @@ function   allpost($img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",
      </div>
 	<?php	}	?>
 	
-	<?php if($post != ""){?>
+	<?php if($postCuerpo != ""){?>
 	<div class="col-xs-12" style="background-color: #fff;margin-top: 11px;">
-		<?php echo $post; ?>
+		<?php echo $postCuerpo; ?>
 	</div>
 	<?php	}	?>
 </div>
 <?php 
 	if(!empty($post)){
-$resultComent = $post->getComentarioPost(idPost);	
-while($resComent = mysqli_fetch_array($resultComent)){
+$resultComent = $post->getComentarioPost($idPost);	
+while($resComent = mysqli_fetch_object($resultComent)){
 ?>
-<ul class="media-list">
+<ul class="media-list" style="    background-color: rgba(203, 212, 235, 0.23);
+    padding-top: 6px;
+    padding-left: 7px;    margin-bottom: 1px;">
   <li class="media">
     <div class="media-left">
       <a href="#">
-        <img class="media-object" src="..." alt="...">
+        <img width="50" class="media-object" src="<?php echo $resComent->img_perfil; ?>" alt="img usuario">
       </a>
     </div>
     <div class="media-body">
-      <h4 class="media-heading">Media heading</h4>
-      ...
+      
+			<h5 class="media-heading">
+				<div class="row">
+					<div class="col-xs-9">
+						<?php echo $resComent->user; ?>
+					</div>
+					<div class="col-xs-3">
+						<?php echo $resComent->fecha_creado; ?>
+					</div>
+				</div>
+				 
+			</h5>
+			
+      <?php echo $resComent->comentario; ?>
     </div>
   </li>
 </ul>
@@ -53,6 +66,11 @@ while($resComent = mysqli_fetch_array($resultComent)){
 
 <div style="display:none;" id="comentario<?php echo $contador; ?>" class="row">
 	<form method="post" action="" >
+		<input type="hidden" name="accion" value="agregar_comentario"/>		
+		<input type="hidden" name="id_post" value="<?php echo $idPost; ?>"/>
+
+		
+
 		<input type="hidden"  id="mostrar<?php echo $contador; ?>" value="0"/>
 	<div  class="col-xs-12">
 			<textarea name="post" class="form-control" rows="2"></textarea>

@@ -26,9 +26,11 @@ class Post
 		}
 	}
 	function getComentarioPost($idPost){
-		//$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
-		$sql ="SELECT * FROM comentarios as c left join usuarios as u on c.user_id_creado = u.id WHERE post_id = '"+$idPost+"' limit 5";
 		
+		//$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
+		$sql = "SELECT u.img_perfil,u.user,c.comentario,c.fecha_creado FROM comentarios as c left join usuarios as u on c.user_id_creado = u.id WHERE post_id = '".$idPost."' limit 5";
+		
+		//echo $sql;
 		$query = $this->c->query($sql);
 		if ($query) {
 			return $query;
@@ -37,6 +39,23 @@ class Post
 			die("Error en la consulta");
 		}
 	}
+function setComentarioPost($coment,$postID,$usuarioID){
+		
+$sqlInsert ="INSERT INTO 
+		 comentarios(comentario , post_id, user_id_creado, fecha_creado) 
+		VALUES 
+		('".$coment."','".$postID."','".$usuarioID."',now())";
+		
+		
+				//$this->verQuery($sqlInsert);
+				$query = $this->c->query($sqlInsert);
+				if ($query) {
+					echo "Todo bien";
+				}else{
+					echo $this->c->error;
+					die("Error en la consulta1");
+				}	
+}
 	function getInventario(){
 		$sql = "select id,nombre,cantidad_vigente as cantidad,codigo,precio_venta as precio,url from inventarios where e_p != 'eliminado';";
 		$query = $this->c->query($sql);

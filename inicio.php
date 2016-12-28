@@ -6,6 +6,7 @@
 			$post->setPost($_POST,$_FILES);
 		}
 		if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_comentario")){
+			$post->setComentarioPost($_POST["post"],$_POST["id_post"],$_SESSION["id"]);
 			//$post->setPost($_POST,$_FILES);
 		}
 	}
@@ -47,8 +48,6 @@
 			<?php 
 				
 				require_once("vistas_post.php");
-				
-				print_r($post);
 				
 				$get = $post->getPost();
 				$contador=0;
