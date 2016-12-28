@@ -1,7 +1,7 @@
 <?php 
 
 	
-	require_once("/../class_conexion.php");
+//	require_once("/../class_conexion.php");
 
 	/**
 	* Esta clase es semi inecesaria ya que ya hay una precreada por eudy1990.
