@@ -73,7 +73,7 @@
 				</div>
 
 
-				<input class="btn btn-success" name="enviar" type="submit" value="Crear"></input>
+				<input class="btn btn-success" name="enviar" type="submit" value="Crear" />
 			</form>
 
 			<?php 
@@ -119,12 +119,8 @@
 
 
 	<div class="col-xs-4">
-<<<<<<< HEAD
-				<?php require_once("menuizquierdo.php"); ?>
-
-=======
 		<?php require_once("menuizquierdo.php"); ?>
->>>>>>> c5a2d7c81c838869ee031597defc3c679146f127
+
 	</div>
 	
 	
