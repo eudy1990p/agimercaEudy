@@ -54,7 +54,7 @@ how about, learn "programming"? ;)
       <form action="" method="post" enctype="multipart/form-data" class="form-signin">
         <input type="hidden" name="registro">
         <h2 class="form-signin-heading">Agimerca-<?php echo "Registro"; ?></h2>
-				
+				Seleccione una imagen desde su computador<br/>
 				<input type="file" id="inputImgPerfil" name="ImgPerfil" class="form-control" />
 <br/>
 				

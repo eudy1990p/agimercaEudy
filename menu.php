@@ -58,7 +58,25 @@
                 
                
               </ul>
+							 
             </li>
+						<?php if ( isset($_SESSION["id"]) ) { ?>
+							<li id="idMenuFactura">
+								<a href="index.php?deslogueo="
+								class=" ">
+								<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								<?php echo "Salir"; ?>
+								</a>
+							</li>
+						<?php }else{ ?>
+							<li id="idMenuFactura">
+								<a href="index.php"
+								class=" ">
+								<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								<?php echo "Entrar"; ?>
+								</a>
+							</li>
+						<?php } ?>
 						
 						
 						<!--

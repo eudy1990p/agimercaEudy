@@ -87,7 +87,7 @@ how about, learn "programming"? ;)
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted"><a href="http://eudy.260mb.net"><?php echo $label->FooterDerechos; echo md5("123456"); ?></a></p>
+        <p class="text-muted"><a href="http://eudy.260mb.net"><?php echo $label->FooterDerechos; ?></a></p>
       </div>
     </footer>
 

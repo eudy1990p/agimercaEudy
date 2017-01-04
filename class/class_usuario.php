@@ -63,12 +63,19 @@ class Usuarios
 	function addUsuarioConImagen($p,$f=""){
 		
 		$url="";
-		$respImg = $this->uploadImgProducto($f);
 		
-		if ($respImg == 3) {	return 3; }
 		
-		if (isset($f["ImgPerfil"]) && !empty($f["ImgPerfil"])) { 
-			$url = "url = '".$respImg."',";										
+		if (isset($f["ImgPerfil"]) && !empty($f["ImgPerfil"]) && ($f["ImgPerfil"]["name"] != "" )) { 
+			$respImg = $this->uploadImgProducto($f);
+		
+		if ($respImg == 3) {// die("33");	
+												return 3; }
+
+			//die("44");
+			$url = "img_perfil = '".$respImg."',";										
+		}else{
+			
+			$respImg = "img/foto_perfil.jpg";
 		}
 		$sqlInsert ="INSERT INTO 
 		 usuarios(user ,  clave, fecha_creado, estado, img_perfil,tipo_user) 
@@ -79,8 +86,8 @@ class Usuarios
 				//$this->verQuery($sqlInsert);
 				$query = $this->c->query($sqlInsert);
 				if ($query) {
-					comprobarUserPass($p);
-					echo "Todo bien";
+					$this->validarDatosUser($p);
+					//echo "Todo bien";
 				}else{
 					echo $this->c->error;
 					die("Error en la consulta1");
@@ -233,7 +240,7 @@ class Usuarios
 		$sql = "select * 
 		from usuarios as u
 		where u.user = '".$p["user"]."' and u.clave = '".md5($p["clave"])."' and estado='activo' ";
-		echo "Consulta: ".$sql;
+	//	echo "Consulta: ".$sql;
 		$query = $this->c->query($sql);
 		if ($query) {
 			if ($query->num_rows > 0) {
