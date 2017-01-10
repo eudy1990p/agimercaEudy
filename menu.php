@@ -21,6 +21,8 @@
               </a>
             </li>
 
+
+
 						 <li class="dropdown" id="idMenuAjuste">
               <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <?php echo $label->MenuAjuste; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -78,6 +80,11 @@
 							</li>
 						<?php } ?>
 						
+            <li>
+              <a href="busqueda.php">
+                <span class="glyphicon glyphicon-search"> </span> Busqueda
+              </a>
+            </li>
 						
 						<!--
             <li id="idMenuProducto">
@@ -140,9 +147,10 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>-->
-
           </ul>
+
         </div><!--/.nav-collapse -->
+
       </div>
     </nav>
 

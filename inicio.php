@@ -1,15 +1,15 @@
 <?php
 	require_once("header.php");
 	
-	if(isset($_POST)){
-		if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_post")){
-			$post->setPost($_POST,$_FILES);
-		}
-		if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_comentario")){
-			$post->setComentarioPost($_POST["post"],$_POST["id_post"],$_SESSION["id"]);
-			//$post->setPost($_POST,$_FILES);
-		}
-	}
+	// if(isset($_POST)){
+	// 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_post")){
+	// 		$post->setPost($_POST,$_FILES);
+	// 	}
+	// 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_comentario")){
+	// 		$post->setComentarioPost($_POST["post"],$_POST["id_post"],$_SESSION["id"]);
+	// 		//$post->setPost($_POST,$_FILES);
+	// 	}
+	// }
 ?>
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
