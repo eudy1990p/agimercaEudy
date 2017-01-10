@@ -22,7 +22,6 @@
 	        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
                   <?php echo $label->MenuFactura; ?></h1>
 </div>
-
 <div class="row">
 		<div class="col-xs-8">
 			<form action="" method="post" enctype="multipart/form-data">
