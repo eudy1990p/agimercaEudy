@@ -67,7 +67,7 @@
 							    <h6 class='card-subtitle text-muted'>Por: <?php echo $_SESSION['usuario'] ?></h6>
 							  </div>
 							  <img src='...' alt='Card image'>
-							  <div class='card-block'>
+							  <!-- <div class='card-block'> -->
 							    <form action="ver_galeria.php"  method="get">
 							    <button class="btn btn-warning" name="id_album" value="<?php echo $datos['id'] ?>" type="submit">Ver galeria</button>
 							    </form>
@@ -80,39 +80,58 @@
 
 					</div>
 				</div>
-<!-- 
-<div class="col-md-12 text-center"><h3>Product Carousel</h3></div>
-<div class="col-md-6 col-md-offset-3">
-<div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
-  <div class="carousel-inner">
-    <div class="item active">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=2" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=3" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f4f4f4&amp;text=4" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
-    </div>
-  </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-</div>
+
+<div class="col-md-12 text-center"><h3>Ultimas entradas</h3></div>
+<!-- Se establece el tamaño en 12 en un principio -->
+<div class="col-md-12">
+	<div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+	  <div class="carousel-inner">
+
+	
+		<?php 
+
+		$c= new Conexion();
+			$sql = 
+			"
+			select * from 
+				((select * from carpeta_gallerias) union (select * from carpeta_videos)) as tabla
+			
+			";
+
+			
+			$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
+
+			while($datos = mysqli_fetch_array($resultado)):
+				static $c=0;
+			?>
+			<!-- ==================	========================================================================== -->
+			<!-- Solo debe haber un item con la clase active -->
+		<div class="item <?php if($c==1)echo "active";$c++; ?>">
+			<div class='card col-xs-3'>
+			  <div class='card-block'>
+			    <h4 class='card-title'><?php echo $datos['nombre']; ?></h4>
+			    <h6 class='card-subtitle text-muted'>Por: <?php echo $_SESSION['usuario'] ?></h6>
+			  </div>
+			  <!-- <img src='...' alt='Card image'> -->
+			  <div class='card-block'>
+			    <form action="ver_galeria.php"  method="get">
+			    <button class="btn btn-warning" name="id_album" value="<?php echo $datos['id'] ?>" type="submit">Ver galeria</button>
+			    </form>
+			    <!-- aqui irian los me gusta y demas -->
+			    <a href='#' class='card-link'>Publicado el : <?php echo $datos['fecha_creado'] ?></a>
+			  </div>
+			</div>
+	    </div>
+			<!-- ============================================================================================ -->
+		<?php endwhile;?>
+
+
+
+
+	  </div>
+	  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+	  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+	</div>
 </div>
 <style type="text/css">
 	.carousel-control 			 { width:  4%; }
@@ -158,13 +177,13 @@
   }
 });
 </script>
-				
+
 			</div>
 
 			<hr/>
 	</div>
 
- -->
+
 
 	<div class="col-xs-4">
 		
