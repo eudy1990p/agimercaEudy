@@ -93,9 +93,9 @@
 		$c= new Conexion();
 			$sql = 
 			"
-			select * from 
-				((select * from carpeta_gallerias) union (select * from carpeta_videos)) as tabla
-			
+			select posts.*,max(posts.fecha_creado),usuarios.id as usuario,usuarios.user as autor
+			from posts join usuarios on posts.user_id_creado=usuarios.id
+			group by posts.fecha_creado desc limit 20; 
 			";
 
 			
@@ -107,21 +107,35 @@
 			<!-- ==================	========================================================================== -->
 			<!-- Solo debe haber un item con la clase active -->
 		<div class="item <?php if($c==1)echo "active";$c++; ?>">
-			<div class='card col-xs-3'>
-			  <div class='card-block'>
-			    <h4 class='card-title'><?php echo $datos['nombre']; ?></h4>
-			    <h6 class='card-subtitle text-muted'>Por: <?php echo $_SESSION['usuario'] ?></h6>
-			  </div>
-			  <!-- <img src='...' alt='Card image'> -->
-			  <div class='card-block'>
-			    <form action="ver_galeria.php"  method="get">
-			    <button class="btn btn-warning" name="id_album" value="<?php echo $datos['id'] ?>" type="submit">Ver galeria</button>
-			    </form>
-			    <!-- aqui irian los me gusta y demas -->
-			    <a href='#' class='card-link'>Publicado el : <?php echo $datos['fecha_creado'] ?></a>
-			  </div>
-			</div>
+			<div class="card col-xs-3 alert" id="carta">
+		  <img class="card-img-top img-responsive" src="<?php echo $datos['img_url'] ?>">
+		  <div class="card-block">
+		    <!-- <h4 class="card-title"></h4> -->
+		    <p class="card-text" style="max-height: 40px;overflow: hidden;"><?php echo $datos['post']; ?></p>
+		  </div>
+		  <ul class="list-group list-group-flush">
+		    <li class="list-group-item">
+		    <form action="pagina para ver post" method="post">
+		    	<button class="btn btn-block btn-info" name="id_publicacion" value="<?php echo $datos['id'] ?>">
+		    	ver publicacion
+		    	</button>
+		    </form>
+		    </li>
+		    <li class="list-group-item">
+		    <form action="pagina para ver usuario" method="post">
+		    	<button class="btn btn-block btn-link" name="id_usuario" value="<?php echo $datos['usuario'] ?>">
+		    	autor: <?php echo $datos['autor'] ?>
+		    	</button>
+		    </form>
+		    </li>
+		  </ul>
+		  <div class="card-block">
+		    <p class="alert alert-info">Fecha: <?php echo $datos['fecha_creado'] ?></p>
+		  </div>
+		</div>
 	    </div>
+
+
 			<!-- ============================================================================================ -->
 		<?php endwhile;?>
 
@@ -158,6 +172,11 @@
 	.carousel-inner .prev		 { left: -25%; }	
 }
 
+#carta{
+	margin: 2px
+	border-radius: 2px;
+	border: 1px solid gray;
+}
 </style>
 <script type="text/javascript">
 	$('.carousel[data-type="multi"] .item').each(function(){
