@@ -49,7 +49,7 @@ how about, learn "programming"? ;)
   <body style="background-image: url(img/fondo.jpg);
     background-size: cover;">
 
-    <div class="container" style="    background-color: rgba(51, 51, 51, 0.51);
+    <div class="container" style="background-color: rgba(51, 51, 51, 0.51);
     padding-bottom: 10%;
     color: white;">
 
@@ -81,9 +81,10 @@ how about, learn "programming"? ;)
 				<a class="btn btn-lg btn-primary btn-block" href="registro.php"><?php echo "Registrarte"; ?> </a>
       </form>
 
+
+      
+
     </div> <!-- /container -->
-
-
 
 
     <footer class="footer">
