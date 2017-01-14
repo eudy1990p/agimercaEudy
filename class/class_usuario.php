@@ -261,7 +261,7 @@ class Usuarios
 			die("Error en la consulta");
 		}
 	}
-	function optenerPermisos($grupoId){
+	/*function optenerPermisos($grupoId){
 		
 		$sql = "SELECT ss.nombre,pss.leer,pss.escribir,
 						pss.editar,pss.borrar,pss.bloquear
@@ -286,7 +286,7 @@ class Usuarios
 			echo $this->c->error;
 			die("Error en la consulta");
 		}
-	}
+	}*/
 	function asignarValoresSession(){
 		$_SESSION["usuario"]=$this->usuario;
 		$_SESSION["id"]=$this->id;

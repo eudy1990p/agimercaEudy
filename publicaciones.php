@@ -34,7 +34,9 @@
 
 
 				<div class="row">
-
+					<div class="col-xs-12">
+						<?php require_once("vista_select_categorias_sub_subsub.php"); ?>
+					</div>
 					<div class="col-xs-12">
 						<textarea id="post" name="post" class="form-control" rows="5"></textarea>
 					</div>
@@ -56,7 +58,8 @@
 				$get = $post->getPost("where user_id_creado = '".$_SESSION["id"]."' ");
 				$contador=0;
 				while($res = mysqli_fetch_array($get)){
-					allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);
+					//allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);
+					allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"]);
 					$contador++;
 				}
 				//$img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",

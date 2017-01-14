@@ -26,6 +26,83 @@ class Post
 			die("Error en la consulta");
 		}
 	}
+	
+	function getPostBusquedaAvanzada($p){
+		$where = "";
+		if( isset($p["categoria_id"]) && (!empty($p["categoria_id"])) ){
+			if(empty($where)){
+					$where .= "c.id = '".$p["categoria_id"]."'";
+			}else{
+					$where .= " and (c.id = '".$p["categoria_id"]."') ";
+			}	
+		}
+		
+		if( isset($p["relacion_sector_roll_id"]) && (!empty($p["relacion_sector_roll_id"])) ){
+			if(empty($where)){
+					$where .= "rcs.id = '".$p["relacion_sector_roll_id"]."'";
+			}else{
+					$where .= " and (rcs.id = '".$p["relacion_sector_roll_id"]."') ";
+			}	
+		}
+		
+		
+		if( isset($p["relacion_producto_sector_id"]) && (!empty($p["relacion_producto_sector_id"])) ){
+			if(empty($where)){
+					$where .= "rssp.id = '".$p["relacion_producto_sector_id"]."'";
+			}else{
+					$where .= " and (rssp.id = '".$p["relacion_producto_sector_id"]."') ";
+			}	
+		}
+		
+		if( isset($p["buscador_avanzado"]) && (!empty($p["buscador_avanzado"])) ){
+			if(empty($where)){
+					$where .= "p.post  like '%".$p["buscador_avanzado"]."%'";
+			}else{
+					$where .= " and (p.post like '%".$p["buscador_avanzado"]."%') ";
+			}	
+		}
+		
+		//p.post LIKE '%a%'
+		$sql = "SELECT 
+			p.id,u.user, p.post, p.img_url,u.img_perfil
+			FROM
+			relacion_categoria_subcategoria AS rcs
+
+			INNER JOIN relacion_subcategorias_subsubcategoria AS rcss
+			ON rcs.id = rcss.relacion_categoria_subcategoria_id
+
+			INNER JOIN relacion_sub_of_sub_categoria_posts AS rssp
+			ON rcss.id = rssp.relacion_subcategorias_subsubcategoria_id
+
+			INNER JOIN categorias AS c
+			ON rcs.categoria_id = c.id
+
+			INNER JOIN sub_categorias AS sc
+			ON sc.id = rcs.sub_categoria_id
+
+			INNER JOIN sub_of_sub_categorias AS ssc
+			ON ssc.id = rcss.sub_of_sub_categoria_id
+
+			INNER JOIN posts AS p
+			ON rssp.posts_id = p.id
+
+			INNER JOIN usuarios AS u 
+			ON p.user_id_creado = u.id
+
+			WHERE 
+			
+			$where
+			";
+			//$this->verQuery($sql);
+			$query = $this->c->query($sql);
+			if ($query) {
+				return $query;
+			}else{
+				echo $this->c->error;
+				die("Error en la consulta");
+			}
+		
+	}
 	function getComentarioPost($idPost){
 		
 		//$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
@@ -104,6 +181,9 @@ $sqlInsert ="INSERT INTO
 		if (isset($p["add"])) {
 
 			$query = $this->addProducto($p,$f);
+			
+			$p["post_id"] = $this->c->insert_id;
+			$this->setInsertRelacion($p);
 			//if ($query == 3) { return 3; }
 			//if ($query == 1) { return 1; }
 			//die("1234567");
@@ -118,6 +198,21 @@ $sqlInsert ="INSERT INTO
 		}*/
 	}
 
+	function setInsertRelacion($p){
+		$sqlInsert="insert into relacion_sub_of_sub_categoria_posts 
+							(id,relacion_subcategorias_subsubcategoria_id,posts_id,fecha_creado,user_id_creado)
+							values
+							(null,'".$p["relacion_producto_sector_id"]."','".$p["post_id"]."', now(), '".$_SESSION["id"]."' ); ";
+
+				//$this->verQuery($sqlInsert);
+				$query = $this->c->query($sqlInsert);
+				if ($query) {
+					return $query ;
+				}else{
+					echo $this->c->error;
+					die("Error en la consulta1");
+				}
+	}
 
 
 	function editProducto($p,$f=""){
@@ -246,6 +341,7 @@ $sqlInsert ="INSERT INTO
 				$query = $this->c->query($sqlInsert);
 				if ($query) {
 					echo "Todo bien";
+					return $query;
 				}else{
 					echo $this->c->error;
 					die("Error en la consulta1");

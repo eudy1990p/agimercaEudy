@@ -6,6 +6,7 @@
  }
  if (isset($_GET["deslogueo"])) {
     $usuario->eliminarSesiones();
+	 header("location:index.php");
  }
 /**
 for this peace of software-"quality" shit you take money? 

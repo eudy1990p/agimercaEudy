@@ -56,7 +56,43 @@
                   </a>
                 </li>
                 
+								<li class="divider"></li>
+								 <li>
+                  <a href="categoria.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ( $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Roll (Categoria)"; ?>
+                  </a>
+                </li>
                
+								<li class="divider"></li>
+								 <li>
+                  <a href="sectores.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ( $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Sector (Sub Categoria)"; ?>
+                  </a>
+                </li>
+								
+								<li class="divider"></li>
+								 <li>
+                  <a href="productos.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ( $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Producto (Sub Sub Categoria)"; ?>
+                  </a>
+                </li>
+								
+								<li class="divider"></li>
+								 <li>
+                  <a href="relaciones_categorias.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ( $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Relaciones de categorias"; ?>
+                  </a>
+                </li>
+								
+								
               </ul>
 							 
             </li>
@@ -142,6 +178,17 @@
             </li>-->
 
           </ul>
+					
+					<form action="busqueda_normal.php" method="post" class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" name="busqueda_post" class="form-control" placeholder="Buscar post">
+							</div>
+							<button type="submit" class="btn btn-default">Buscar</button>
+							<a href="busqueda_normal.php?opcionesAvanzadas=si"  class="btn btn-default">Busqueda Avanzada</a href="">
+						</form>
+					
+					
+					
         </div><!--/.nav-collapse -->
       </div>
     </nav>
