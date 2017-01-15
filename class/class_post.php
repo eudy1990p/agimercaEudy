@@ -16,7 +16,7 @@ class Post
 	function setIdUser($id){ $this->id = $id; }
 	
 	function getPost($where="",$limit="limit 50"){
-		$sql = "SELECT p.id,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id ".$where." ".$limit."";
+		$sql = "SELECT p.id,u.id as id_user,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id ".$where." ".$limit."";
 		//echo $sql;
 		$query = $this->c->query($sql);
 		if ($query) {
@@ -64,7 +64,7 @@ class Post
 		
 		//p.post LIKE '%a%'
 		$sql = "SELECT 
-			p.id,u.user, p.post, p.img_url,u.img_perfil
+			p.id,u.user,u.id as id_user, p.post, p.img_url,u.img_perfil
 			FROM
 			relacion_categoria_subcategoria AS rcs
 
@@ -106,7 +106,7 @@ class Post
 	function getComentarioPost($idPost){
 		
 		//$sql = "SELECT * FROM `comentarios` WHERE post_id = '"+$idPost+"' limit 5";
-		$sql = "SELECT u.img_perfil,u.user,c.comentario,c.fecha_creado FROM comentarios as c left join usuarios as u on c.user_id_creado = u.id WHERE post_id = '".$idPost."' limit 5";
+		$sql = "SELECT u.img_perfil,u.user,u.id as id_user,c.comentario,c.fecha_creado FROM comentarios as c left join usuarios as u on c.user_id_creado = u.id WHERE post_id = '".$idPost."' limit 5";
 		
 		//echo $sql;
 		$query = $this->c->query($sql);

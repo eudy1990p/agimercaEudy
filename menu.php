@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Agimerca</a>
+          <a class="navbar-brand" href="http://www.agimerca.com">Agimerca</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
 					
 					<form action="busqueda_normal.php" method="post" class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<input type="text" name="busqueda_post" class="form-control" placeholder="Buscar post1">
+								<input type="text" name="busqueda_post" class="form-control" placeholder="Buscar post">
 							</div>
 							<button type="submit" class="btn btn-default">Buscar</button>
 							<a href="busqueda_normal.php?opcionesAvanzadas=si"  class="btn btn-default">Busqueda Avanzada</a href="">

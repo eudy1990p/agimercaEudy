@@ -2,7 +2,7 @@
 	require_once("header.php");
 		$usuario_id = "1";
 		if(isset($_GET["user_id"]) && ($_GET["user_id"] != "")){
-				$usuario_id =$_GET["user_id"];
+				$usuario_id =base64_decode($_GET["user_id"]);
 		}
 
 	if(isset($_POST)){
@@ -63,16 +63,16 @@
 				<!-- Contextual button for informational alert messages -->
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publicaciones</a></li>
-				<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Galeria</a></li>
-				<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Videos</a></li>
+				<li role="presentation" <?php if( !isset($_POST["paso"]) ){ ?> class="active" <?php } ?> ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publicaciones</a></li>
+				<li role="presentation"  <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "1" ) || ($_POST["paso"] == "2" ) ) ){ ?> class="active" <?php } ?> ><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Galeria</a></li>
+				<li role="presentation" <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "3" ) || ($_POST["paso"] == "4" ) ) ){ ?> class="active" <?php } ?> ><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Videos</a></li>
 				
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
 				
-				<div role="tabpanel" class="tab-pane active" id="home">
+				<div role="tabpanel" class="tab-pane <?php if( !isset($_POST["paso"]) ){ ?> active <?php } ?> " id="home">
 				
 					<?php 
 
@@ -91,8 +91,33 @@
 							?>
 					
 				</div>
-				<div role="tabpanel" class="tab-pane" id="profile">...</div>
-				<div role="tabpanel" class="tab-pane" id="messages">...</div>
+				<div role="tabpanel" class="tab-pane  <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "1" ) || ($_POST["paso"] == "2" ) ) ){ ?> active <?php } ?>" id="profile">
+						
+						<?php //ver_galeria_perfil_usuario.php
+								if(isset($_POST["paso"]) && ( $_POST["paso"] == "2" )){
+									require_once("ver_galeria_perfil_usuario.php"); 
+								}else if(isset($_POST["paso"]) &&  ($_POST["paso"] == "1" )){
+									require_once("galeria_imagenes_pefil_usuario.php");
+								}else{
+									require_once("galeria_imagenes_pefil_usuario.php");	
+								}
+							?>		
+				
+				</div>
+				<div role="tabpanel" class="tab-pane <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "3" ) || ($_POST["paso"] == "4" ) ) ){ ?> active <?php } ?>" id="messages">
+					
+				
+					<?php //ver_galeria_perfil_usuario.php
+								if(isset($_POST["paso"]) && ( $_POST["paso"] == "4" )){
+									require_once("ver_videos_perfil_usuario.php"); 
+								}else if(isset($_POST["paso"]) &&  ($_POST["paso"] == "3" )){
+									require_once("galeria_videos_pefil_usuario.php");
+								}else{
+									require_once("galeria_videos_pefil_usuario.php");	
+								}
+							?>	
+					
+				</div>
 				
 			</div>
 
