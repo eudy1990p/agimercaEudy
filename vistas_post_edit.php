@@ -1,13 +1,13 @@
 <?php 
 
-function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg"){ ?>
+function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg",$id_user="1"){ ?>
 <hr/>
 <div class="row" style="background-color: rgba(232, 232, 232, 0.3);padding: 6px;">
 	<div class="col-xs-2">
-		<img width="50" src="<?php echo $img_usuario; ?>" class="img-responsive img-circle" alt="Usuario" />
+		<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $id_user; ?>" ><img width="50" src="<?php echo $img_usuario; ?>" class="img-responsive img-circle" alt="Usuario" /></a>
 	</div>
 	<div class="col-xs-7"  valign="center">
-		<stron><?php echo $nombre_usuario; ?></stron>
+		<stron><a href="publicaciones_perfil_usuario.php?user_id=<?php echo $id_user; ?>" ><?php echo $nombre_usuario; ?></a></stron>
 	</div>
 	
 	<div class="col-xs-1"  valign="center">
@@ -40,7 +40,7 @@ while($resComent = mysqli_fetch_object($resultComent)){
     padding-left: 7px;    margin-bottom: 1px;">
   <li class="media">
     <div class="media-left">
-      <a href="#">
+      <a href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" >
         <img width="50" class="media-object" src="<?php echo $resComent->img_perfil; ?>" alt="img usuario">
       </a>
     </div>
@@ -49,10 +49,14 @@ while($resComent = mysqli_fetch_object($resultComent)){
 			<h5 class="media-heading">
 				<div class="row">
 					<div class="col-xs-9">
+						<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" >
 						<?php echo $resComent->user; ?>
+						</a>
 					</div>
 					<div class="col-xs-3">
+						<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" >
 						<?php echo $resComent->fecha_creado; ?>
+						</a>
 					</div>
 				</div>
 				 

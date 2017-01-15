@@ -59,7 +59,7 @@
 				$contador=0;
 				while($res = mysqli_fetch_array($get)){
 					//allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);
-					allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"]);
+					allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"],$res["id_user"]);
 					$contador++;
 				}
 				//$img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",
