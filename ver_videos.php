@@ -111,6 +111,10 @@
 											<iframe src='//www.dailymotion.com/embed/video/$datos[url_video]' width='700' height='400'></iframe>
 										";
 									}
+									#-----------------------------------------------------------
+									#						Youtube
+									#-----------------------------------------------------------
+									else if(){}
 
 								}
 							}

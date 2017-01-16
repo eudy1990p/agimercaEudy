@@ -187,6 +187,29 @@
 							<a href="busqueda_normal.php?opcionesAvanzadas=si"  class="btn btn-default">Busqueda Avanzada</a href="">
 						</form>
 					
+                    </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="mensajeria.php" class="btn btn-xs btn-link">mensajes <span class="glyphicon glyphicon-envelope"></span>
+              <span class="badge">
+                <?php 
+                  $c = new Conexion();
+
+                  $id_usuario = $_SESSION['id'];
+
+                  $sql = "select count(*) as `mensajes` from mensajes_privados where visto=false and para_user_id=$id_usuario";
+
+                  $resultado= mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
+
+                  if($datos = mysqli_fetch_row($resultado)){
+                    echo $datos[0];
+                  }
+
+                ?>
+              </span>
+              </a>
+            </li>
+          </ul>
 					
 					
         </div><!--/.nav-collapse -->

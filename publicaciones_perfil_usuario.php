@@ -2,7 +2,7 @@
 	require_once("header.php");
 		$usuario_id = "1";
 		if(isset($_GET["user_id"]) && ($_GET["user_id"] != "")){
-				$usuario_id =base64_decode($_GET["user_id"]);
+			$usuario_id =base64_decode($_GET["user_id"]);
 		}
 
 	if(isset($_POST)){
@@ -23,10 +23,13 @@
     <script>tinymce.init({ selector:'textarea' });</script>
 
 	  	
-	  
+	  <!-- Nelson puso la mano aqui. -->
 <div class="page-header">
 	        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
-                  <?php echo "Perfil"; ?> <a href="#" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-envelope"></span> Dejar Mensaje</a>
+                  <?php echo "Perfil"; ?> 
+
+                <a class="btn btn-info" href="mensajeria.php?mensaje_dejado=<?php echo $_GET["user_id"]?>">Dejar mensaje</a>
+
 </h1>
 </div>
 
