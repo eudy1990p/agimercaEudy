@@ -104,6 +104,13 @@
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
 									<?php 
+										function limpiar_tags($tags){
+											$tags = strip_tags($tags);
+											$tags = stripslashes($tags);
+											$tags = htmlentities($tags);
+											return $tags;
+										}
+
 										if(isset($_POST['btn-mensaje'])){
 											
 											$r=$_SESSION['hablante-actual'];//remitente
@@ -115,6 +122,8 @@
 
 
 											$m=$_POST['mensaje-enviado'];//mensaje
+
+											$n = strip_tags($m);
 										$sql = "insert into mensajes_privados values(default,$u,null,null,now(),'$m',$r,false)";
 
 											mysqli_query($c->getContect(),$sql)or die(mysqli_error($c->getContect()));
@@ -146,7 +155,7 @@
 											<?php echo $datos['fecha_creado'] ?>
 										</div>
 										<div>
-											<?php echo $datos['mensaje']; ?>
+											<?php echo strip_tags($datos['mensaje']); ?>
 										</div>
 									</li>
 									<?php endwhile; } ?>
