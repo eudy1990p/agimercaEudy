@@ -135,6 +135,7 @@
 
 											if(isset($_GET['mensaje_dejado'])){
 												$r=$_GET['mensaje_dejado'];
+												// mensaje que se dejo
 											}
 
 
