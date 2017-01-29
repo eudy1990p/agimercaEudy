@@ -72,24 +72,25 @@
 						                //y a los que nos an enviado.
 						                $sql =
 						                "
-						                select mensajes_privados.*,usuarios.user,usuarios.id as user_id,count(visto) as cantidad
+						                select mensajes_privados.*,usuarios.user,usuarios.id as user_id,count(visto) as cantidad, usuarios.img_perfil
 						                from mensajes_privados join usuarios 
 										on mensajes_privados.user_id_creado=usuarios.id
 										where para_user_id=$id_usuario or user_id_creado=$id_usuario group by user_id_creado
 						                ";
-
+														//echo $sql;
 						                $resultado= mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 
 						                while ($datos = mysqli_fetch_array($resultado)):
 									?>
 									<li class="list-group-item">
+										
 										<form action="" method="post">
 											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['user_id'] ?>">
-											<!-- <img src="img_perfil/1_1_recurso.png" class="img-circle" width="30" height="30"> -->
-
-
+											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30"> <?php echo $datos['user'] ?>
 											</button>
 										</form>
+										
+										
 									</li>
 
 								<?php endwhile; ?>
@@ -98,6 +99,8 @@
 
 							</div>
 						</div>
+						
+						
 						<div class="panel col-xs-9">
 							<h4>mensajes</h4>
 							<!-- cambio  -->
