@@ -1,21 +1,22 @@
 <?php
 	require_once("header.php");
 	
-	// if(isset($_POST)){
-	// 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_post")){
-	// 		$post->setPost($_POST,$_FILES);
-	// 	}
-	// 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_comentario")){
-	// 		$post->setComentarioPost($_POST["post"],$_POST["id_post"],$_SESSION["id"]);
-	// 		//$post->setPost($_POST,$_FILES);
-	// 	}
-	// }
+	 if(isset($_POST)){
+	 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_post")){
+	 		$post->setPost($_POST,$_FILES);
+	 	}
+	 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_comentario")){
+	 		$post->setComentarioPost($_POST["post"],$_POST["id_post"],$_SESSION["id"]);
+	 		//$post->setPost($_POST,$_FILES);
+	 	}
+	 }
+$getPais = $post->getPais();
 ?>
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 
 
-	  	
+	  
 	  
 <div class="page-header">
 	        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
@@ -32,17 +33,19 @@
 						<?php require_once("vista_select_categorias_sub_subsub.php"); ?>
 					</div>
 					<div class="col-xs-12">
-						<textarea name="post" class="form-control" rows="5"></textarea>
+						<?php require_once("vista_agregar_post.php"); ?>
+						
 					</div>
 					<div class="col-xs-6"><br/>
 						Imagen <input type="file" name="imgProducto" />
 					</div>				
 					<div class="col-xs-6 text-right"><br/>
-						<button type="submit" class="btn btn-success">Publicar</button>
+					<a href="inicio.php" class="btn btn-warning">Cancelar</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<button type="submit" class="btn btn-success">Publicar</button>
 					</div>
 
 				</div>
 			</form>
+			
 			
 			
 			<?php 

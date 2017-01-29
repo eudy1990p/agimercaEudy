@@ -1,17 +1,9 @@
-<div class="row">
-	<form action="" method="post">
+<a href="javascript:void(0);" onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Opciones Avanzadas</a>
+<div id="post_basico"> 
+<textarea name="post" class="form-control" rows="5"></textarea>
+</div>
 
-			<div class="col-xs-12">
-					<?php require_once("vista_select_categorias_sub_subsub.php"); ?>
-			</div>
-
-			<div class="col-xs-12">
-					<input id="textbuscador_avanzado" value="<?php if( isset($_GET["textbuscador_avanzado"]) ){ echo $_GET["textbuscador_avanzado"]; } ?>" name="buscador_avanzado" type="text" class="form-control" placeholder="Post a buscar">	
-			</div>
-		
-		
-		
-		
+	<div class="row" style="display:none;" id="post_avanzado">
 		<div  class="col-xs-12 form-group">
 			<br/>
       <input type="text" class="form-control" name="caracteristica" placeholder="Caracteristicas">
@@ -20,7 +12,7 @@
 	<div  class="col-xs-12 form-group">
 
 		<select  class="form-control" name="pais" placeholder="Seleccione Pais de la Ubicación del producto">
-			<option value="">Seleccione Pais de la Ubicación del producto</option>
+			<option>Seleccione Pais de la Ubicación del producto</option>
 			<?php 	 
 		
 				while($resPais = mysqli_fetch_array($getPais)){
@@ -53,7 +45,6 @@
 	<div  class="col-xs-6 form-group">
 
 		<select  class="form-control" name="medida">
-						<option value="">Seleccione Tipo de medida</option>
 			<option value="unidad">Unidad</option>
   		<option value="millar">Millar</option>
   		<option value="metro">Metro</option>
@@ -78,15 +69,22 @@
 			<input type="text" class="form-control" name="observacion" placeholder="Observación del producto">
 	  </div>
 		
-		
-		
-		
-		
-		
-		
+</div>
 
-			<div class="col-xs-12 text-right"><br/>
-					<button type="submit" class="btn btn-success">Buscar</button>	
-			</div>
-		</form>
-	</div>
+
+<script type="text/javascript" >
+		function mostrarOpcinesAvanzadas(){
+			var activo = $("#post_avanzado").css("display");
+			if(activo == "none"){
+				$("#post_avanzado").show(4000);
+				$("#enlaceA").html("Opciones Basica");
+				$("#post_basico").hide(4000);
+				
+			}else{
+				$("#post_avanzado").hide(4000);
+				$("#enlaceA").html("Opciones Avanzadas");
+				$("#post_basico").show(4000);
+			}
+		}
+		
+</script>

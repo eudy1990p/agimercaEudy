@@ -26,7 +26,7 @@
 <div class="row">
 		<div class="col-xs-8">
 		<?php	if(isset($_GET["opcionesAvanzadas"]) ){
-			
+			$getPais = $post->getPais();
 			 require_once("form_busqueda_avanzada.php"); 
 	
 				if( isset($_POST) && ( isset($_POST["buscador_avanzado"]) ||  isset($_POST["relacion_producto_sector_id"]) ||  isset($_POST["relacion_sector_roll_id"]) ||  isset($_POST["categoria_id"]) ) ){
@@ -71,8 +71,7 @@
 		<?php require_once("menuizquierdo.php"); ?>
 		<?php } ?>
 	</div>
-	
-	
+		
 </div>
 
 
