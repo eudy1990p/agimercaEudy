@@ -108,11 +108,13 @@
 
 										if(isset($_POST['btn-mensaje'])){
 											
-											$r=$_SESSION['hablante-actual'];//remitente
+											//$r=$_SESSION['hablante-actual'];//remitente
 											$u=$_SESSION['id'];//usuario actual
 
 											if(isset($_GET['mensaje_dejado'])){
 												$r=$_GET['mensaje_dejado'];
+											}else{
+												$r=$_SESSION['hablante-actual'];
 											}
 
 
@@ -125,12 +127,13 @@
 										}
 
 										if(isset($_POST['usuario-amigo']) or isset($_POST['btn-mensaje'])){
-											$r=$_SESSION['hablante-actual'];//remitente
 											$u=$_SESSION['id'];//usuario actual
 
 											if(isset($_GET['mensaje_dejado'])){
 												$r=$_GET['mensaje_dejado'];
 												// mensaje que se dejo
+											}else{
+												$r=$_SESSION['hablante-actual'];//remitente
 											}
 
 
@@ -181,29 +184,6 @@
 	<div class="col-xs-4">
 		
 	<?php require_once("menuizquierdo.php"); ?>
-
-		<aside class="container-fluid">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Acciones para el album
-					</div>
-					<div class="panel-body">
-						<label class="form-label">Reaccion</label>
-
-						<!-- Lo programo en otra fecha... -->
-							<!-- <form action="eliminar_album.php" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<button type="submit" name="accion" value="agregar" class="form-control btn btn-success" >
-										Agregar otra foto
-									</button>
-								</div>
-							</form> -->
-							
-
-
-					</div>
-				</div>
-			</aside>
 	</div>
 	
 		
