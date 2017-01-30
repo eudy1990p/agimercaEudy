@@ -96,8 +96,10 @@
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
 									<?php 
+										if(!isset($_POST['usuario-amigo'])){
 										$_POST['usuario-amigo'] = $_GET['mensaje_dejado'];
-										if(isset($_POST['btn-mensaje'])){
+										}
+											if(isset($_POST['btn-mensaje'])){
 											
 											//$r=$_SESSION['hablante-actual'];//remitente
 											$u=$_SESSION['id'];//usuario actual
@@ -128,14 +130,19 @@
 											}
 
 
-											$sql = 
-											"
+											$sql = "select mensajes_privados.*,usuarios.img_perfil as imagen, usuarios.id
+
+from mensajes_privados join usuarios on mensajes_privados.user_id_creado=usuarios.id 
+
+where (user_id_creado = '".$u."' and  para_user_id = '".$r."' ) or (user_id_creado = '".$r."' and  para_user_id = '".$u."' )" 
+											/*"
 											select mensajes_privados.*,usuarios.img_perfil as imagen
 											from mensajes_privados join usuarios 
 											on mensajes_privados.user_id_creado=usuarios.id
 											where user_id_creado in (".$u.",".$r.") and para_user_id in (".$u.",".$r.")
-											";
-
+											"*/;
+											//echo $sql;
+											//die();
 											$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 											while ($datos = mysqli_fetch_array($resultado)):
 										?>
