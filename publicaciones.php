@@ -14,6 +14,7 @@
 			//$post->setPost($_POST,$_FILES);
 		}
 	}
+$getPais = $post->getPais();
 ?>
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
@@ -38,12 +39,13 @@
 						<?php require_once("vista_select_categorias_sub_subsub.php"); ?>
 					</div>
 					<div class="col-xs-12">
-						<textarea id="post" name="post" class="form-control" rows="5"></textarea>
+						<?php require_once("vista_agregar_post.php"); ?>
 					</div>
 					<div class="col-xs-6"><br/>
 						Imagen <input type="file" name="imgProducto" />
 					</div>				
 					<div class="col-xs-6 text-right"><br/>
+							<a href="inicio.php" class="btn btn-warning">Cancelar</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
 						<button id="btpublicar" type="submit" class="btn btn-success">Publicar</button>
 					</div>
 

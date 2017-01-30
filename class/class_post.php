@@ -27,7 +27,20 @@ class Post
 		}
 	}
 	
+	function getPais($where="",$limit="limit 50"){
+		$sql = "SELECT * from pais";
+		//echo $sql;
+		$query = $this->c->query($sql);
+		if ($query) {
+			return $query;
+		}else{
+			echo $this->c->error;
+			die("Error en la consulta");
+		}
+	}
+	
 	function getPostBusquedaAvanzada($p){
+		//print_r($p);
 		$where = "";
 		if( isset($p["categoria_id"]) && (!empty($p["categoria_id"])) ){
 			if(empty($where)){
@@ -62,6 +75,64 @@ class Post
 			}	
 		}
 		
+		if( isset($p["caracteristica"]) && (!empty($p["caracteristica"])) ){
+			if(empty($where)){
+					$where .= "p.caracteristica  like '%".$p["caracteristica"]."%'";
+			}else{
+					$where .= " and (p.caracteristica like '%".$p["caracteristica"]."%') ";
+			}	
+		}
+		if( isset($p["pais"]) && (!empty($p["pais"])) ){
+			if(empty($where)){
+					$where .= "p.pais_id  = '".$p["pais"]."'";
+			}else{
+					$where .= " and (p.pais_id = '".$p["pais"]."') ";
+			}	
+		}
+		if( isset($p["provincia"]) && (!empty($p["provincia"])) ){
+			if(empty($where)){
+					$where .= "p.esto_provincia  like '%".$p["provincia"]."%'";
+			}else{
+					$where .= " and (p.esto_provincia like '%".$p["provincia"]."%') ";
+			}	
+		}
+		if( isset($p["localidad"]) && (!empty($p["localidad"])) ){
+			if(empty($where)){
+					$where .= "p.localidad  like '%".$p["localidad"]."%'";
+			}else{
+					$where .= " and (p.localidad like '%".$p["localidad"]."%') ";
+			}	
+		}
+		
+		if( isset($p["numero"]) && (!empty($p["numero"])) ){
+			if(empty($where)){
+					$where .= "p.numero  = '".$p["numero"]."'";
+			}else{
+					$where .= " and (p.numero = '".$p["numero"]."') ";
+			}	
+		}
+		if( isset($p["medida"]) && (!empty($p["medida"])) ){
+			if(empty($where)){
+					$where .= "p.detalle_numero  = '".$p["medida"]."'";
+			}else{
+					$where .= " and (p.detalle_numero = '".$p["medida"]."') ";
+			}	
+		}
+		if( isset($p["fecha_entrega"]) && (!empty($p["fecha_entrega"])) ){
+			if(empty($where)){
+					$where .= "p.fecha_entrega  = '".$p["fecha_entrega"]."'";
+			}else{
+					$where .= " and (p.fecha_entrega = '".$p["fecha_entrega"]."') ";
+			}	
+		}
+		//
+		if( isset($p["observacion"]) && (!empty($p["observacion"])) ){
+			if(empty($where)){
+					$where .= "p.observaciones  like '%".$p["observacion"]."%'";
+			}else{
+					$where .= " and (p.observaciones like '%".$p["observacion"]."%') ";
+			}	
+		}
 		//p.post LIKE '%a%'
 		$sql = "SELECT 
 			p.id,u.user,u.id as id_user, p.post, p.img_url,u.img_perfil
@@ -93,8 +164,9 @@ class Post
 			
 			$where
 			";
-			//$this->verQuery($sql);
-			$query = $this->c->query($sql);
+		//	$this->verQuery($sql);
+		//die();	
+		$query = $this->c->query($sql);
 			if ($query) {
 				return $query;
 			}else{
@@ -300,6 +372,7 @@ $sqlInsert ="INSERT INTO
 		}else{ return "img/Imagen_no_disponible.jpg"; }	
 	}
 	function addProducto($p,$f=""){
+		//print_r($p);
 		$url="";
 		$respImg = $this->uploadImgProducto($f);
 		
@@ -308,36 +381,50 @@ $sqlInsert ="INSERT INTO
 		if (isset($f["imgProducto"]) && !empty($f["imgProducto"])) { 
 			$url = "url = '".$respImg."',";										
 		}
-		/*$sqlInsert="INSERT INTO `inventarios`
-					(`id`,
-					`nombre`,
-					`f_c`,
-					url,
-					`cantidad_vigente`,
-					`codigo`,
-					`u_id_c`,
-					`precio_venta`,
-					`e_p`)
-					VALUES
-					(
-					null,
-					'".$p["nombre"]."',
-					now(),
-					'".$respImg."',
-					'".$p["cantidad"]."',
-					'".$p["codigo"]."',
-					'$this->id',
-					
-					'".$p["precio"]."',
-					'activo'
-					);";*/
+		$campos = ""; $valores = "";$resumen = "";
+		if( isset($p["caracteristica"]) && (!empty($p["caracteristica"])) ){
+			$campos .= ", caracteristica";	$valores .= ",'".$p["caracteristica"]."'";
+			$resumen .= "<p> <strong>Caracterisca del producto</strong> ".$p["caracteristica"]." </p>";
+		}
+		if( isset($p["pais"]) && (!empty($p["pais"])) ){
+			$campos .= ", pais_id";	$valores .= ",'".$p["pais"]."'";
+			//$resumen .= "<p> <strong>Pais del producto</strong>".$p["pais"]." </p>";
+		}
+		if( isset($p["provincia"]) && (!empty($p["provincia"])) ){
+			$campos .= ", esto_provincia";	$valores .= ",'".$p["provincia"]."'";
+			$resumen .= "<p> <strong>Provincia del producto</strong> ".$p["provincia"]." </p>";
+		}
+		//localidad
+		if( isset($p["localidad"]) && (!empty($p["localidad"])) ){
+			$campos .= ", localidad";	$valores .= ",'".$p["localidad"]."'";
+			$resumen .= "<p> <strong>Localidad del producto</strong> ".$p["localidad"]." </p>";
+		}
+		if( isset($p["numero"]) && (!empty($p["numero"])) ){
+			$campos .= ", numero";	$valores .= ",'".$p["numero"]."'";
+			$resumen .= "<p> <strong>Numero del producto</strong> ".$p["numero"]." </p>";
+		}
+		if( isset($p["medida"]) && (!empty($p["medida"])) ){
+			$campos .= ", detalle_numero";	$valores .= ",'".$p["medida"]."'";
+			$resumen .= "<p> <strong>Tipo de medida del producto</strong> ".$p["medida"]." </p>";
+		}
+		if( isset($p["fecha_entrega"]) && (!empty($p["fecha_entrega"])) ){
+			//$aux = explode("/",$p["fecha_entrega"]);
+			//$p["fecha_entrega"] = $aux[2]."-".$aux[1]."-".$aux[0];
+			$campos .= ", fecha_entrega";	$valores .= ",'".$p["fecha_entrega"]."'";
+			$resumen .= "<p> <strong>Fecha entrega del producto</strong> ".$p["fecha_entrega"]." </p>";
+		}
+		if( isset($p["observacion"]) && (!empty($p["observacion"])) ){
+			$campos .= ", observaciones";	$valores .= ",'".$p["observacion"]."'";
+			$resumen .= "<p> <strong>Observacion del producto</strong> ".$p["observacion"]." </p>";
+		}
+		$p["post"] .= $resumen;
 		$sqlInsert ="INSERT INTO 
-		 posts(user_id_creado ,  `fecha_creado`, `post`, `categoria_post`, `img_url`) 
+		 posts(user_id_creado ,  `fecha_creado`, `post`, `categoria_post`, `img_url` $campos) 
 		VALUES 
-		('".$this->id."',now(),'".$p["post"]."','1','".$respImg."')";
+		('".$this->id."',now(),'".$p["post"]."','1','".$respImg."' $valores)";
 		
 		
-				//$this->verQuery($sqlInsert);
+			//	$this->verQuery($sqlInsert);
 				$query = $this->c->query($sqlInsert);
 				if ($query) {
 					echo "Todo bien";

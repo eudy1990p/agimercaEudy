@@ -37,11 +37,14 @@
 		<select <?php if($requeridoA){ echo "required"; } ?> name="categoria_id" id="categoria_id" class="form-control" onchange="mostrarSectores();">
 			<option  value="">Seleccione un opci&oacute;n</option>
 				<?php
+				 
 					while($resCategoria = mysqli_fetch_object($result)){
 				?>
 						<option <?php if(isset($_GET["idCategoria"])){ if($resCategoria->id == $_GET["idCategoria"]){ echo "selected"; } } ?>  value="<?php echo $resCategoria->id; ?>"><?php echo $resCategoria->nombre_categoria; ?></option>
 
-				<?php } ?>
+				<?php 
+					} 
+			?>
 			
 		</select>
 		</td>
@@ -52,11 +55,12 @@
 						<option  value="" >Seleccione un opci&oacute;n</option>
 
 			<?php
+				if(isset($_GET["idCategoria"])){
 					while($resSectores = mysqli_fetch_object($resultSelectCategoriaSubCategorio)){
 				?>
 						<option <?php  if(isset($_GET["idRelacionCategoriaSector"])){  if($resSectores->id_relacion == $_GET["idRelacionCategoriaSector"]){ echo "selected"; } } ?> value="<?php echo $resSectores->id_relacion; ?>"><?php echo $resSectores->sub_categoria_name; ?></option>
 
-				<?php } ?>
+				<?php } } ?>
 		</select>
 		</td>
 			
@@ -65,11 +69,12 @@
 		<select  <?php if($requeridoA){ echo "required"; } ?>  name="relacion_producto_sector_id" id="relacion_producto_sector_id" class="form-control">
 			<option  value="" >Seleccione un opci&oacute;n</option>
 			<?php
+			if(isset($_GET["idRelacionCategoriaSector"])){
 					while($resProducto = mysqli_fetch_object($resultSelectSubCategoriaSubCategorio)){
 				?>
 						<option value="<?php echo $resProducto->id_relacion; ?>"><?php echo $resProducto->sub_sub_categoria_name; ?></option>
 
-				<?php } ?>
+				<?php } } ?>
 		</select>
 		</td>
 	</tr>

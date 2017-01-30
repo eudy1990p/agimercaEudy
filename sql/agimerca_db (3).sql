@@ -78,7 +78,7 @@ INSERT INTO `carpeta_videos` (`id`, `user_id_creado`, `user_id_editado`, `fecha_
 --
 
 CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `nombre_categoria` varchar(100) DEFAULT NULL,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
@@ -260,7 +260,7 @@ INSERT INTO `posts` (`id`, `user_id_creado`, `user_id_editado`, `fecha_editado`,
 --
 
 CREATE TABLE `relacion_categoria_subcategoria` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `user_id_creado` int(11) DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
   `categoria_id` int(11) DEFAULT NULL,
@@ -289,7 +289,7 @@ INSERT INTO `relacion_categoria_subcategoria` (`id`, `user_id_creado`, `fecha_cr
 --
 
 CREATE TABLE `relacion_subcategorias_subsubcategoria` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `user_id_creado` int(11) DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
   `relacion_categoria_subcategoria_id` int(11) DEFAULT NULL,
@@ -314,7 +314,7 @@ INSERT INTO `relacion_subcategorias_subsubcategoria` (`id`, `user_id_creado`, `f
 --
 
 CREATE TABLE `relacion_sub_of_sub_categoria_posts` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,	
   `user_id_creado` int(11) DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
   `relacion_subcategorias_subsubcategoria_id` int(11) DEFAULT NULL,
@@ -374,7 +374,7 @@ CREATE TABLE `respuestas_mesajes_privados` (
 --
 
 CREATE TABLE `sub_categorias` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `nombre_categoria` varchar(100) DEFAULT NULL,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
@@ -429,7 +429,7 @@ INSERT INTO `sub_categorias` (`id`, `nombre_categoria`, `user_id_creado`, `user_
 --
 
 CREATE TABLE `sub_of_sub_categorias` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `nombre_categoria` varchar(100) DEFAULT NULL,
   `user_id_creado` int(11) DEFAULT NULL,
   `user_id_editado` int(11) DEFAULT NULL,
