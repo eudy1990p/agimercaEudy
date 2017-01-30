@@ -37,7 +37,7 @@
 	  
 	<div class="page-header">
 		        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
-		        	Galeria
+		        	 Mensajeria
 		        	<!-- Esto es una variable generica que eudy utilizo.
 		        		Comentado por nelson. -->
 	                <!-- <?php echo $label->MenuFactura; ?> -->
@@ -45,18 +45,8 @@
 	</div>
 
 	<div class="row">
-		<div class="col-xs-8">
-
-			<div class="row">
-				<h1>Mensajeria</h1>
-			
-				<div class="panel panel-success">
-					<div class="panel-heading">
-						<h2>Deposita los mensajes</h2>
-					</div>
 					
-					<div class="panel-body">
-						<div class="panel col-xs-3" style="">
+						<div class=" col-xs-5" style="">
 							<h4 >usuarios</h4>
 
 								<ul class="list-group">
@@ -99,14 +89,14 @@
 						</div>
 						
 						
-						<div class="panel col-xs-9">
+						<div class="panel col-xs-7">
 							<h4>mensajes</h4>
 							<!-- cambio  -->
 							<?php if (isset($_POST['usuario-amigo']) or isset($_GET['mensaje_dejado'])): ?>
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
 									<?php 
-
+										$_POST['usuario-amigo'] = $_GET['mensaje_dejado'];
 										if(isset($_POST['btn-mensaje'])){
 											
 											//$r=$_SESSION['hablante-actual'];//remitente
@@ -151,8 +141,10 @@
 										?>
 									<li class="list-group-item bg-info" style="margin-bottom: 2px;">
 										<div class="panel">
-											<img src="<?php echo $datos['imagen'] ?>" class="img-circle" width="30" height="30">
-											<?php echo $datos['fecha_creado'] ?>
+											<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $datos['imagen'] ?>" >
+												<img src="<?php echo $datos['imagen'] ?>" class="img-circle" width="30" height="30">
+												<?php echo $datos['fecha_creado'] ?>
+											</a>
 										</div>
 										<div>
 											<?php echo strip_tags($datos['mensaje']); ?>
@@ -161,7 +153,7 @@
 									<?php endwhile; } ?>
 								</ul>
 								<form action="" method="post">
-									<textarea class="form-control" name="mensaje-enviado"></textarea><br>
+									<textarea class="form-control" placeholder="Encriba su mensaje aqu&iacute;" name="mensaje-enviado"></textarea><br>
 									<button class="btn btn-info pull-right" type="submit" name="btn-mensaje">Enviar <span class="glyphicon glyphicon-send"></span>
 									</button>
 								</form>
@@ -170,22 +162,19 @@
 								<h4 class="alert alert-info col-xs-12"><?php echo "Selecciona un usuario enviar un mensaje"; ?></h4>
 							<?php endif ?>
 						</div>						
-					</div>
-				</div>
+				
+			
 
 
 
-			</div>
-
-			<hr/>
-	</div>
+			
 
 
 
-	<div class="col-xs-4">
+	<!--div class="col-xs-4">
 		
 	<?php require_once("menuizquierdo.php"); ?>
-	</div>
+	</div-->
 	
 		
 	<script type="text/javascript">

@@ -45,6 +45,7 @@
 	<div  class="col-xs-6 form-group">
 
 		<select  class="form-control" name="medida">
+      <option value="">Seleccione un tipo de medida </option>			
 			<option value="unidad">Unidad</option>
   		<option value="millar">Millar</option>
   		<option value="metro">Metro</option>
