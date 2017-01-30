@@ -100,7 +100,7 @@
 						</div>
 						<div class="panel col-xs-9">
 							<h4>mensajes</h4>
-
+							<!-- cambio  -->
 							<?php if (isset($_POST['usuario-amigo']) or isset($_GET['mensaje_dejado'])): ?>
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
