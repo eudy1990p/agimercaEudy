@@ -58,7 +58,7 @@
 					<div class="panel-body">
 						<div class="panel col-xs-3" style="">
 							<h4 >usuarios</h4>
-							<div class="panel-body">
+
 								<ul class="list-group">
 
 									<?php
@@ -86,7 +86,7 @@
 										
 										<form action="" method="post">
 											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['user_id'] ?>">
-											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30"> <?php echo $datos['user'] ?>
+											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30"> &nbsp; <?php echo $datos['user'] ?> &nbsp; <span class="badge"><?php echo $datos['cantidad'] ?></span>
 											</button>
 										</form>
 										
@@ -96,8 +96,6 @@
 								<?php endwhile; ?>
 								
 								</ul>
-
-							</div>
 						</div>
 						
 						
