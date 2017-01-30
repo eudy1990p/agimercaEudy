@@ -72,7 +72,7 @@
 						                //y a los que nos an enviado.
 						                $sql =
 						                "
-						                select mensajes_privados.*,usuarios.user,usuarios.id as user_id
+						                select mensajes_privados.*,usuarios.user,usuarios.id as user_id,count(visto) as cantidad
 						                from mensajes_privados join usuarios 
 										on mensajes_privados.user_id_creado=usuarios.id
 										where para_user_id=$id_usuario or user_id_creado=$id_usuario group by user_id_creado
@@ -87,8 +87,7 @@
 											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['user_id'] ?>">
 											<!-- <img src="img_perfil/1_1_recurso.png" class="img-circle" width="30" height="30"> -->
 
-											<?php echo $datos['user'] ?>
-											
+
 											</button>
 										</form>
 									</li>
@@ -101,15 +100,10 @@
 						</div>
 						<div class="panel col-xs-9">
 							<h4>mensajes</h4>
+							<?php if (isset($_POST['usuario-amigo'])): ?>
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
 									<?php 
-										function limpiar_tags($tags){
-											$tags = strip_tags($tags);
-											$tags = stripslashes($tags);
-											$tags = htmlentities($tags);
-											return $tags;
-										}
 
 										if(isset($_POST['btn-mensaje'])){
 											
@@ -167,6 +161,9 @@
 									</button>
 								</form>
 							</div>
+							<?php else: ?>								
+								<h4 class="alert alert-info col-xs-12"><?php echo "Selecciona un usuario enviar un mensaje"; ?></h4>
+							<?php endif ?>
 						</div>						
 					</div>
 				</div>
