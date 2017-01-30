@@ -148,7 +148,7 @@ where (user_id_creado = '".$u."' and  para_user_id = '".$r."' ) or (user_id_crea
 										?>
 									<li class="list-group-item bg-info" style="margin-bottom: 2px;">
 										<div class="panel">
-											<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $datos['imagen'] ?>" >
+											<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $datos['id'] ?>" >
 												<img src="<?php echo $datos['imagen'] ?>" class="img-circle" width="30" height="30">
 												<?php echo $datos['fecha_creado'] ?>
 											</a>
