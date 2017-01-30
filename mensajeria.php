@@ -44,11 +44,11 @@
 	            </h1>
 	</div>
 
-	<div class="row">
+					<div class="row">
 					
 						<div class=" col-xs-5" style="">
 							<h4 >usuarios</h4>
-
+								<?php //echo 'hablente acutual! '.$_SESSION['hablante-actual'] ?>
 								<ul class="list-group">
 
 									<?php
@@ -73,11 +73,15 @@
 						                while ($datos = mysqli_fetch_array($resultado)):
 									?>
 									<li class="list-group-item">
-										
+										<!-- <a href="mensajeria.php?hablante=juan">hola</a> -->
 										<form action="" method="post">
 											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['user_id'] ?>">
 											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30"> &nbsp; <?php echo $datos['user'] ?> &nbsp; <span class="badge"><?php echo $datos['cantidad'] ?></span>
 											</button>
+											<!-- Se elimina mensaje dejado ya que si se selecciona otro usuario 
+											seguiria seleccionando mensaje dejado y por lo tanto siempre 
+											se estaria hablando con el mismo usuario. -->
+											<?php unset($_GET['mensaje_dejado']);?>
 										</form>
 										
 										
@@ -92,7 +96,7 @@
 						<div class="panel col-xs-7">
 							<h4>mensajes</h4>
 							<!-- cambio  -->
-							<?php if (isset($_POST['usuario-amigo']) or isset($_GET['mensaje_dejado'])): ?>
+							<?php if (isset($_POST['usuario-amigo']) or isset($_GET['mensaje_dejado']) or isset($_POST['btn-mensaje']) or isset($_SESSION['hablante-actual'])): ?>
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
 									<?php 
