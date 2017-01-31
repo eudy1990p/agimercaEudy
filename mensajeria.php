@@ -62,20 +62,22 @@
 						                //y a los que nos an enviado.
 						                $sql =
 						                "
-						                select mensajes_privados.*,usuarios.user,usuarios.id as user_id,count(visto) as cantidad, usuarios.img_perfil
-						                from mensajes_privados join usuarios 
-										on mensajes_privados.user_id_creado=usuarios.id
-										where para_user_id=$id_usuario or user_id_creado=$id_usuario group by user_id_creado
-						                ";
+										select tabla.*,usuarios.user,amigo as user_id,count(visto) as cantidad, usuarios.img_perfil from 
+										(select t1.*,para_user_id as amigo from mensajes_privados t1 where user_id_creado = 1  group by user_id_creado 
+										union
+										select t2.*,user_id_creado as amigo from mensajes_privados t2 where para_user_id = 1  group by user_id_creado) 
+										as tabla
+										join usuarios 
+										on tabla.user_id_creado=usuarios.id	group by amigo		                ";
 														//echo $sql;
 						                $resultado= mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
-
+						                //echo "consulta $sql";
 						                while ($datos = mysqli_fetch_array($resultado)):
 									?>
 									<li class="list-group-item">
 										<!-- <a href="mensajeria.php?hablante=juan">hola</a> -->
 										<form action="" method="post">
-											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['user_id'] ?>">
+											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['amigo'] ?>">
 											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30"> &nbsp; <?php echo $datos['user'] ?> &nbsp; <span class="badge"><?php echo $datos['cantidad'] ?></span>
 											</button>
 											<!-- Se elimina mensaje dejado ya que si se selecciona otro usuario 
