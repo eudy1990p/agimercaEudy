@@ -1,4 +1,5 @@
-	<div class="row">
+
+<div class="row">
 		<div class="col-xs-12">
 
 			<div class="row">
@@ -18,15 +19,18 @@
 					
 					<div class="panel-body">
 						<?php 
+                                die("paso dos tres");
 
 							if(isset($_POST)){
+}
 								$c = new Conexion();
 
 								$sql = '';
 								if(isset($_POST['id_album'])){
 									$_SESSION['album_actual']=$_POST['id_album'];
 									$sql = "SELECT * from galerias where carpeta_id='$_POST[id_album]'";	
-								}
+								
+                                }
 
 								$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 

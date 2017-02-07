@@ -1,4 +1,5 @@
-	<div class="row">
+
+<div class="row">
 		<div class="col-xs-12">
 
 			<div class="row">
@@ -9,8 +10,8 @@
 				<?php 
 					$c = new Conexion();
 					$contador = 0;
-					$sql = "select * from carpeta_gallerias where user_id_creado=".$usuario_id." and estado ='activo'";
-
+					$sql = "select * from carpeta_gallerias where user_id_creado='".$usuario_id."' and estado ='activo'";
+                    
 					$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 
 					while ($datos = mysqli_fetch_array($resultado)) {
