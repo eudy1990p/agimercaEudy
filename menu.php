@@ -204,6 +204,7 @@
 					
                     </ul>
           <ul class="nav navbar-nav navbar-right">
+              <li>  <a href=" "><?php   echo $_SESSION['usuario'];  ?></a></li>
             <li>
               <a href="mensajeria.php" class="btn btn-xs btn-link">mensajes <span class="glyphicon glyphicon-envelope"></span>
               <span class="badge">

@@ -10,23 +10,6 @@
 ?>
 
 <?php 
-	if(isset($_POST['usuario-amigo'])){
-
-		$_SESSION['hablante-actual']=$_POST['usuario-amigo'];
-
-		$sql = 
-		"
-		update mensajes_privados set visto = true where user_id_creado=".$_POST['usuario-amigo']."
-		and para_user_id=".$_SESSION['id']
-		;
-		mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
-	}
-
-	if(isset($_POST['mensaje-dejado'])){// el mensaje dejado es el id del usuario al que se le dejo el mensaje.
-		$_SESSION['hablante-actual']=$_POST['mensaje-dejado'];
-
-/*		$_POST['hablante-actual']=$_POST['mensaje-dejado'];//Se asigna el post para saber cual es el hablante.*/
-	}
 
 ?>
 
@@ -50,7 +33,6 @@
 							<h4 >usuarios</h4>
 								<?php //echo 'hablente acutual! '.$_SESSION['hablante-actual'] ?>
 								<ul class="list-group">
-
 									<?php
 
 										$c = new Conexion();
@@ -62,13 +44,15 @@
 						                //y a los que nos an enviado.
 						                $sql =
 						                "
-										select tabla.*,usuarios.user,amigo as user_id,count(visto) as cantidad, usuarios.img_perfil from 
-										(select t1.*,para_user_id as amigo from mensajes_privados t1 where user_id_creado = 1  group by user_id_creado 
-										union
-										select t2.*,user_id_creado as amigo from mensajes_privados t2 where para_user_id = 1  group by user_id_creado) 
-										as tabla
-										join usuarios 
-										on tabla.user_id_creado=usuarios.id	group by amigo		                ";
+select *,
+(select count(visto) as novisto from mensajes_privados where visto = false and para_user_id=2 and user_id_creado=amigos) as novistos
+from (select para_user_id  as amigos from mensajes_privados where user_id_creado=$id_usuario group by amigos
+union
+select user_id_creado as amigos from mensajes_privados 
+where para_user_id  =$id_usuario group by user_id_creado) as tabla
+join usuarios u on u.id=tabla.amigos
+;       
+										 ";
 														//echo $sql;
 						                $resultado= mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 						                //echo "consulta $sql";
@@ -77,13 +61,19 @@
 									<li class="list-group-item">
 										<!-- <a href="mensajeria.php?hablante=juan">hola</a> -->
 										<form action="" method="post">
-											<button class="btn btn-link" type="submit" name="usuario-amigo" value="<?php echo $datos['amigo'] ?>">
-											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30"> &nbsp; <?php echo $datos['user'] ?> &nbsp; <span class="badge"><?php echo $datos['cantidad'] ?></span>
-											</button>
-											<!-- Se elimina mensaje dejado ya que si se selecciona otro usuario 
-											seguiria seleccionando mensaje dejado y por lo tanto siempre 
-											se estaria hablando con el mismo usuario. -->
-											<?php unset($_GET['mensaje_dejado']);?>
+											
+											<a href="mensajeria.php?amigo-actual=<?php echo $datos['amigos'] ?>">
+											<img src="<?php echo $datos['img_perfil'] ?>" class="img-circle" width="30" height="30">
+											<?php echo $datos['user'] ?>
+												
+											</a>
+
+											<!-- Si los mensajes no vistos son mayor que cero los muestra -->
+											<?php if ($datos['novistos']>0): ?>
+												<span class="badge"><?php echo $datos['novistos'] ?></span>	
+											<?php endif ?>
+											
+										
 										</form>
 										
 										
@@ -98,59 +88,56 @@
 						<div class="panel col-xs-7">
 							<h4>mensajes</h4>
 							<!-- cambio  -->
-							<?php if (isset($_POST['usuario-amigo']) or isset($_GET['mensaje_dejado']) or isset($_POST['btn-mensaje']) or isset($_SESSION['hablante-actual'])): ?>
+							<?php //echo 	"mentaje: ".$_GET['mensaje-dejado']; ?>
+							<?php if (isset($_GET['amigo-actual']) or isset($_GET['mensaje-dejado'])): ?>
 							<div>
 								<ul id="chat" class="list-group" style="height: 300px;overflow-y: scroll;">
 									<?php 
-										if(!isset($_POST['usuario-amigo'])){
-										$_POST['usuario-amigo'] = $_GET['mensaje_dejado'];
+
+										$amigo_actual= "nada";
+
+										if(isset($_GET['amigo-actual'])){
+											$amigo_actual=$_GET['amigo-actual'];
+										}else{
+											$amigo_actual=$_GET['mensaje-dejado'];
 										}
-											if(isset($_POST['btn-mensaje'])){
-											
-											//$r=$_SESSION['hablante-actual'];//remitente
+
+										if(isset($_POST['btn-mensaje'])){
+
+
 											$u=$_SESSION['id'];//usuario actual
 
-											if(isset($_GET['mensaje_dejado'])){
-												$r=$_GET['mensaje_dejado'];
-											}else{
-												$r=$_SESSION['hablante-actual'];
-											}
+											$mensaje_enviado=$_POST['mensaje-enviado'];
+											$mensaje_enviado = strip_tags($mensaje_enviado);
 
-
-											$m=$_POST['mensaje-enviado'];//mensaje
-
-											$n = strip_tags($m);
-										$sql = "insert into mensajes_privados values(default,$u,null,null,now(),'$m',$r,false)";
-
+											$sql = "insert into mensajes_privados values(default,$u,null,null,now(),'$mensaje_enviado',$amigo_actual,false)";
 											mysqli_query($c->getContect(),$sql)or die(mysqli_error($c->getContect()));
 										}
 
-										if(isset($_POST['usuario-amigo']) or isset($_POST['btn-mensaje'])){
-											$u=$_SESSION['id'];//usuario actual
+										#------------
+										//Se marcan como no vistos los mensajes del usuario seleccionado
+										$sql = 
+										"
+										update mensajes_privados set visto = true where user_id_creado=$amigo_actual
+										and para_user_id=".$_SESSION['id'];
+										;
+										mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
+										#------------
 
-											if(isset($_GET['mensaje_dejado'])){
-												$r=$_GET['mensaje_dejado'];
-												// mensaje que se dejo
-											}else{
-												$r=$_SESSION['hablante-actual'];//remitente
-											}
+
+										$u=$_SESSION['id'];//usuario actual
+										$r=$amigo_actual;//amigo con el que se habla actualmente
 
 
-											$sql = "select mensajes_privados.*,usuarios.img_perfil as imagen, usuarios.id
+										$sql = "
+										select mensajes_privados.*,usuarios.img_perfil as imagen, usuarios.id
+										from mensajes_privados join usuarios on mensajes_privados.user_id_creado=usuarios.id 
+										where user_id_creado in ($u,$r) order by fecha_creado";
+									
 
-from mensajes_privados join usuarios on mensajes_privados.user_id_creado=usuarios.id 
-
-where (user_id_creado = '".$u."' and  para_user_id = '".$r."' ) or (user_id_creado = '".$r."' and  para_user_id = '".$u."' )" 
-											/*"
-											select mensajes_privados.*,usuarios.img_perfil as imagen
-											from mensajes_privados join usuarios 
-											on mensajes_privados.user_id_creado=usuarios.id
-											where user_id_creado in (".$u.",".$r.") and para_user_id in (".$u.",".$r.")
-											"*/;
-											//echo $sql;
-											//die();
-											$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
-											while ($datos = mysqli_fetch_array($resultado)):
+										$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
+										while ($datos = mysqli_fetch_array($resultado)):
+										
 										?>
 									<li class="list-group-item bg-info" style="margin-bottom: 2px;">
 										<div class="panel">
@@ -163,7 +150,7 @@ where (user_id_creado = '".$u."' and  para_user_id = '".$r."' ) or (user_id_crea
 											<?php echo strip_tags($datos['mensaje']); ?>
 										</div>
 									</li>
-									<?php endwhile; } ?>
+									<?php endwhile;  ?>
 								</ul>
 								<form action="" method="post">
 									<textarea class="form-control" placeholder="Encriba su mensaje aqu&iacute;" name="mensaje-enviado"></textarea><br>

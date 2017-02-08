@@ -30,8 +30,14 @@
 	        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
                   <?php echo "Perfil"; ?> 
 
-                <a class="btn btn-info" href="mensajeria.php?mensaje_dejado=<?php echo $_GET["user_id"]?>">Dejar mensaje</a>
-
+                 <!-- Si el usuario seleccionado es el mismo actual entonces
+                 no se muestra el boton dejar mensaje. ya que es ilogico dejarse un 
+                 mensje a si mismo 
+                 -->
+   				<?php if ($_GET["user_id"] != $_SESSION['id']): ?>
+   					<a class="btn btn-info" href="mensajeria.php?mensaje-dejado=<?php echo $_GET["user_id"]?>">Dejar mensaje</a>	
+   				<?php endif ?>
+               	
 </h1>
 </div>
 
