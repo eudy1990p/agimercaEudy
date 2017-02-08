@@ -73,6 +73,9 @@
                     <a onclick="" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Galeria</a>
                 </li>
 				<li role="presentation" <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "3" ) || ($_POST["paso"] == "4" ) ) ){ ?> class="active" <?php } ?> ><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Videos</a></li>
+                
+                
+                <li role="infouser" ><a href="#infouser" aria-controls="infouser" role="tab" data-toggle="tab">Información de contacto</a></li>
 				
 			</ul>
 
@@ -131,6 +134,11 @@
 					
 				</div>
 				
+                <div role="tabpanel" class="tab-pane" id="infouser">
+					<?php 
+					   require_once("ver_info_perfil_usuario.php");
+					?>
+				</div>
 			</div>
 
 		</div>

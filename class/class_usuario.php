@@ -42,6 +42,19 @@ class Usuarios
 			die("Error en la consulta");
 		}
 	}
+    function getDatoUserId($id){
+		$sql = "select * from usuarios where id = '".$id."';";
+		$query = $this->c->query($sql);
+		if ($query) {
+            if($array = mysqli_fetch_array($query) ){
+                return $array;
+            }
+			
+		}else{
+			echo $this->c->error;
+			die("Error en la consulta");
+		}
+	}
 	
 	function uploadImgProducto($f){
 		if (isset($f["ImgPerfil"]) && !empty($f["ImgPerfil"])) {
@@ -171,6 +184,63 @@ class Usuarios
 	function editUsuario($p){
 
 		$update = "update usuarios set clave = '".md5($p["clave"])."'  where id='".$_SESSION["id"]."';";
+		$query = $this->c->query($update);
+		if ($query) {
+			echo "Todo bien";
+			return $query ;
+		}else{
+			echo $this->c->error;
+			die("Error en la consulta");
+		}
+	}
+    function editUsuarioExtra($p,$f){
+        $where = "";
+        
+        if( isset($p["telefono"]) &&  !empty($p["telefono"]) ){
+            $where .= " telefono = '".$p["telefono"]."'";
+        }else{
+            $where .= " telefono = ''";
+        }
+        if( isset($p["email"]) &&  !empty($p["email"]) ){
+            $where .= ", correo = '".$p["email"]."'";
+        }
+        if( isset($p["url_video"]) &&  !empty($p["url_video"]) ){
+            $where .= ", embed_video = '".$p["url_video"]."'";
+        }
+        if( isset($p["sobre_mi"]) &&  !empty($p["sobre_mi"]) ){
+            $where .= ", descripcion = '".$p["sobre_mi"]."'";
+        }
+        
+        $url="";
+		
+		
+		if (isset($f["ImgPerfil"]) && !empty($f["ImgPerfil"]) && ($f["ImgPerfil"]["name"] != "" )) { 
+			$respImg = $this->uploadImgProducto($f);
+		
+		if ($respImg == 3) {// die("33");	
+												return 3; }
+
+			//die("44");
+			$url = "img_perfil = '".$respImg."',";										
+		}else{
+			
+            
+		      if( isset($p["img_p"]) &&  !empty($p["img_p"]) ){
+               //die($p["img_p"]);
+                  $respImg = $p["img_p"];
+            
+            }else{
+                  die("parado1");
+			    $respImg = "img/foto_perfil.jpg";
+                
+
+            }
+        //die("parado");
+        }
+            $_SESSION["img_perfil"]=$respImg;
+        
+		$update = "update usuarios set $where 
+        ,img_perfil = '".$respImg."'   where id='".$_SESSION["id"]."';";
 		$query = $this->c->query($update);
 		if ($query) {
 			echo "Todo bien";

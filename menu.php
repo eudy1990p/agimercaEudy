@@ -1,14 +1,21 @@
 <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
+            <div class="navbar-brand" style="padding-top: 0.5em;">
+                <a href="http://www.agimerca.com">
+                    <img src="img/mm.png" width="50" />
+                </a>
+            </div>
+            
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://www.agimerca.com">Agimerca</a>
+          <a class="navbar-brand" href="http://www.agimerca.com">
+               Agimerca</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -25,6 +32,14 @@
               <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <?php echo $label->MenuAjuste; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
+                  <a href="cambiar_mis_datos.php"
+                   class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
+                  > 
+                  <?php echo "Modificar información"; ?>
+                  </a>
+                </li>
+                  <li class="divider"></li>
+                  <li>
                   <a href="cambiar_clave.php"
                    class="<?php if (isset($_SESSION["tipo_usuario"]) && ($_SESSION["tipo_usuario"] == "normal" || $_SESSION["tipo_usuario"] == "admin") ) { ?> <?php }else{ ?>sinPrivilegios <?php } ?>"
                   > 

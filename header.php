@@ -13,7 +13,7 @@ if (isset($_POST["cambiarClave"])) {
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
      <meta name="description" content="Agimerca">
     <meta name="author" content="Eudy Arias programador">
-    <link rel="icon" href="img/eudyicono.png">
+    <link rel="icon" href="img/mm.png">
 
     <title id="titulosPH">Inicio-Agimerca</title>
 
