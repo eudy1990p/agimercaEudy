@@ -62,7 +62,7 @@
 			    	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			    	
 			    </p>
-			    <a class="" href="agimerca/publicaciones_perfil_usuario.php?user_id=<?php echo $datos['usuario'] ?>">
+			    <a class="" href="agimerca/vista_detalle_post.php?id=<?php echo $datos['id'] ?>">
 			    		ver publicacion
 			    	</a>
 			  </div>
