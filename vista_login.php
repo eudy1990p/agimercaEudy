@@ -1,4 +1,4 @@
-<?php require_once("agimerca/class/class_ini.php"); 
+<?php require_once("agimerca/class/class_ini1.php"); 
  if (isset($_POST)) {
     if (isset($_POST["login"])) {
      $resp = $usuario->validarDatosUser($_POST);
