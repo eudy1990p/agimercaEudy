@@ -17,7 +17,7 @@
 <!-- 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 	<script type='text/javascript' src="js/jspdf.debug.js"></script>  	 -->
-	  
+	  <!--comentario  -->
 	<div class="page-header">
 		        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
 		        	 Mensajeria
