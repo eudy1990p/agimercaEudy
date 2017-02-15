@@ -11,7 +11,7 @@
 	
 	<div  class="col-xs-12 form-group">
 
-		<select  class="form-control" name="pais" placeholder="Seleccione Pais de la Ubicación del producto">
+		<select  class="form-control select2" name="pais" placeholder="Seleccione Pais de la Ubicación del producto">
 			<option>Seleccione Pais de la Ubicación del producto</option>
 			<?php 	 
 		
@@ -35,17 +35,17 @@
 	  </div>
 	<br/>
 	<div  class="col-xs-12 form-group">
-      <input type="text" class="form-control" name="localidad" placeholder="Ubicación del producto">
+      <input type="text" class="form-control" name="localidad" placeholder="Localidad o Ubicación del producto">
 	  </div>
 	<br/>
 	<div  class="col-xs-6 form-group">
-      <input type="text" class="form-control" name="numero" placeholder="Nùmero">
+      <input type="text" class="form-control" name="numero" placeholder="Cantidad">
 	  </div>
 
 	<div  class="col-xs-6 form-group">
 
-		<select  class="form-control" name="medida">
-      <option value="">Seleccione un tipo de medida </option>			
+		<select  class="form-control select2" name="medida">
+      <option value=""></option>			
 			<option value="unidad">Unidad</option>
   		<option value="millar">Millar</option>
   		<option value="metro">Metro</option>

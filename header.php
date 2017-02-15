@@ -29,12 +29,13 @@ if (isset($_POST["cambiarClave"])) {
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
 
     
+      <link rel="stylesheet" href="//select2.github.io/select2/select2-3.5.2/select2.css">
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/ -->
     <script src="js/jquery.min.js"></script>
       
-
+<script src="//select2.github.io/select2/select2-3.4.2/select2.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,6 +43,13 @@ if (isset($_POST["cambiarClave"])) {
 
     <script src="js/MisFunciones.js"></script>
 
+      <script>
+         $( document ).ready(function() {
+  // Handler for .ready() called.
+           $( ".select2" ).select2( { placeholder: "Seleccione una opción"} );
+             $( ".select2buscador" ).select2( { placeholder: "Seleccione un rol",width:"140"} );
+});
+      </script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

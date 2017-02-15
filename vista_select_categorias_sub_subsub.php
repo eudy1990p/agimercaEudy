@@ -1,6 +1,7 @@
 <?php 
 
-		$result = $categoria->getCategoria(); 
+		$resultCategoria = $categoria->getCategoria();
+        
 		if(isset($_GET["idCategoria"]) &&  ($_GET["idCategoria"] != "")){
 			$resultSelectCategoriaSubCategorio = $categoria->getRelacionCateriaSubCategoria(base64_encode($_GET["idCategoria"]));
 		}
@@ -21,7 +22,7 @@
 <table class="table table-bordered">
 	<tr>
 		<th>
-				Seleccionar Roll
+				Seleccionar Rol 
 		</th>
 		<th>
 				Seleccionar Sector
@@ -34,11 +35,11 @@
 	<tr>
 		<td>
 		
-		<select <?php if($requeridoA){ echo "required"; } ?> name="categoria_id" id="categoria_id" class="form-control" onchange="mostrarSectores();">
-			<option  value="">Seleccione un opci&oacute;n</option>
+		<select <?php if($requeridoA){ echo "required"; } ?> name="categoria_id" id="categoria_id" class="form-control select2" onchange="mostrarSectores();">
+			<option  value=""></option>
 				<?php
 				 
-					while($resCategoria = mysqli_fetch_object($result)){
+					while($resCategoria = mysqli_fetch_object($resultCategoria)){
 				?>
 						<option <?php if(isset($_GET["idCategoria"])){ if($resCategoria->id == $_GET["idCategoria"]){ echo "selected"; } } ?>  value="<?php echo $resCategoria->id; ?>"><?php echo $resCategoria->nombre_categoria; ?></option>
 
@@ -51,8 +52,8 @@
 		
 		<td>
 		
-		<select  <?php if($requeridoA){ echo "required"; } ?> name="relacion_sector_roll_id" onchange="mostraProducto('<?php echo $_GET["idCategoria"]; ?>');" id="relacion_sector_roll_id" class="form-control">
-						<option  value="" >Seleccione un opci&oacute;n</option>
+		<select   <?php if($requeridoA){ echo "required"; } ?> name="relacion_sector_roll_id" onchange="mostraProducto('<?php echo $_GET["idCategoria"]; ?>');" id="relacion_sector_roll_id" class="form-control select2">
+						<option  value="" ></option>
 
 			<?php
 				if(isset($_GET["idCategoria"])){
@@ -66,8 +67,8 @@
 			
 		<td>
 		
-		<select  <?php if($requeridoA){ echo "required"; } ?>  name="relacion_producto_sector_id" id="relacion_producto_sector_id" class="form-control">
-			<option  value="" >Seleccione un opci&oacute;n</option>
+		<select  <?php if($requeridoA){ echo "required"; } ?>  name="relacion_producto_sector_id" id="relacion_producto_sector_id" class="form-control select2">
+			<option  value="" ></option>
 			<?php
 			if(isset($_GET["idRelacionCategoriaSector"])){
 					while($resProducto = mysqli_fetch_object($resultSelectSubCategoriaSubCategorio)){
@@ -105,4 +106,7 @@
 				
 				return busquedaAvanzada;
 			}
-</script>
+   
+                     
+  
+      </script>
