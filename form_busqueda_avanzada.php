@@ -72,6 +72,15 @@
 		<div  class="col-xs-12 form-group">
       <input type="date" class="form-control" name="fecha_entrega" placeholder="Fecha Entrega">
 	  </div>
+        
+        <div  class="col-xs-6 form-group text-center">
+        Rango de fecha desde<br/>        
+      <input type="date" class="form-control" name="fecha_desde" placeholder="">
+	  </div>
+        <div  class="col-xs-6 form-group text-center">
+        Rango de fecha hasta<br/>        
+      <input type="date" class="form-control" name="fecha_hasta" placeholder="">
+	  </div>
 		
 		<div  class="col-xs-12 form-group">
      

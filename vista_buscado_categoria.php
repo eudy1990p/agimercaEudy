@@ -2,7 +2,7 @@
 
 		$resultCategoriaBusqueda = $categoria->getCategoria();
 ?>
-<select title="Seleccione un rol " <?php if($requeridoA){ echo "required"; } ?> name="categoria_id" id="categoria_id" class=" select2buscador" onchange="mostrarSectores();">
+<select title="Seleccione un mercado " <?php if($requeridoA){ echo "required"; } ?> name="categoria_id" id="categoria_id" class=" select2buscador">
 			<option  value=""></option>
 				<?php
 				 

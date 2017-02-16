@@ -34,6 +34,7 @@
 					require_once("vistas_post.php");
 					$get = $post->getPostBusquedaAvanzada($_POST);
 					$contador=0;
+                    echo "Total de resultado ".mysqli_num_rows($get);
 					while($res = mysqli_fetch_array($get)){
 							allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"]);
 							$contador++;
@@ -42,14 +43,16 @@
 			}else{
 					if(isset($_POST)){
 
-						if(isset($_POST["busqueda_post"]) && ($_POST["busqueda_post"] != "")){
+						if((isset($_POST["busqueda_post"]) && ($_POST["busqueda_post"] != "")) || (isset($_POST["categoria_id"]) && ($_POST["categoria_id"] != ""))){
 							//$post->setPost($_POST,$_FILES);
 
 								require_once("vistas_post.php");
-
-								$get = $post->getPost(" where p.post like '%".$_POST["busqueda_post"]."%' ");
+                                
+								$get = $post->getPost("","",$_POST);
 								$contador=0;
-								while($res = mysqli_fetch_array($get)){
+								  echo "Total de resultado ".mysqli_num_rows($get);
+                            
+                                while($res = mysqli_fetch_array($get)){
 									allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"],
 									$res['id_user']//id del usuario que creo el post
 									);
