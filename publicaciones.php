@@ -57,7 +57,7 @@ $getPais = $post->getPais();
 				
 				require_once("vistas_post_edit.php");
 				
-				$get = $post->getPost("where user_id_creado = '".$_SESSION["id"]."' ");
+				$get = $post->getPost("where p.user_id_creado = '".$_SESSION["id"]."' ");
 				$contador=0;
 				while($res = mysqli_fetch_array($get)){
 					//allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);

@@ -6,26 +6,26 @@ function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPos
 <hr/>
 <div class="row" style="background-color: rgba(232, 232, 232, 0.3);padding: 6px;">
 	<div class="col-xs-2">
-		<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $id_user; ?>" ><img width="50" src="<?php echo $img_usuario; ?>" class="img-responsive img-circle" alt="Usuario" /></a>
+		<a title="Clic para ir al perfil del usuario" href="publicaciones_perfil_usuario.php?user_id=<?php echo $id_user; ?>" ><img width="50" src="<?php echo $img_usuario; ?>" class="img-responsive img-circle" alt="Usuario" /></a>
 	</div>
 	<div class="col-xs-8"  valign="center">
-		<stron><a href="publicaciones_perfil_usuario.php?user_id=<?php echo $id_user; ?>" > <?php echo $nombre_usuario; ?></a></stron>
+		<stron><a title="Clic para ir al perfil del usuario" href="publicaciones_perfil_usuario.php?user_id=<?php echo $id_user; ?>" > <?php echo $nombre_usuario; ?></a></stron>
 	</div>
 	<div class="col-xs-2"  valign="center">
 		<?php if ( isset($_SESSION["id"]) ) { ?>
-		<button onclick="mostarComentario('<?php echo $contador; ?>')" class="btn btn-default" >Comentar</button>
+		<button title="Clic para mostrar los campos para dejar comentario" onclick="mostarComentario('<?php echo $contador; ?>')" class="btn btn-default" >Comentar</button>
 		<?php } ?>
 	</div>
 	
 	<?php if( ($imagen != "img/Imagen_no_disponible.jpg") && (!empty($imagen)) ){	?>
 	<div class="col-xs-12" style="background-color: #fff;margin-top: 11px;">
 		
-		<img src="<?php echo $imagen; ?>" class="img-responsive img-rounded" alt="Imagen post" />
+		<img title="Imagen de la publicación" src="<?php echo $imagen; ?>" class="img-responsive img-rounded" alt="Imagen post" />
      </div>
 	<?php	}	?>
 	
 	<?php if($postCuerpo != ""){?>
-	<div class="col-xs-12" style="background-color: #fff;margin-top: 11px;">
+	<div  title="Publicación detalle" class="col-xs-12" style="background-color: #fff;margin-top: 11px;">
 		<?php echo $postCuerpo; ?>
 	</div>
 	<?php	}	?>
@@ -40,7 +40,7 @@ while($resComent = mysqli_fetch_object($resultComent)){
     padding-left: 7px;    margin-bottom: 1px;">
   <li class="media">
     <div class="media-left">
-      <a href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" >
+      <a  title="Clic para ir al perfil del usuario" href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" >
         <img width="50" class="media-object" src="<?php echo $resComent->img_perfil; ?>" alt="img usuario">
       </a>
     </div>
@@ -49,10 +49,10 @@ while($resComent = mysqli_fetch_object($resultComent)){
 			<h5 class="media-heading">
 				<div class="row">
 					<div class="col-xs-9">
-						<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" ><?php echo $resComent->user; ?></a>
+						<a title="Clic para ir al perfil del usuario" href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" ><?php echo $resComent->user; ?></a>
 					</div>
 					<div class="col-xs-3">
-						<a href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" ><?php echo $resComent->fecha_creado; ?></a>
+						<a title="Clic para ir al perfil del usuario" href="publicaciones_perfil_usuario.php?user_id=<?php echo $resComent->id_user; ?>" ><?php echo $resComent->fecha_creado; ?></a>
 					</div>
 				</div>
 				 
@@ -77,10 +77,10 @@ while($resComent = mysqli_fetch_object($resultComent)){
 
 		<input type="hidden"  id="mostrar<?php echo $contador; ?>" value="0"/>
 	<div  class="col-xs-12">
-			<textarea name="post" class="form-control" rows="2"></textarea>
+			<textarea  title="Deje su comentario aquí" name="post" class="form-control" rows="2"></textarea>
 	</div>
 	<div  class="col-xs-12">
-			<button type="submit" class="btn btn-primary btn-lg btn-block">Comentar</button>
+			<button title="Clic para dejar comentario" type="submit" class="btn btn-primary btn-lg btn-block">Comentar</button>
 	</div>
 	</form>
 </div>
