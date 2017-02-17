@@ -1,15 +1,15 @@
-<a href="javascript:void(0);" onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Opciones Avanzadas</a>
+<a href="javascript:void(0);" title="Clic para mostrar " onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Opciones Avanzadas</a>
 <div id="post_basico"> 
 <textarea name="post" class="form-control" rows="5"></textarea>
 </div>
 
 	<div class="row" style="display:none;" id="post_avanzado">
-		<div  class="col-xs-12 form-group">
+		<div title="Ingresé la caracteristicas del producto" class="col-xs-12 form-group">
 			<br/>
-      <input type="text" class="form-control" name="caracteristica" placeholder="Caracteristicas">
+      <input  type="text" class="form-control" name="caracteristica" placeholder="Caracteristicas">
 	  </div>
 	
-	<div  class="col-xs-12 form-group">
+	<div title="Selecciones el país" class="col-xs-12 form-group">
 
 		<select  class="form-control select2" name="pais" placeholder="Seleccione Pais de la Ubicación del producto">
 			<option>Seleccione Pais de la Ubicación del producto</option>
@@ -30,19 +30,19 @@
 		</select>
 	</div>
 	<br/>
-	<div  class="col-xs-12 form-group">
+	<div  title="Ingresé la provincia o estado" class="col-xs-12 form-group">
       <input type="text" class="form-control" name="provincia" placeholder="Provincia o Estado Ubicación del producto">
 	  </div>
 	<br/>
-	<div  class="col-xs-12 form-group">
+	<div   title="Ingresé la dirección fisica" class="col-xs-12 form-group">
       <input type="text" class="form-control" name="localidad" placeholder="Localidad o Ubicación del producto">
 	  </div>
 	<br/>
-	<div  class="col-xs-6 form-group">
+	<div   title="Ingresé la cantidad, debe tambien seleccionar el tipo de medida"  class="col-xs-6 form-group">
       <input type="text" class="form-control" name="numero" placeholder="Cantidad">
 	  </div>
 
-	<div  class="col-xs-6 form-group">
+	<div   title="Seleccione un tipo de medida, debe tambien insertar la cantidad" class="col-xs-6 form-group">
 
 		<select  class="form-control select2" name="medida">
       <option value=""></option>			
@@ -61,11 +61,11 @@
 		</select>
 	</div>
 		<br/>
-		<div  class="col-xs-12 form-group">
+		<div title="Seleccione la fecha en la que desea la entrega del producto"  class="col-xs-12 form-group">
       <input type="date" class="form-control" name="fecha_entrega" placeholder="Fecha Entrega">
 	  </div>
 		
-		<div  class="col-xs-12 form-group">
+		<div title="Ingrese la observación que tenga sobre el producto"  class="col-xs-12 form-group">
      
 			<input type="text" class="form-control" name="observacion" placeholder="Observación del producto">
 	  </div>
