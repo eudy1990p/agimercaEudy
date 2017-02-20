@@ -33,6 +33,11 @@ if (isset($_POST)) {
 			$query = $factura->getSerchCliente($_POST);
 			print_r(json_encode($query));
 			break;
+        
+        case 'primeravez':
+		  $_SESSION["primeravez"] = 0 ;
+        //usuario->editUsuarioPrimeraVez();
+        break;
 	}
 
 }

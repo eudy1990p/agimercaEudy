@@ -1,6 +1,7 @@
-<a href="javascript:void(0);" title="Clic para mostrar " onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Opciones Avanzadas</a>
+<a href="javascript:void(0);" title="Clic para mostrar opciones o ocultarla " onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Opciones Avanzadas</a>
+<input type="hidden" value="0" id="agregarproducto" />
 <div id="post_basico"> 
-<textarea name="post" class="form-control" rows="5"></textarea>
+<textarea name="post" id="post" class="form-control" rows="5"></textarea>
 </div>
 
 	<div class="row" style="display:none;" id="post_avanzado">
@@ -80,11 +81,13 @@
 				$("#post_avanzado").show(4000);
 				$("#enlaceA").html("Opciones Basica");
 				$("#post_basico").hide(4000);
+                $("#agregarproducto").val("1");
 				
 			}else{
 				$("#post_avanzado").hide(4000);
 				$("#enlaceA").html("Opciones Avanzadas");
 				$("#post_basico").show(4000);
+                $("#agregarproducto").val("0");
 			}
 		}
 		

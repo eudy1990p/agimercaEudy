@@ -22,7 +22,7 @@
 <table class="table table-bordered">
 	<tr>
 		<th>
-				Seleccionar Rol 
+				Seleccionar Mercado
 		</th>
 		<th>
 				Seleccionar Sector
@@ -35,7 +35,7 @@
 	<tr>
 		<td>
 		
-		<select <?php if($requeridoA){ echo "required"; } ?> name="categoria_id" id="categoria_id" class="form-control select2" onchange="mostrarSectores();">
+		<select <?php //if($requeridoA){ //echo "required"; } ?> name="categoria_id" id="categoria_id" class="form-control select2" onchange="mostrarSectores();">
 			<option  value=""></option>
 				<?php
 				 
@@ -52,7 +52,7 @@
 		
 		<td>
 		
-		<select   <?php if($requeridoA){ echo "required"; } ?> name="relacion_sector_roll_id" onchange="mostraProducto('<?php echo $_GET["idCategoria"]; ?>');" id="relacion_sector_roll_id" class="form-control select2">
+		<select   <?php //if($requeridoA){ echo "required"; } ?> name="relacion_sector_roll_id" onchange="mostraProducto('<?php echo $_GET["idCategoria"]; ?>');" id="relacion_sector_roll_id" class="form-control select2">
 						<option  value="" ></option>
 
 			<?php
@@ -67,7 +67,7 @@
 			
 		<td>
 		
-		<select  <?php if($requeridoA){ echo "required"; } ?>  name="relacion_producto_sector_id" id="relacion_producto_sector_id" class="form-control select2">
+		<select  <?php //if($requeridoA){ echo "required"; } ?>  name="relacion_producto_sector_id" id="relacion_producto_sector_id" class="form-control select2">
 			<option  value="" ></option>
 			<?php
 			if(isset($_GET["idRelacionCategoriaSector"])){

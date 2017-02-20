@@ -24,29 +24,33 @@ $getPais = $post->getPais();
 <div class="page-header">
 	        <h1><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
                   <?php echo "Mi perfil"; ?></h1>
+    <?php $ar = $_SERVER["SCRIPT_NAME"];  $exp = explode("/",$ar);
+    //print_r($exp);
+    //echo $exp[(count($exp) - 1)];
+    ?>
 </div>
 
 <div class="row">
 		<div class="col-xs-8">
-			<form action="" method="post" enctype="multipart/form-data">
+			<form action="" method="post" id="formPublicaciones" enctype="multipart/form-data">
 				<input type="hidden" id="accion" name="accion" value="agregar_post"/>
 				<input type="hidden" name="add" value=""/>
 				<input type="hidden" name="idpost" id="idpost" value=""/>
 
 
 				<div class="row">
-					<div class="col-xs-12">
+					<div title="Seleccione las siguientes opciones para que pueda tener mejor resultado con el producto" class="col-xs-12">
 						<?php require_once("vista_select_categorias_sub_subsub.php"); ?>
 					</div>
 					<div class="col-xs-12">
 						<?php require_once("vista_agregar_post.php"); ?>
 					</div>
-					<div class="col-xs-6"><br/>
-						Imagen <input type="file" name="imgProducto" />
+					<div title="Inserte una imagen desde su computador relacionada al producto" class="col-xs-6"><br/>
+						Imagen <input type="file" id="imgProducto" name="imgProducto" />
 					</div>				
 					<div class="col-xs-6 text-right"><br/>
-							<a href="inicio.php" class="btn btn-warning">Cancelar</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-						<button id="btpublicar" type="submit" class="btn btn-success">Publicar</button>
+							<a title="Clic para cancelar la publicación" href="<?php echo $exp[(count($exp) - 1)]; ?>" class="btn btn-warning">Cancelar</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+						<button title="Clic para guardar su publicación" id="btpublicar" type="submit" class="btn btn-success">Publicar</button>
 					</div>
 
 				</div>
