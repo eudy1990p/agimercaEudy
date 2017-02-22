@@ -44,13 +44,14 @@ $getPais = $post->getPais();
 				$contador=0;
 				if($res = mysqli_fetch_array($get)){
 					//allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);
-					allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"],$res["id_user"]);
+//print_r($post);
+//echo $res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$res["img_url"],$res["id_user"] ;		
+                    allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"],$res["id_user"]);
 					$contador++;
 				}
 				//$img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",
 			?>
 			
-
 	</div>
 
 	<!--div class="col-xs-4">

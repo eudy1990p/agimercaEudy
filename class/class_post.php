@@ -15,8 +15,8 @@ class Post
 	}
 	function setIdUser($id){ $this->id = $id; }
 	
-	function getPost($where="",$limit="limit 50",$p=""){
-		//$sql = "SELECT p.id,u.id as id_user,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id ".$where." ".$limit."";
+	function getPost($where1="",$limit="limit 50",$p=""){
+		
        
         if( isset($p["busqueda_post"]) && (!empty($p["busqueda_post"])) ){
 			if(empty($where)){
@@ -36,6 +36,8 @@ class Post
          if( (isset($p["categoria_id"]) && (!empty($p["categoria_id"])) ) || ( isset($p["busqueda_post"]) && (!empty($p["busqueda_post"]))) ){
             $where =" where ".$where;
         }
+  
+    if(empty($where1) ){    
         $sql = "SELECT 
 			p.id,u.user,u.id as id_user, p.post, p.img_url,u.img_perfil
 			FROM
@@ -63,6 +65,10 @@ class Post
 			ON p.user_id_creado = u.id
             
 			 ".$where." ".$limit."";
+        
+    }else{
+            $sql = "SELECT p.id,u.id as id_user,u.user, p.post, p.img_url,u.img_perfil FROM posts as p left join usuarios as u on p.user_id_creado = u.id ".$where1." ".$limit."";
+        }
         
 		//echo "<pre>".$sql."</pre>";
 		$query = $this->c->query($sql);

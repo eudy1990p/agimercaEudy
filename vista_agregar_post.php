@@ -5,7 +5,10 @@
 </div>
 
 	<div class="row" style="display:none;" id="post_avanzado">
-		<div title="Ingresé la caracteristicas del producto" class="col-xs-12 form-group">
+		
+        <?php require_once("vista_select_categorias_sub_subsub.php"); ?>
+        
+        <div title="Ingresé la caracteristicas del producto" class="col-xs-12 form-group">
 			<br/>
       <input  type="text" class="form-control" name="caracteristica" placeholder="Caracteristicas">
 	  </div>
@@ -63,6 +66,7 @@
 	</div>
 		<br/>
 		<div title="Seleccione la fecha en la que desea la entrega del producto"  class="col-xs-12 form-group">
+        Seleccione la fecha para entregar el producto
       <input type="date" class="form-control" name="fecha_entrega" placeholder="Fecha Entrega">
 	  </div>
 		

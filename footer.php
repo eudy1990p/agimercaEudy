@@ -20,7 +20,7 @@
           <h4 class="text-center">Instructivo de como usar nuestra red social</h4>
           <!-- 16:9 aspect ratio -->
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/aKdV5FvXLuI?rel=0&autoplay=1 "></iframe>
+              <iframe class="embed-responsive-item" id="viEmbe" src="https://www.youtube.com/embed/aKdV5FvXLuI?rel=0&autoplay=1 "></iframe>
             </div>
       </div>
       <!--div class="modal-footer">
@@ -31,7 +31,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<input id="logueadoprimeravez" value="<?php echo $_SESSION["primeravez"]; ?>" />
+<input id="logueadoprimeravez" type="hidden" value="<?php echo $_SESSION["primeravez"]; ?>" />
 
     <script src="js/bootstrap.min.js"></script>
     <!--<script src="js/docs.min.js"></script>-->
@@ -50,9 +50,14 @@
                   dataType:"html",
                   success:function (){
                      console.log("completo");                  
+                  },
+                  error:function (){
+                      console.log("Nada bueno");
                   }
               });
             });
+            }else{
+                $("#viEmbe").attr("src","https://www.youtube.com/embed/aKdV5FvXLuI");
             }
             $("#btpublicar").click(function (event){
                 event.preventDefault();

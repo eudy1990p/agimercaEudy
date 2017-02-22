@@ -18,7 +18,7 @@
 
 <input type="hidden" id="buscadorAvanzado" value="<?php if(isset($_GET["opcionesAvanzadas"])){ echo "opcionesAvanzadas"; } ?>"  />
 
-<div class="table-responsive">
+<!-- div class="table-responsive">
 <table class="table table-bordered">
 	<tr>
 		<th>
@@ -81,6 +81,27 @@
 	</tr>
 	
 </table>
+</div -->
+<div title="Seleccione el tipo del mercado" class="col-xs-12 form-group">
+        Seleccione el tipo del mercado<br/>
+        <select name="categoria_id" id="categoria_id_s" class="form-control select2" >
+			<option  value=""></option>
+			
+		</select>
+</div>
+
+
+<div title="Seleccione el sector que desea" class="col-xs-12 form-group">
+    Seleccione el sector que desea <br/>
+    <select name="relacion_sector_roll_id" id="relacion_sector_roll_id" class="form-control select2">
+        <option  value="" ></option>
+		</select>
+</div>
+<div title="Seleccione el producto que desea" class="col-xs-12 form-group">
+    Seleccione el producto que desea<br/>
+    <select name="relacion_producto_sector_id" id="relacion_producto_sector_id" class="form-control select2">
+			<option  value="" ></option>
+		</select>
 </div>
 <script type="text/javascript">
 			function mostrarSectores(){
@@ -106,7 +127,123 @@
 				
 				return busquedaAvanzada;
 			}
-   
-                     
-  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            $(document).ready(function (){
+                /* $.ajax({
+                          url:"ajax.php",
+                          data:{accion:"sectores",idRelacionCategoriaSector:"1"},
+                          method:"post",
+                          dataType:"html",
+                          success:function (data){
+                         alert(data);
+                              $("#relacion_sector_roll_id").html("<option value='' ></option>");
+                            console.log(data+" - "+$("#categoria_id_s").val()); 
+                            
+                            for( i = 0 ; i < data.length ; i++){
+                            //console.log("entro");   
+                              var opciones = "<option value='"+data[i]["id"]+"' >"+data[i]["nombre"]+"</option>";
+                            //console.log(opciones);
+                              $("#relacion_sector_roll_id").append(opciones);    
+                            }
+                          },
+                          error:function (){
+                              console.error("Nada bueno");
+                          }
+                      });*/
+                 $.ajax({
+                          url:"ajax.php",
+                          data:{accion:"cargarMercado"},
+                          method:"post",
+                          dataType:"json",
+                          success:function (data){
+                             //console.log(data);
+                            //console.log(data.length);
+                            $("#categoria_id_s").html("<option value='' ></option>");
+                            console.log(data); 
+                            
+                            for( i = 0 ; i < data.length ; i++){
+                            //console.log("entro");   
+                              var opciones = "<option value='"+data[i]["id"]+"' >"+data[i]["nombre"]+"</option>";
+                            //console.log(opciones);
+                              $("#categoria_id_s").append(opciones);    
+                            }
+                          },
+                          error:function (){
+                              console.error("Nada bueno");
+                          }
+                      });
+                
+                $("#categoria_id_s").on("change", function (e){
+                    //console.error( $("#categoria_id_s").val() );
+                    
+                    if($("#categoria_id_s").val() != 0){
+                    $.ajax({
+                          url:"ajax.php",
+                          data:{accion:"sectores",idRelacionCategoriaSector:$("#categoria_id_s").val()},
+                          method:"post",
+                          dataType:"json",
+                          success:function (data){
+                          alert(data);
+                              $("#relacion_sector_roll_id").html("<option value='' ></option>");
+                            console.log(data+" - "+$("#categoria_id_s").val()); 
+                            
+                            for( i = 0 ; i < data.length ; i++){
+                            //console.log("entro");   
+                              var opciones = "<option value='"+data[i]["id"]+"' >"+data[i]["nombre"]+"</option>";
+                            //console.log(opciones);
+                              $("#relacion_sector_roll_id").append(opciones);    
+                            }
+                          },
+                          error:function (){
+                              console.error("Nada bueno");
+                          }
+                      });
+                    }else{
+                        alert("Debe seleccinar un mercado");
+                        return false;
+                    }
+                });
+            
+                $("#relacion_sector_roll_id").on("change", function (e){
+                    //console.error( $("#categoria_id_s").val() );
+                    
+                    if($("#relacion_sector_roll_id").val() != 0){
+                    $.ajax({
+                          url:"ajax.php",
+                          data:{accion:"productos",idRelacionCategoriaSector:$("#relacion_sector_roll_id").val()},
+                          method:"post",
+                          dataType:"json",
+                          success:function (data){
+                          alert(data);
+                              $("#relacion_producto_sector_id").html("<option value='' ></option>");
+                            console.log(data+" - "+$("#relacion_sector_roll_id").val()); 
+                            
+                            for( i = 0 ; i < data.length ; i++){
+                            //console.log("entro");   
+                              var opciones = "<option value='"+data[i]["id"]+"' >"+data[i]["nombre"]+"</option>";
+                            //console.log(opciones);
+                              $("#relacion_producto_sector_id").append(opciones);    
+                            }
+                          },
+                          error:function (){
+                              console.error("Nada bueno");
+                          }
+                      });
+                    }else{
+                        alert("Debe seleccinar un mercado");
+                        return false;
+                    }
+                });
+                
+            });
       </script>

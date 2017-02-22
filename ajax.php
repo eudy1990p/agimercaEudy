@@ -1,17 +1,57 @@
 <?php 
 	
 require_once("class/class_ini.php");
-
+//print_r($_POST);
 if (isset($_POST)) {
-	
+	 
 	switch ($_POST["accion"]) {
 		
-		case 'infoEditUsuario':
-			$query = $usuario->getUsuario($_POST);
-			$result = $query->fetch_array();
-			print_r(json_encode($result));
+		case 'cargarMercado':
+			$resultCategoria = $categoria->getCategoria();
+        $array = "";$c = 0;
+while($resCategoria = mysqli_fetch_object($resultCategoria)){
+
+    $array[$c]["id"] = $resCategoria->id;
+    $array[$c]["nombre"] = $resCategoria->nombre_categoria;
+    $c++;
+}
+			
+            print_r(json_encode($array));
 			break;
-		
+		//
+        case 'sectores':
+        //print_r($_POST);
+        //echo $_POST["idRelacionCategoriaSector"];
+			$result = $categoria->getRelacionCateriaSubCategoria($_POST["idRelacionCategoriaSector"]); 
+        //print_r($result->fetch_object());
+        //echo $result->num_rows;
+        $array = "";$c = 0;
+        
+        while($resCategoria = $result->fetch_object()){
+           // echo $resCategoria->id;
+    $array[$c]["id"] = $resCategoria->id_relacion;
+    $array[$c]["nombre"] = $resCategoria->sub_categoria_name;
+    $c++;
+}
+            print_r(json_encode($array));
+			break;
+        
+    case 'productos':
+        //print_r($_POST);
+        //echo $_POST["idRelacionCategoriaSector"];
+			$result = $categoria->getRelacionSubCateriaSubSubCategoria($_POST["idRelacionCategoriaSector"]); 
+        //print_r($result->fetch_object());
+        //echo $result->num_rows;
+        $array = "";$c = 0;
+        
+        while($resCategoria = $result->fetch_object()){
+           // echo $resCategoria->id;
+    $array[$c]["id"] = $resCategoria->id_relacion;
+    $array[$c]["nombre"] = $resCategoria->sub_sub_categoria_name;
+    $c++;
+}
+            print_r(json_encode($array));
+			break;
 		case 'serchUser':
 			$query = $usuario->getSerchUser($_POST);
 			$result = $query->fetch_object();

@@ -1,8 +1,9 @@
 <?php 
 
-function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg",$id_user="1"){ ?>
+function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg",$id_user="1"){ 
 
-
+//echo $img_usuario,$nombre_usuario,$postCuerpo,$contador,$idPost,$imagen,$id_user;
+?>
 <hr/>
 <div class="row" style="background-color: rgba(232, 232, 232, 0.3);padding: 6px;">
 	<div class="col-xs-2">

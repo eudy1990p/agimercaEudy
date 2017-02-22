@@ -40,7 +40,7 @@ $getPais = $post->getPais();
 
 				<div class="row">
 					<div title="Seleccione las siguientes opciones para que pueda tener mejor resultado con el producto" class="col-xs-12">
-						<?php require_once("vista_select_categorias_sub_subsub.php"); ?>
+						<?php //require_once("vista_select_categorias_sub_subsub.php"); ?>
 					</div>
 					<div class="col-xs-12">
 						<?php require_once("vista_agregar_post.php"); ?>
