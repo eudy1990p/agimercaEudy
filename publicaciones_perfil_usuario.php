@@ -28,14 +28,14 @@
 				<!-- Contextual button for informational alert messages -->
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" <?php if( !isset($_POST["paso"])  ){ ?> class="active" <?php } ?> ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publicaciones</a></li>
-				<li role="presentation"  <?php if(  (isset($_POST["paso"]) && ( ($_POST["paso"] == "1" ) || ($_POST["paso"] == "2" ) )  ) ){ ?> class="active" <?php } ?> >
+				<li title="Vera todas las publicaciones del usuario que está visitando" role="presentation" <?php if( !isset($_POST["paso"])  ){ ?> class="active" <?php } ?> ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publicaciones</a></li>
+				<li title="Vera todas las imagenes del usuario que está visitando" role="presentation"  <?php if(  (isset($_POST["paso"]) && ( ($_POST["paso"] == "1" ) || ($_POST["paso"] == "2" ) )  ) ){ ?> class="active" <?php } ?> >
                     <a onclick="" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Galeria</a>
                 </li>
-				<li role="presentation" <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "3" ) || ($_POST["paso"] == "4" ) ) ){ ?> class="active" <?php } ?> ><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Videos</a></li>
+				<li title="Vera todas los videos del usuario que está visitando" role="presentation" <?php if( isset($_POST["paso"]) && ( ($_POST["paso"] == "3" ) || ($_POST["paso"] == "4" ) ) ){ ?> class="active" <?php } ?> ><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Videos</a></li>
                 
                 
-                <li role="infouser" ><a href="#infouser" aria-controls="infouser" role="tab" data-toggle="tab">Información de contacto</a></li>
+                <li title="Vera todas la información del usuario que está visitando" role="infouser" ><a href="#infouser" aria-controls="infouser" role="tab" data-toggle="tab">Información de contacto</a></li>
 				
 			</ul>
 
