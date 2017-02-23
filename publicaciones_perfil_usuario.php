@@ -14,9 +14,9 @@
                  no se muestra el boton dejar mensaje. ya que es ilogico dejarse un 
                  mensje a si mismo 
                  -->
-   				<?php if ($_GET["user_id"] != $_SESSION['id']){ ?>
+   				<?php if(isset($_SESSION['id'])) { if ($_GET["user_id"] != $_SESSION['id']){ ?>
    					<a class="btn btn-info" href="mensajeria.php?mensaje-dejado=<?php echo $_GET["user_id"]; ?>">Dejar mensaje</a>	
-                <?php } ?>
+                <?php } } ?>
                	
 </h1>
 </div>
