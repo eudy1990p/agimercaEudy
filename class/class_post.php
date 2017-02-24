@@ -17,7 +17,7 @@ class Post
 	
 	function getPost($where1="",$limit="limit 50",$p=""){
 		
-       
+       $where="";
         if( isset($p["busqueda_post"]) && (!empty($p["busqueda_post"])) ){
 			if(empty($where)){
 					$where .= " p.post like '%".$p["busqueda_post"]."%' ";
