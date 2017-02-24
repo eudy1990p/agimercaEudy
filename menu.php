@@ -177,6 +177,7 @@
             <li>
               <a href="mensajeria.php" title="Clic para entrar a su mensajeria" class="btn btn-xs btn-link">mensajes <span class="glyphicon glyphicon-envelope"></span>
               <span class="badge">
+                  
                 <?php 
                   $c = new Conexion();
 
