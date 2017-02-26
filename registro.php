@@ -51,7 +51,7 @@ how about, learn "programming"? ;)
     color: white;">
 
 
-      <form action="" method="post" enctype="multipart/form-data" class="form-signin">
+      <form action="" method="post" id="formRegistro" enctype="multipart/form-data" class="form-signin">
         <input type="hidden" name="registro">
         <h2 class="form-signin-heading">Agimerca-<?php echo "Registro"; ?></h2>
 				Seleccione una imagen desde su computador<br/>
@@ -64,12 +64,16 @@ how about, learn "programming"? ;)
     text-align: center;"></span>
         <label for="inputPassword" class="sr-only"><?php echo $label->LoginClave; ?> </label><br/>
 				
-        <input type="password" id="inputPassword" name="clave" class="form-control" placeholder="<?php echo $label->LoginClave; ?>" required>
+        <input type="password" id="inputPassword" name="clave" class="form-control" placeholder="<?php echo $label->LoginClave; ?>" required><span id="msjClave" style="background-color: rgba(255, 255, 255, 0.46);
+    display: block;
+    text-align: center;"></span>
         
 				
-				<input type="password" id="inputPassword1" name="clave1" class="form-control" placeholder="<?php echo "Repetir ".$label->LoginClave; ?>" required>
+				<input type="password" id="inputPassword1" name="clave1" class="form-control" placeholder="<?php echo "Repetir ".$label->LoginClave; ?>" required><span id="msjClave1" style="background-color: rgba(255, 255, 255, 0.46);
+    display: block;
+    text-align: center;"></span>
 				
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo "Registrarse"; ?> </button>
+        <button class="btn btn-lg btn-primary btn-block" id="btRegistrate" type="submit"><?php echo "Registrarse"; ?> </button>
       </form>
 
     </div> <!-- /container -->
@@ -98,12 +102,12 @@ how about, learn "programming"? ;)
                          // alert(data);
                             if(data["total"] > 0){  
                                 $("#usuarioexiste").html("El usuario ya existe <br/>");
-                                $("#usuarioexiste").css("color","red");
+                                $("#usuarioexiste").css("color","#8f0909");
                                 $("#inputEmail").val("");$("#inputEmail").css("border-color","red");
                             }else{
-                                $("#usuarioexiste").html("El usuario esta disponible <br/>");
-                                $("#usuarioexiste").css("color","green");
-                                $("#inputEmail").val("");$("#inputEmail").css("border-color","green");
+                                $("#usuarioexiste").html("El usuario disponible <br/>");
+                                $("#usuarioexiste").css("color","#0f710f");
+                                $("#inputEmail").css("border-color","green");
                             }
                           },
                           error:function (){
@@ -112,6 +116,87 @@ how about, learn "programming"? ;)
                       });
               }
             });
+          $("#btRegistrate").click(function (e){
+              e.preventDefault();
+                
+                if($("#inputEmail").val() == 0 ){
+                    notificacionesMensaje("usuarioexiste","inputEmail","No puede estar vacío el campo usuario y debe ser un correo electronico",true);
+                    return false;
+                }else{
+                    notificacionesMensaje("usuarioexiste","inputEmail","",false);
+                }
+                var respuesta = validarUsuario();
+                if(respuesta){
+                    return false;
+                }
+                if($("#inputPassword").val() == 0 ){
+                    notificacionesMensaje("msjClave","inputPassword","No puede estar vacío el campo clave",true);
+                    return false;
+                }else{
+                    notificacionesMensaje("msjClave","inputPassword","",false);
+                }
+              if($("#inputPassword1").val() == 0 ){
+                    notificacionesMensaje("msjClave1","inputPassword1","No puede estar vacío el campo repita clave",true);
+                    return false;
+                }else{
+                    notificacionesMensaje("msjClave1","inputPassword1","",false);
+                }
+              
+              
+              if($("#inputPassword1").val() != $("#inputPassword").val() ){
+                    notificacionesMensaje("msjClave","inputPassword","Las claves no coinsiden",true);
+                    notificacionesMensaje("msjClave1","inputPassword1","Las claves no coinsiden",true);
+                    return false;
+                }else{
+                    notificacionesMensaje("msjClave1","inputPassword1","",false);
+                    notificacionesMensaje("msjClave","inputPassword","",false);
+                }
+                
+          
+                $("#formRegistro").submit();
+              //formRegistro
+          });
+          function notificacionesMensaje(span,input,msj,incorrecto){
+              if(incorrecto){  
+                                $("#"+span).html(msj+" <br/>");
+                                $("#"+span).css("color","#8f0909");
+                                $("#"+input).val("");$("#"+input).css("border-color","red");
+                            }else{
+                                $("#"+span).html(msj+" <br/>");
+                                $("#"+span).css("color","#0f710f");
+                                $("#"+input).css("border-color","green");
+                            }
+          }
+          function validarUsuario(){
+            if($("#inputEmail").val() != 0){
+                var respuesta = false;
+                $.ajax({
+                          url:"ajax.php",
+                          data:{accion:"validarUsuario",usuario:$("#inputEmail").val()},
+                          method:"post",
+                          dataType:"json",
+                          success:function (data){
+                         // alert(data);
+                            if(data["total"] > 0){  
+                                $("#usuarioexiste").html("El usuario ya existe <br/>");
+                                $("#usuarioexiste").css("color","#8f0909");
+                                $("#inputEmail").val("");$("#inputEmail").css("border-color","red");
+                                respuesta =true;
+                            }else{
+                                $("#usuarioexiste").html("El usuario disponible <br/>");
+                                $("#usuarioexiste").css("color","#0f710f");
+                                $("#inputEmail").css("border-color","green");
+                                repuesta = false;
+                            }
+                          },
+                          error:function (){
+                              console.error("Nada bueno");
+                              repuesta = false;
+                          }
+                      });
+                return respuesta;
+              }
+            }
       </script>
   </body>
 </html>
