@@ -1,6 +1,6 @@
 <?php 
 
-function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg",$id_user="1"){ 
+function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPost="1",$post="",$imagen="img/Imagen_no_disponible.jpg",$id_user="1",$detalleCorto = true ){ 
 
 //echo $img_usuario,$nombre_usuario,$postCuerpo,$contador,$idPost,$imagen,$id_user;
 ?>
@@ -27,7 +27,14 @@ function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPos
 	
 	<?php if($postCuerpo != ""){?>
 	<div  title="Publicación detalle" class="col-xs-12" style="background-color: #fff;margin-top: 11px;">
-		<?php echo $postCuerpo; ?>
+		<?php 
+            if($detalleCorto){ 
+            echo substr( $postCuerpo , 0 , 200 ).'<a 
+            href="vista_detalle_post.php?id='.$idPost .'" >Leer Más </a>';
+            }else{
+            echo $postCuerpo ;                
+            }
+        ?>
 	</div>
 	<?php	}	?>
 </div>

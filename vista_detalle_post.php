@@ -38,19 +38,24 @@ $getPais = $post->getPais();
 			
 			<?php 
 				
-				require_once("vistas_post.php");
-				
-				$get = $post->getPost("where p.id = '".$_GET["id"]."' ");
-				$contador=0;
-				if($res = mysqli_fetch_array($get)){
-					//allpost($res["img_url"],$res["user"],$res["post"],$contador,$res["id"],$post);
-//print_r($post);
-//echo $res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$res["img_url"],$res["id_user"] ;		
-                    allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"],$res["id_user"]);
-					$contador++;
-				}
-				//$img_usuario,$nombre_usuario,$post,$contador="1",$idPost="1",$post="",
-			?>
+                if(isset($_SESSION["id"])){
+                    require_once("vistas_post.php");
+
+                    $get = $post->getPost("where p.id = '".$_GET["id"]."' ");
+                    $contador=0;
+                    if($res = mysqli_fetch_array($get)){
+                        allpost($res["img_perfil"],$res["user"],$res["post"],$contador,$res["id"],$post,$res["img_url"],$res["id_user"],false);
+                        $contador++;
+                    }
+                }else{
+                    ?>
+            <h3><span class="glyphicon glyphicon-info-sign"></span> Necesita estar logueado para poder ver el detalle de la publicación</h3>
+            <h3> <a href="index.php" ><span class="glyphicon glyphicon-info-sign"></span> Para entrar a la red social, clic aquí </a></h3>
+            <h3> <a href="registro.php" ><span class="glyphicon glyphicon-info-sign"></span> Si aun no eres usuario de nuestra red social clic aquí para unirte </a></h3>
+            <?php
+                }
+            
+            ?>
 			
 	</div>
 
