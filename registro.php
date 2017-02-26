@@ -35,7 +35,7 @@ how about, learn "programming"? ;)
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -59,13 +59,15 @@ how about, learn "programming"? ;)
 <br/>
 				
         <label for="inputEmail" class="sr-only"><?php echo $label->LoginEmail; ?></label>
-        <input type="email" id="inputEmail" name="user" class="form-control" placeholder="<?php echo $label->LoginEmail; ?>" required autofocus>
+        <input type="email" id="inputEmail" name="user" class="form-control" placeholder="<?php echo $label->LoginEmail; ?>" required autofocus><span id="usuarioexiste" style="background-color: rgba(255, 255, 255, 0.46);
+    display: block;
+    text-align: center;"></span>
         <label for="inputPassword" class="sr-only"><?php echo $label->LoginClave; ?> </label><br/>
 				
         <input type="password" id="inputPassword" name="clave" class="form-control" placeholder="<?php echo $label->LoginClave; ?>" required>
         
 				
-				<input type="password" id="inputPassword" name="clave1" class="form-control" placeholder="<?php echo "Repetir ".$label->LoginClave; ?>" required>
+				<input type="password" id="inputPassword1" name="clave1" class="form-control" placeholder="<?php echo "Repetir ".$label->LoginClave; ?>" required>
 				
         <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo "Registrarse"; ?> </button>
       </form>
@@ -84,5 +86,32 @@ how about, learn "programming"? ;)
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+      <script type="text/javascript" >
+            $("#inputEmail").blur(function (){
+            if($("#inputEmail").val() != 0){
+                $.ajax({
+                          url:"ajax.php",
+                          data:{accion:"validarUsuario",usuario:$("#inputEmail").val()},
+                          method:"post",
+                          dataType:"json",
+                          success:function (data){
+                         // alert(data);
+                            if(data["total"] > 0){  
+                                $("#usuarioexiste").html("El usuario ya existe <br/>");
+                                $("#usuarioexiste").css("color","red");
+                                $("#inputEmail").val("");$("#inputEmail").css("border-color","red");
+                            }else{
+                                $("#usuarioexiste").html("El usuario esta disponible <br/>");
+                                $("#usuarioexiste").css("color","green");
+                                $("#inputEmail").val("");$("#inputEmail").css("border-color","green");
+                            }
+                          },
+                          error:function (){
+                              console.error("Nada bueno");
+                          }
+                      });
+              }
+            });
+      </script>
   </body>
 </html>
