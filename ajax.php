@@ -55,7 +55,17 @@ while($resCategoria = mysqli_fetch_object($resultCategoria)){
 			print_r(json_encode(array('total' => $result->total)));
 			break;
 		
-		case 'serchGrupo':
+		case 'productoSugerido':
+        $query = $post->insertarProducto($_POST["mercado"],$_POST["sector"],$_POST["subsector"],$_POST["producto"],$_SESSION["id"]);
+			if($query){
+                $array = "1";
+            }else{
+                $array = "0";
+            }
+			print_r(json_encode(array('respuesta' => $array)));
+			break;
+        
+        case 'serchGrupo':
 			$query = $permiso->getSerchGrupo($_POST);
 			$result = $query->fetch_object();
 			print_r(json_encode(array('total' => $result->total)));

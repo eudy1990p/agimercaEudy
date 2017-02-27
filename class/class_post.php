@@ -14,7 +14,25 @@ class Post
 		$this->c = $conexion;
 	}
 	function setIdUser($id){ $this->id = $id; }
-	
+
+    function insertarProducto($mercado,$sector,$subsector,$producto,$usuarioid){
+		
+    $sqlInsert ="INSERT INTO 
+             producto_sugerido(categoria , subcategoria, subsubcategoria, subsubsubcategoria,fecha_creado,user_id_creado) 
+            VALUES 
+            ('".$mercado."','".$sector."','".$subsector."','".$producto."',now(),'".$usuarioid."' ) ";
+
+
+                    //$this->verQuery($sqlInsert);
+                    $query = $this->c->query($sqlInsert);
+                    if ($query) {
+                        return true;
+                    }else{
+                        echo $this->c->error;
+                        die("Error en la consulta1");
+                    }	
+}
+    
 	function getPost($where1="",$limit="limit 50",$p=""){
 		
        $where="";

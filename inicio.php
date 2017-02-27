@@ -1,4 +1,5 @@
 <?php
+    $tituloAgimerca="Red Social Inicio";
 	require_once("header.php");
 	
 	 if(isset($_POST)){
