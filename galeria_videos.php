@@ -29,7 +29,15 @@
 				<h1>Colecciones de videos</h1>
 				
 				<!-- Aqui va codigo php -->
-				
+				<form action="" method="post" enctype="multipart/form-data">
+					  <div class="form-group">
+					    <label for="boton">Agregar coleccion de videos</label>
+					    <br/>
+					    <!-- Redireccionamiento -->
+					    <a class="btn btn-success" href="crear_video.php" title="Click aqui para crear un nuevo album">Ir a crear</a>
+					  </div>
+				</form>
+				<hr/>
 				<?php 
 					$c = new Conexion();
 
@@ -37,32 +45,29 @@
 
 					$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 
-					while ($datos = mysqli_fetch_array($resultado)) {
+					while ($datos = mysqli_fetch_array($resultado)): ?>
 
-						echo 
-						"
-							<form action='ver_videos.php' method='post'>
-								<div class='col-xs-4'>
-									<h3>$datos[nombre]</h3>
-									<button class='btn btn-link btn-lg' name='id_album_video' type='submit' value='$datos[id]'>ver</button>
-									<br/>
-									<span>fecha publicacion: $datos[fecha_creado]</span>
-								</div>
-							<form/>
-						";
-					}
+						<div class="col-xs-4">
+						<div class="panel panel-default" title="Album de video. Puedes ver este album pulsando el boton de abajo">
+							<div class="panel-heading">
+								<h3><?php echo $datos['nombre']; ?></h3>
+							</div>
+							<div class="panel-body">
+								<form action="ver_videos.php">
+									<button title="Pulsa el boton para ver el album" class="btn btn-info btn-block" type="submit" name='id_album_video' value="<?php echo $datos['id']; ?>">Ver</button>
+								</form>
+							</div>
+							<div class="panel-footer">
+								<span>Fecha de publicacion: <?php echo $datos['fecha_creado']; ?></span>
+							</div>
+						</div>
+						</div>
+
+					<?php endwhile;
 				?>
 
 			</div>
-			<hr/>
-			<form action="" method="post" enctype="multipart/form-data">
-				  <div class="form-group">
-				    <label for="boton">Agregar coleccion de videos</label>
-				    <br/>
-				    <!-- Redireccionamiento -->
-				    <a class="btn btn-success" href="crear_video.php">Ir a crear</a>
-				  </div>
-			</form>
+			
 	</div>
 
 

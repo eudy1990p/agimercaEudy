@@ -29,40 +29,61 @@
 				<h1>Albunes creados</h1>
 				
 				<!-- Aqui va codigo php -->
-				
+				<form action="" method="post" enctype="multipart/form-data">
+					  <div class="form-group">
+					    <label for="boton">Agregar un nuevo album</label>
+					    <br/>
+					    <!-- Redireccionamiento -->
+					    <a class="btn btn-success" href="crear_galeria.php">Ir a crear</a>
+					  </div>
+				</form>
 				<?php 
 					$c = new Conexion();
 
-					$sql = "select * from carpeta_gallerias where user_id_creado=".$_SESSION['id']." and estado ='activo'";
+					$sql = "
+						select 
+							c.*,
+						    (select url_img from galerias where carpeta_id=c.id limit 1) as imagen 
+						from 
+							carpeta_gallerias c 
+						where c.user_id_creado=".$_SESSION['id']." and c.estado ='activo';
+					";
 
 					$resultado = mysqli_query($c->getContect(),$sql) or die(mysqli_error($c->getContect()));
 
-					while ($datos = mysqli_fetch_array($resultado)) {
+					while ($datos = mysqli_fetch_array($resultado)): ?>
 
-						echo 
-						"
-							<form action='ver_galeria.php' method='post'>
-								<div class='col-xs-4'>
-									<h3>$datos[nombre]</h3>
-									<button class='btn btn-link btn-lg' name='id_album' type='submit' value='$datos[id]'>ver</button>
-									<br/>
-									<span>fecha publicacion: $datos[fecha_creado]</span>
+						<div class="col-xs-4" title="Puedes ver esta galeria pulsando el boton de abajo.">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 style="text-overflow: '[..]' "><?php echo $datos['nombre'] ?>lorem</h4>
 								</div>
-							<form/>
-						";
-					}
+								<div class="panel-body">
+									
+						    	<form action='ver_galeria.php' method='post'>
+						    	 <button 
+						    	 	class='btn btn-info btn-block'
+						    	 	name='id_album' 
+						    	 	type='submit'
+						    	 	title="Pulsa este boton para vel esta galeria de imagenes" 
+						    	 	value="<?php echo $datos['id'] ?>">
+
+						    	 	ver
+						    	 </button>
+						    	</form>
+
+								</div>
+								<div class="panel-footer">
+									<span>Fecha publicacion: <?php echo $datos['fecha_creado']; ?></span>
+								</div>
+							</div>
+						</div>
+
+					<?php endwhile;
 				?>
 
 			</div>
 			<hr/>
-			<form action="" method="post" enctype="multipart/form-data">
-				  <div class="form-group">
-				    <label for="boton">Agregar un nuevo album</label>
-				    <br/>
-				    <!-- Redireccionamiento -->
-				    <a class="btn btn-success" href="crear_galeria.php">Ir a crear</a>
-				  </div>
-			</form>
 	</div>
 
 
