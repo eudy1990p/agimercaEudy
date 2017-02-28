@@ -1,0 +1,827 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.11.3
+-- http://www.phpmyadmin.net
+--
+-- Host: 68.178.143.155
+-- Generation Time: Feb 27, 2017 at 09:03 PM
+-- Server version: 5.5.43
+-- PHP Version: 5.1.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `agimercadb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carpeta_gallerias`
+--
+
+CREATE TABLE `carpeta_gallerias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `estado` enum('activo','desactivado') NOT NULL DEFAULT 'activo',
+  PRIMARY KEY (`id`),
+  KEY `user_id_creado` (`user_id_creado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `carpeta_gallerias`
+--
+
+INSERT INTO `carpeta_gallerias` VALUES(1, 18, NULL, NULL, '2017-01-01 07:32:46', 'Agimerca', 'activo');
+INSERT INTO `carpeta_gallerias` VALUES(2, 56, NULL, NULL, '2017-02-20 16:40:17', 'Beneficio del gengibre.', 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carpeta_videos`
+--
+
+CREATE TABLE `carpeta_videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `estado` enum('activo','desactivado') NOT NULL DEFAULT 'activo',
+  PRIMARY KEY (`id`),
+  KEY `user_id_creado` (`user_id_creado`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `carpeta_videos`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_categoria` varchar(100) DEFAULT NULL,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `categorias`
+--
+
+INSERT INTO `categorias` VALUES(1, 'Oferta', 1, NULL, NULL, '2017-01-16 08:46:06');
+INSERT INTO `categorias` VALUES(2, 'Demanda', 1, NULL, NULL, '2017-01-16 08:46:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categorias_posts`
+--
+
+CREATE TABLE `categorias_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `categorias_posts`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `comentario` text,
+  `post_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+INSERT INTO `comentarios` VALUES(1, 21, NULL, NULL, '2017-01-05 16:33:08', '<p>Megusta</p>', 3);
+INSERT INTO `comentarios` VALUES(2, 21, NULL, NULL, '2017-01-07 07:35:35', '', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galerias`
+--
+
+CREATE TABLE `galerias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `url_img` varchar(200) DEFAULT NULL,
+  `perfil` int(1) DEFAULT NULL,
+  `carpeta_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+--
+-- Dumping data for table `galerias`
+--
+
+INSERT INTO `galerias` VALUES(12, 1, NULL, '2016-12-28 12:34:20', NULL, '0_5_recurso.png', NULL, 5);
+INSERT INTO `galerias` VALUES(13, 1, NULL, '2016-12-28 12:34:20', NULL, '1_5_recurso.png', NULL, 5);
+INSERT INTO `galerias` VALUES(14, 1, NULL, '2016-12-28 12:40:47', NULL, '0_6_recurso.png', NULL, 6);
+INSERT INTO `galerias` VALUES(15, 1, NULL, '2016-12-28 12:46:02', NULL, '0_7_recurso.png', NULL, 7);
+INSERT INTO `galerias` VALUES(16, 1, NULL, '2016-12-28 12:46:02', NULL, '1_7_recurso.png', NULL, 7);
+INSERT INTO `galerias` VALUES(17, 1, NULL, '2016-12-28 12:46:02', NULL, '2_7_recurso.png', NULL, 7);
+INSERT INTO `galerias` VALUES(18, 1, NULL, '2016-12-28 12:48:31', NULL, '0_8_recurso.png', NULL, 8);
+INSERT INTO `galerias` VALUES(19, 1, NULL, '2016-12-28 12:48:31', NULL, '1_8_recurso.png', NULL, 8);
+INSERT INTO `galerias` VALUES(20, 1, NULL, '2016-12-28 12:48:32', NULL, '2_8_recurso.png', NULL, 8);
+INSERT INTO `galerias` VALUES(21, 18, NULL, '2017-01-01 07:32:46', NULL, '0_1_recurso.png', NULL, 1);
+INSERT INTO `galerias` VALUES(22, 56, NULL, '2017-02-20 16:40:18', NULL, '0_2_recurso.png', NULL, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mensajes_privados`
+--
+
+CREATE TABLE `mensajes_privados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `mensaje` text,
+  `para_user_id` int(11) DEFAULT NULL,
+  `visto` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `mensajes_privados`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `me_gustas`
+--
+
+CREATE TABLE `me_gustas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `si` int(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `me_gustas`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pais`
+--
+
+CREATE TABLE `pais` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_creado` datetime DEFAULT NULL,
+  `nombre` varchar(150) DEFAULT NULL,
+  `name1` varchar(150) DEFAULT NULL,
+  `nom` varchar(150) DEFAULT NULL,
+  `iso2` varchar(50) DEFAULT NULL,
+  `iso3` varchar(50) DEFAULT NULL,
+  `phone_code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=248 ;
+
+--
+-- Dumping data for table `pais`
+--
+
+INSERT INTO `pais` VALUES(2, NULL, 'Afganistán', 'Afghanistan', 'Afghanistan', 'AF', 'AFG', '93');
+INSERT INTO `pais` VALUES(3, NULL, 'Albania', 'Albania', 'Albanie', 'AL', 'ALB', '355');
+INSERT INTO `pais` VALUES(4, NULL, 'Alemania', 'Germany', 'Allemagne', 'DE', 'DEU', '49');
+INSERT INTO `pais` VALUES(5, NULL, 'Algeria', 'Algeria', 'Algérie', 'DZ', 'DZA', '213');
+INSERT INTO `pais` VALUES(6, NULL, 'Andorra', 'Andorra', 'Andorra', 'AD', 'AND', '376');
+INSERT INTO `pais` VALUES(7, NULL, 'Angola', 'Angola', 'Angola', 'AO', 'AGO', '244');
+INSERT INTO `pais` VALUES(8, NULL, 'Anguila', 'Anguilla', 'Anguilla', 'AI', 'AIA', '1 264');
+INSERT INTO `pais` VALUES(9, NULL, 'Antártida', 'Antarctica', 'L''Antarctique', 'AQ', 'ATA', '672');
+INSERT INTO `pais` VALUES(10, NULL, 'Antigua y Barbuda', 'Antigua and Barbuda', 'Antigua et Barbuda', 'AG', 'ATG', '1 268');
+INSERT INTO `pais` VALUES(11, NULL, 'Antillas Neerlandesas', 'Netherlands Antilles', 'Antilles Néerlandaises', 'AN', 'ANT', '599');
+INSERT INTO `pais` VALUES(12, NULL, 'Arabia Saudita', 'Saudi Arabia', 'Arabie Saoudite', 'SA', 'SAU', '966');
+INSERT INTO `pais` VALUES(13, NULL, 'Argentina', 'Argentina', 'Argentine', 'AR', 'ARG', '54');
+INSERT INTO `pais` VALUES(14, NULL, 'Armenia', 'Armenia', 'L''Arménie', 'AM', 'ARM', '374');
+INSERT INTO `pais` VALUES(15, NULL, 'Aruba', 'Aruba', 'Aruba', 'AW', 'ABW', '297');
+INSERT INTO `pais` VALUES(16, NULL, 'Australia', 'Australia', 'Australie', 'AU', 'AUS', '61');
+INSERT INTO `pais` VALUES(17, NULL, 'Austria', 'Austria', 'Autriche', 'AT', 'AUT', '43');
+INSERT INTO `pais` VALUES(18, NULL, 'Azerbayán', 'Azerbaijan', 'L''Azerbaïdjan', 'AZ', 'AZE', '994');
+INSERT INTO `pais` VALUES(19, NULL, 'Bélgica', 'Belgium', 'Belgique', 'BE', 'BEL', '32');
+INSERT INTO `pais` VALUES(20, NULL, 'Bahamas', 'Bahamas', 'Bahamas', 'BS', 'BHS', '1 242');
+INSERT INTO `pais` VALUES(21, NULL, 'Bahrein', 'Bahrain', 'Bahreïn', 'BH', 'BHR', '973');
+INSERT INTO `pais` VALUES(22, NULL, 'Bangladesh', 'Bangladesh', 'Bangladesh', 'BD', 'BGD', '880');
+INSERT INTO `pais` VALUES(23, NULL, 'Barbados', 'Barbados', 'Barbade', 'BB', 'BRB', '1 246');
+INSERT INTO `pais` VALUES(24, NULL, 'Belice', 'Belize', 'Belize', 'BZ', 'BLZ', '501');
+INSERT INTO `pais` VALUES(25, NULL, 'Benín', 'Benin', 'Bénin', 'BJ', 'BEN', '229');
+INSERT INTO `pais` VALUES(26, NULL, 'Bhután', 'Bhutan', 'Le Bhoutan', 'BT', 'BTN', '975');
+INSERT INTO `pais` VALUES(27, NULL, 'Bielorrusia', 'Belarus', 'Biélorussie', 'BY', 'BLR', '375');
+INSERT INTO `pais` VALUES(28, NULL, 'Birmania', 'Myanmar', 'Myanmar', 'MM', 'MMR', '95');
+INSERT INTO `pais` VALUES(29, NULL, 'Bolivia', 'Bolivia', 'Bolivie', 'BO', 'BOL', '591');
+INSERT INTO `pais` VALUES(30, NULL, 'Bosnia y Herzegovina', 'Bosnia and Herzegovina', 'Bosnie-Herzégovine', 'BA', 'BIH', '387');
+INSERT INTO `pais` VALUES(31, NULL, 'Botsuana', 'Botswana', 'Botswana', 'BW', 'BWA', '267');
+INSERT INTO `pais` VALUES(32, NULL, 'Brasil', 'Brazil', 'Brésil', 'BR', 'BRA', '55');
+INSERT INTO `pais` VALUES(33, NULL, 'Brunéi', 'Brunei', 'Brunei', 'BN', 'BRN', '673');
+INSERT INTO `pais` VALUES(34, NULL, 'Bulgaria', 'Bulgaria', 'Bulgarie', 'BG', 'BGR', '359');
+INSERT INTO `pais` VALUES(35, NULL, 'Burkina Faso', 'Burkina Faso', 'Burkina Faso', 'BF', 'BFA', '226');
+INSERT INTO `pais` VALUES(36, NULL, 'Burundi', 'Burundi', 'Burundi', 'BI', 'BDI', '257');
+INSERT INTO `pais` VALUES(37, NULL, 'Cabo Verde', 'Cape Verde', 'Cap-Vert', 'CV', 'CPV', '238');
+INSERT INTO `pais` VALUES(38, NULL, 'Camboya', 'Cambodia', 'Cambodge', 'KH', 'KHM', '855');
+INSERT INTO `pais` VALUES(39, NULL, 'Camerún', 'Cameroon', 'Cameroun', 'CM', 'CMR', '237');
+INSERT INTO `pais` VALUES(40, NULL, 'Canadá', 'Canada', 'Canada', 'CA', 'CAN', '1');
+INSERT INTO `pais` VALUES(41, NULL, 'Chad', 'Chad', 'Tchad', 'TD', 'TCD', '235');
+INSERT INTO `pais` VALUES(42, NULL, 'Chile', 'Chile', 'Chili', 'CL', 'CHL', '56');
+INSERT INTO `pais` VALUES(43, NULL, 'China', 'China', 'Chine', 'CN', 'CHN', '86');
+INSERT INTO `pais` VALUES(44, NULL, 'Chipre', 'Cyprus', 'Chypre', 'CY', 'CYP', '357');
+INSERT INTO `pais` VALUES(45, NULL, 'Ciudad del Vaticano', 'Vatican City State', 'Cité du Vatican', 'VA', 'VAT', '39');
+INSERT INTO `pais` VALUES(46, NULL, 'Colombia', 'Colombia', 'Colombie', 'CO', 'COL', '57');
+INSERT INTO `pais` VALUES(47, NULL, 'Comoras', 'Comoros', 'Comores', 'KM', 'COM', '269');
+INSERT INTO `pais` VALUES(48, NULL, 'Congo', 'Congo', 'Congo', 'CG', 'COG', '242');
+INSERT INTO `pais` VALUES(49, NULL, 'Congo', 'Congo', 'Congo', 'CD', 'COD', '243');
+INSERT INTO `pais` VALUES(50, NULL, 'Corea del Norte', 'North Korea', 'Corée du Nord', 'KP', 'PRK', '850');
+INSERT INTO `pais` VALUES(51, NULL, 'Corea del Sur', 'South Korea', 'Corée du Sud', 'KR', 'KOR', '82');
+INSERT INTO `pais` VALUES(52, NULL, 'Costa de Marfil', 'Ivory Coast', 'Côte-d''Ivoire', 'CI', 'CIV', '225');
+INSERT INTO `pais` VALUES(53, NULL, 'Costa Rica', 'Costa Rica', 'Costa Rica', 'CR', 'CRI', '506');
+INSERT INTO `pais` VALUES(54, NULL, 'Croacia', 'Croatia', 'Croatie', 'HR', 'HRV', '385');
+INSERT INTO `pais` VALUES(55, NULL, 'Cuba', 'Cuba', 'Cuba', 'CU', 'CUB', '53');
+INSERT INTO `pais` VALUES(56, NULL, 'Dinamarca', 'Denmark', 'Danemark', 'DK', 'DNK', '45');
+INSERT INTO `pais` VALUES(57, NULL, 'Dominica', 'Dominica', 'Dominique', 'DM', 'DMA', '1 767');
+INSERT INTO `pais` VALUES(58, NULL, 'Ecuador', 'Ecuador', 'Equateur', 'EC', 'ECU', '593');
+INSERT INTO `pais` VALUES(59, NULL, 'Egipto', 'Egypt', 'Egypte', 'EG', 'EGY', '20');
+INSERT INTO `pais` VALUES(60, NULL, 'El Salvador', 'El Salvador', 'El Salvador', 'SV', 'SLV', '503');
+INSERT INTO `pais` VALUES(61, NULL, 'Emiratos Árabes Unidos', 'United Arab Emirates', 'Emirats Arabes Unis', 'AE', 'ARE', '971');
+INSERT INTO `pais` VALUES(62, NULL, 'Eritrea', 'Eritrea', 'Erythrée', 'ER', 'ERI', '291');
+INSERT INTO `pais` VALUES(63, NULL, 'Eslovaquia', 'Slovakia', 'Slovaquie', 'SK', 'SVK', '421');
+INSERT INTO `pais` VALUES(64, NULL, 'Eslovenia', 'Slovenia', 'Slovénie', 'SI', 'SVN', '386');
+INSERT INTO `pais` VALUES(65, NULL, 'España', 'Spain', 'Espagne', 'ES', 'ESP', '34');
+INSERT INTO `pais` VALUES(66, NULL, 'Estados Unidos de América', 'United States of America', 'États-Unis d''Amérique', 'US', 'USA', '1');
+INSERT INTO `pais` VALUES(67, NULL, 'Estonia', 'Estonia', 'L''Estonie', 'EE', 'EST', '372');
+INSERT INTO `pais` VALUES(68, NULL, 'Etiopía', 'Ethiopia', 'Ethiopie', 'ET', 'ETH', '251');
+INSERT INTO `pais` VALUES(69, NULL, 'Filipinas', 'Philippines', 'Philippines', 'PH', 'PHL', '63');
+INSERT INTO `pais` VALUES(70, NULL, 'Finlandia', 'Finland', 'Finlande', 'FI', 'FIN', '358');
+INSERT INTO `pais` VALUES(71, NULL, 'Fiyi', 'Fiji', 'Fidji', 'FJ', 'FJI', '679');
+INSERT INTO `pais` VALUES(72, NULL, 'Francia', 'France', 'France', 'FR', 'FRA', '33');
+INSERT INTO `pais` VALUES(73, NULL, 'Gabón', 'Gabon', 'Gabon', 'GA', 'GAB', '241');
+INSERT INTO `pais` VALUES(74, NULL, 'Gambia', 'Gambia', 'Gambie', 'GM', 'GMB', '220');
+INSERT INTO `pais` VALUES(75, NULL, 'Georgia', 'Georgia', 'Géorgie', 'GE', 'GEO', '995');
+INSERT INTO `pais` VALUES(76, NULL, 'Ghana', 'Ghana', 'Ghana', 'GH', 'GHA', '233');
+INSERT INTO `pais` VALUES(77, NULL, 'Gibraltar', 'Gibraltar', 'Gibraltar', 'GI', 'GIB', '350');
+INSERT INTO `pais` VALUES(78, NULL, 'Granada', 'Grenada', 'Grenade', 'GD', 'GRD', '1 473');
+INSERT INTO `pais` VALUES(79, NULL, 'Grecia', 'Greece', 'Grèce', 'GR', 'GRC', '30');
+INSERT INTO `pais` VALUES(80, NULL, 'Groenlandia', 'Greenland', 'Groenland', 'GL', 'GRL', '299');
+INSERT INTO `pais` VALUES(81, NULL, 'Guadalupe', 'Guadeloupe', 'Guadeloupe', 'GP', 'GLP', '');
+INSERT INTO `pais` VALUES(82, NULL, 'Guam', 'Guam', 'Guam', 'GU', 'GUM', '1 671');
+INSERT INTO `pais` VALUES(83, NULL, 'Guatemala', 'Guatemala', 'Guatemala', 'GT', 'GTM', '502');
+INSERT INTO `pais` VALUES(84, NULL, 'Guayana Francesa', 'French Guiana', 'Guyane française', 'GF', 'GUF', '');
+INSERT INTO `pais` VALUES(85, NULL, 'Guernsey', 'Guernsey', 'Guernesey', 'GG', 'GGY', '');
+INSERT INTO `pais` VALUES(86, NULL, 'Guinea', 'Guinea', 'Guinée', 'GN', 'GIN', '224');
+INSERT INTO `pais` VALUES(87, NULL, 'Guinea Ecuatorial', 'Equatorial Guinea', 'Guinée Equatoriale', 'GQ', 'GNQ', '240');
+INSERT INTO `pais` VALUES(88, NULL, 'Guinea-Bissau', 'Guinea-Bissau', 'Guinée-Bissau', 'GW', 'GNB', '245');
+INSERT INTO `pais` VALUES(89, NULL, 'Guyana', 'Guyana', 'Guyane', 'GY', 'GUY', '592');
+INSERT INTO `pais` VALUES(90, NULL, 'Haití', 'Haiti', 'Haïti', 'HT', 'HTI', '509');
+INSERT INTO `pais` VALUES(91, NULL, 'Honduras', 'Honduras', 'Honduras', 'HN', 'HND', '504');
+INSERT INTO `pais` VALUES(92, NULL, 'Hong kong', 'Hong Kong', 'Hong Kong', 'HK', 'HKG', '852');
+INSERT INTO `pais` VALUES(93, NULL, 'Hungría', 'Hungary', 'Hongrie', 'HU', 'HUN', '36');
+INSERT INTO `pais` VALUES(94, NULL, 'India', 'India', 'Inde', 'IN', 'IND', '91');
+INSERT INTO `pais` VALUES(95, NULL, 'Indonesia', 'Indonesia', 'Indonésie', 'ID', 'IDN', '62');
+INSERT INTO `pais` VALUES(96, NULL, 'Irán', 'Iran', 'Iran', 'IR', 'IRN', '98');
+INSERT INTO `pais` VALUES(97, NULL, 'Irak', 'Iraq', 'Irak', 'IQ', 'IRQ', '964');
+INSERT INTO `pais` VALUES(98, NULL, 'Irlanda', 'Ireland', 'Irlande', 'IE', 'IRL', '353');
+INSERT INTO `pais` VALUES(99, NULL, 'Isla Bouvet', 'Bouvet Island', 'Bouvet Island', 'BV', 'BVT', '');
+INSERT INTO `pais` VALUES(100, NULL, 'Isla de Man', 'Isle of Man', 'Ile de Man', 'IM', 'IMN', '44');
+INSERT INTO `pais` VALUES(101, NULL, 'Isla de Navidad', 'Christmas Island', 'Christmas Island', 'CX', 'CXR', '61');
+INSERT INTO `pais` VALUES(102, NULL, 'Isla Norfolk', 'Norfolk Island', 'Île de Norfolk', 'NF', 'NFK', '');
+INSERT INTO `pais` VALUES(103, NULL, 'Islandia', 'Iceland', 'Islande', 'IS', 'ISL', '354');
+INSERT INTO `pais` VALUES(104, NULL, 'Islas Bermudas', 'Bermuda Islands', 'Bermudes', 'BM', 'BMU', '1 441');
+INSERT INTO `pais` VALUES(105, NULL, 'Islas Caimán', 'Cayman Islands', 'Iles Caïmans', 'KY', 'CYM', '1 345');
+INSERT INTO `pais` VALUES(106, NULL, 'Islas Cocos (Keeling)', 'Cocos (Keeling) Islands', 'Cocos (Keeling', 'CC', 'CCK', '61');
+INSERT INTO `pais` VALUES(107, NULL, 'Islas Cook', 'Cook Islands', 'Iles Cook', 'CK', 'COK', '682');
+INSERT INTO `pais` VALUES(108, NULL, 'Islas de Åland', 'Åland Islands', 'Îles Åland', 'AX', 'ALA', '');
+INSERT INTO `pais` VALUES(109, NULL, 'Islas Feroe', 'Faroe Islands', 'Iles Féro', 'FO', 'FRO', '298');
+INSERT INTO `pais` VALUES(110, NULL, 'Islas Georgias del Sur y Sandwich del Sur', 'South Georgia and the South Sandwich Islands', 'Géorgie du Sud et les Îles Sandwich du Sud', 'GS', 'SGS', '');
+INSERT INTO `pais` VALUES(111, NULL, 'Islas Heard y McDonald', 'Heard Island and McDonald Islands', 'Les îles Heard et McDonald', 'HM', 'HMD', '');
+INSERT INTO `pais` VALUES(112, NULL, 'Islas Maldivas', 'Maldives', 'Maldives', 'MV', 'MDV', '960');
+INSERT INTO `pais` VALUES(113, NULL, 'Islas Malvinas', 'Falkland Islands (Malvinas)', 'Iles Falkland (Malvinas', 'FK', 'FLK', '500');
+INSERT INTO `pais` VALUES(114, NULL, 'Islas Marianas del Norte', 'Northern Mariana Islands', 'Iles Mariannes du Nord', 'MP', 'MNP', '1 670');
+INSERT INTO `pais` VALUES(115, NULL, 'Islas Marshall', 'Marshall Islands', 'Iles Marshall', 'MH', 'MHL', '692');
+INSERT INTO `pais` VALUES(116, NULL, 'Islas Pitcairn', 'Pitcairn Islands', 'Iles Pitcairn', 'PN', 'PCN', '870');
+INSERT INTO `pais` VALUES(117, NULL, 'Islas Salomón', 'Solomon Islands', 'Iles Salomon', 'SB', 'SLB', '677');
+INSERT INTO `pais` VALUES(118, NULL, 'Islas Turcas y Caicos', 'Turks and Caicos Islands', 'Iles Turques et Caïques', 'TC', 'TCA', '1 649');
+INSERT INTO `pais` VALUES(119, NULL, 'Islas Ultramarinas Menores de Estados Unidos', 'United States Minor Outlying Islands', 'États-Unis Îles mineures éloignées', 'UM', 'UMI', '');
+INSERT INTO `pais` VALUES(120, NULL, 'Islas Vírgenes Británicas', 'Virgin Islands', 'Iles Vierges', 'VG', 'VG', '1 284');
+INSERT INTO `pais` VALUES(121, NULL, 'Islas Vírgenes de los Estados Unidos', 'United States Virgin Islands', 'Îles Vierges américaines', 'VI', 'VIR', '1 340');
+INSERT INTO `pais` VALUES(122, NULL, 'Israel', 'Israel', 'Israël', 'IL', 'ISR', '972');
+INSERT INTO `pais` VALUES(123, NULL, 'Italia', 'Italy', 'Italie', 'IT', 'ITA', '39');
+INSERT INTO `pais` VALUES(124, NULL, 'Jamaica', 'Jamaica', 'Jamaïque', 'JM', 'JAM', '1 876');
+INSERT INTO `pais` VALUES(125, NULL, 'Japón', 'Japan', 'Japon', 'JP', 'JPN', '81');
+INSERT INTO `pais` VALUES(126, NULL, 'Jersey', 'Jersey', 'Maillot', 'JE', 'JEY', '');
+INSERT INTO `pais` VALUES(127, NULL, 'Jordania', 'Jordan', 'Jordan', 'JO', 'JOR', '962');
+INSERT INTO `pais` VALUES(128, NULL, 'Kazajistán', 'Kazakhstan', 'Le Kazakhstan', 'KZ', 'KAZ', '7');
+INSERT INTO `pais` VALUES(129, NULL, 'Kenia', 'Kenya', 'Kenya', 'KE', 'KEN', '254');
+INSERT INTO `pais` VALUES(130, NULL, 'Kirgizstán', 'Kyrgyzstan', 'Kirghizstan', 'KG', 'KGZ', '996');
+INSERT INTO `pais` VALUES(131, NULL, 'Kiribati', 'Kiribati', 'Kiribati', 'KI', 'KIR', '686');
+INSERT INTO `pais` VALUES(132, NULL, 'Kuwait', 'Kuwait', 'Koweït', 'KW', 'KWT', '965');
+INSERT INTO `pais` VALUES(133, NULL, 'Líbano', 'Lebanon', 'Liban', 'LB', 'LBN', '961');
+INSERT INTO `pais` VALUES(134, NULL, 'Laos', 'Laos', 'Laos', 'LA', 'LAO', '856');
+INSERT INTO `pais` VALUES(135, NULL, 'Lesoto', 'Lesotho', 'Lesotho', 'LS', 'LSO', '266');
+INSERT INTO `pais` VALUES(136, NULL, 'Letonia', 'Latvia', 'La Lettonie', 'LV', 'LVA', '371');
+INSERT INTO `pais` VALUES(137, NULL, 'Liberia', 'Liberia', 'Liberia', 'LR', 'LBR', '231');
+INSERT INTO `pais` VALUES(138, NULL, 'Libia', 'Libya', 'Libye', 'LY', 'LBY', '218');
+INSERT INTO `pais` VALUES(139, NULL, 'Liechtenstein', 'Liechtenstein', 'Liechtenstein', 'LI', 'LIE', '423');
+INSERT INTO `pais` VALUES(140, NULL, 'Lituania', 'Lithuania', 'La Lituanie', 'LT', 'LTU', '370');
+INSERT INTO `pais` VALUES(141, NULL, 'Luxemburgo', 'Luxembourg', 'Luxembourg', 'LU', 'LUX', '352');
+INSERT INTO `pais` VALUES(142, NULL, 'México', 'Mexico', 'Mexique', 'MX', 'MEX', '52');
+INSERT INTO `pais` VALUES(143, NULL, 'Mónaco', 'Monaco', 'Monaco', 'MC', 'MCO', '377');
+INSERT INTO `pais` VALUES(144, NULL, 'Macao', 'Macao', 'Macao', 'MO', 'MAC', '853');
+INSERT INTO `pais` VALUES(145, NULL, 'Macedônia', 'Macedonia', 'Macédoine', 'MK', 'MKD', '389');
+INSERT INTO `pais` VALUES(146, NULL, 'Madagascar', 'Madagascar', 'Madagascar', 'MG', 'MDG', '261');
+INSERT INTO `pais` VALUES(147, NULL, 'Malasia', 'Malaysia', 'Malaisie', 'MY', 'MYS', '60');
+INSERT INTO `pais` VALUES(148, NULL, 'Malawi', 'Malawi', 'Malawi', 'MW', 'MWI', '265');
+INSERT INTO `pais` VALUES(149, NULL, 'Mali', 'Mali', 'Mali', 'ML', 'MLI', '223');
+INSERT INTO `pais` VALUES(150, NULL, 'Malta', 'Malta', 'Malte', 'MT', 'MLT', '356');
+INSERT INTO `pais` VALUES(151, NULL, 'Marruecos', 'Morocco', 'Maroc', 'MA', 'MAR', '212');
+INSERT INTO `pais` VALUES(152, NULL, 'Martinica', 'Martinique', 'Martinique', 'MQ', 'MTQ', '');
+INSERT INTO `pais` VALUES(153, NULL, 'Mauricio', 'Mauritius', 'Iles Maurice', 'MU', 'MUS', '230');
+INSERT INTO `pais` VALUES(154, NULL, 'Mauritania', 'Mauritania', 'Mauritanie', 'MR', 'MRT', '222');
+INSERT INTO `pais` VALUES(155, NULL, 'Mayotte', 'Mayotte', 'Mayotte', 'YT', 'MYT', '262');
+INSERT INTO `pais` VALUES(156, NULL, 'Micronesia', 'Estados Federados de', 'Federados Estados de', 'FM', 'FSM', '691');
+INSERT INTO `pais` VALUES(157, NULL, 'Moldavia', 'Moldova', 'Moldavie', 'MD', 'MDA', '373');
+INSERT INTO `pais` VALUES(158, NULL, 'Mongolia', 'Mongolia', 'Mongolie', 'MN', 'MNG', '976');
+INSERT INTO `pais` VALUES(159, NULL, 'Montenegro', 'Montenegro', 'Monténégro', 'ME', 'MNE', '382');
+INSERT INTO `pais` VALUES(160, NULL, 'Montserrat', 'Montserrat', 'Montserrat', 'MS', 'MSR', '1 664');
+INSERT INTO `pais` VALUES(161, NULL, 'Mozambique', 'Mozambique', 'Mozambique', 'MZ', 'MOZ', '258');
+INSERT INTO `pais` VALUES(162, NULL, 'Namibia', 'Namibia', 'Namibie', 'NA', 'NAM', '264');
+INSERT INTO `pais` VALUES(163, NULL, 'Nauru', 'Nauru', 'Nauru', 'NR', 'NRU', '674');
+INSERT INTO `pais` VALUES(164, NULL, 'Nepal', 'Nepal', 'Népal', 'NP', 'NPL', '977');
+INSERT INTO `pais` VALUES(165, NULL, 'Nicaragua', 'Nicaragua', 'Nicaragua', 'NI', 'NIC', '505');
+INSERT INTO `pais` VALUES(166, NULL, 'Niger', 'Niger', 'Niger', 'NE', 'NER', '227');
+INSERT INTO `pais` VALUES(167, NULL, 'Nigeria', 'Nigeria', 'Nigeria', 'NG', 'NGA', '234');
+INSERT INTO `pais` VALUES(168, NULL, 'Niue', 'Niue', 'Niou', 'NU', 'NIU', '683');
+INSERT INTO `pais` VALUES(169, NULL, 'Noruega', 'Norway', 'Norvège', 'NO', 'NOR', '47');
+INSERT INTO `pais` VALUES(170, NULL, 'Nueva Caledonia', 'New Caledonia', 'Nouvelle-Calédonie', 'NC', 'NCL', '687');
+INSERT INTO `pais` VALUES(171, NULL, 'Nueva Zelanda', 'New Zealand', 'Nouvelle-Zélande', 'NZ', 'NZL', '64');
+INSERT INTO `pais` VALUES(172, NULL, 'Omán', 'Oman', 'Oman', 'OM', 'OMN', '968');
+INSERT INTO `pais` VALUES(173, NULL, 'Países Bajos', 'Netherlands', 'Pays-Bas', 'NL', 'NLD', '31');
+INSERT INTO `pais` VALUES(174, NULL, 'Pakistán', 'Pakistan', 'Pakistan', 'PK', 'PAK', '92');
+INSERT INTO `pais` VALUES(175, NULL, 'Palau', 'Palau', 'Palau', 'PW', 'PLW', '680');
+INSERT INTO `pais` VALUES(176, NULL, 'Palestina', 'Palestine', 'La Palestine', 'PS', 'PSE', '');
+INSERT INTO `pais` VALUES(177, NULL, 'Panamá', 'Panama', 'Panama', 'PA', 'PAN', '507');
+INSERT INTO `pais` VALUES(178, NULL, 'Papúa Nueva Guinea', 'Papua New Guinea', 'Papouasie-Nouvelle-Guinée', 'PG', 'PNG', '675');
+INSERT INTO `pais` VALUES(179, NULL, 'Paraguay', 'Paraguay', 'Paraguay', 'PY', 'PRY', '595');
+INSERT INTO `pais` VALUES(180, NULL, 'Perú', 'Peru', 'Pérou', 'PE', 'PER', '51');
+INSERT INTO `pais` VALUES(181, NULL, 'Polinesia Francesa', 'French Polynesia', 'Polynésie française', 'PF', 'PYF', '689');
+INSERT INTO `pais` VALUES(182, NULL, 'Polonia', 'Poland', 'Pologne', 'PL', 'POL', '48');
+INSERT INTO `pais` VALUES(183, NULL, 'Portugal', 'Portugal', 'Portugal', 'PT', 'PRT', '351');
+INSERT INTO `pais` VALUES(184, NULL, 'Puerto Rico', 'Puerto Rico', 'Porto Rico', 'PR', 'PRI', '1');
+INSERT INTO `pais` VALUES(185, NULL, 'Qatar', 'Qatar', 'Qatar', 'QA', 'QAT', '974');
+INSERT INTO `pais` VALUES(186, NULL, 'Reino Unido', 'United Kingdom', 'Royaume-Uni', 'GB', 'GBR', '44');
+INSERT INTO `pais` VALUES(187, NULL, 'República Centroafricana', 'Central African Republic', 'République Centrafricaine', 'CF', 'CAF', '236');
+INSERT INTO `pais` VALUES(188, NULL, 'República Checa', 'Czech Republic', 'République Tchèque', 'CZ', 'CZE', '420');
+INSERT INTO `pais` VALUES(189, NULL, 'República Dominicana', 'Dominican Republic', 'République Dominicaine', 'DO', 'DOM', '1 809');
+INSERT INTO `pais` VALUES(190, NULL, 'Reunión', 'Réunion', 'Réunion', 'RE', 'REU', '');
+INSERT INTO `pais` VALUES(191, NULL, 'Ruanda', 'Rwanda', 'Rwanda', 'RW', 'RWA', '250');
+INSERT INTO `pais` VALUES(192, NULL, 'Rumanía', 'Romania', 'Roumanie', 'RO', 'ROU', '40');
+INSERT INTO `pais` VALUES(193, NULL, 'Rusia', 'Russia', 'La Russie', 'RU', 'RUS', '7');
+INSERT INTO `pais` VALUES(194, NULL, 'Sahara Occidental', 'Western Sahara', 'Sahara Occidental', 'EH', 'ESH', '');
+INSERT INTO `pais` VALUES(195, NULL, 'Samoa', 'Samoa', 'Samoa', 'WS', 'WSM', '685');
+INSERT INTO `pais` VALUES(196, NULL, 'Samoa Americana', 'American Samoa', 'Les Samoa américaines', 'AS', 'ASM', '1 684');
+INSERT INTO `pais` VALUES(197, NULL, 'San Bartolomé', 'Saint Barthélemy', 'Saint-Barthélemy', 'BL', 'BLM', '590');
+INSERT INTO `pais` VALUES(198, NULL, 'San Cristóbal y Nieves', 'Saint Kitts and Nevis', 'Saint Kitts et Nevis', 'KN', 'KNA', '1 869');
+INSERT INTO `pais` VALUES(199, NULL, 'San Marino', 'San Marino', 'San Marino', 'SM', 'SMR', '378');
+INSERT INTO `pais` VALUES(200, NULL, 'San Martín (Francia)', 'Saint Martin (French part)', 'Saint-Martin (partie française)', 'MF', 'MAF', '1 599');
+INSERT INTO `pais` VALUES(201, NULL, 'San Pedro y Miquelón', 'Saint Pierre and Miquelon', 'Saint-Pierre-et-Miquelon', 'PM', 'SPM', '508');
+INSERT INTO `pais` VALUES(202, NULL, 'San Vicente y las Granadinas', 'Saint Vincent and the Grenadines', 'Saint-Vincent et Grenadines', 'VC', 'VCT', '1 784');
+INSERT INTO `pais` VALUES(203, NULL, 'Santa Elena', 'Ascensión y Tristán de Acuña', 'Ascensión y Tristan de Acuña', 'SH', 'SHN', '290');
+INSERT INTO `pais` VALUES(204, NULL, 'Santa Lucía', 'Saint Lucia', 'Sainte-Lucie', 'LC', 'LCA', '1 758');
+INSERT INTO `pais` VALUES(205, NULL, 'Santo Tomé y Príncipe', 'Sao Tome and Principe', 'Sao Tomé et Principe', 'ST', 'STP', '239');
+INSERT INTO `pais` VALUES(206, NULL, 'Senegal', 'Senegal', 'Sénégal', 'SN', 'SEN', '221');
+INSERT INTO `pais` VALUES(207, NULL, 'Serbia', 'Serbia', 'Serbie', 'RS', 'SRB', '381');
+INSERT INTO `pais` VALUES(208, NULL, 'Seychelles', 'Seychelles', 'Les Seychelles', 'SC', 'SYC', '248');
+INSERT INTO `pais` VALUES(209, NULL, 'Sierra Leona', 'Sierra Leone', 'Sierra Leone', 'SL', 'SLE', '232');
+INSERT INTO `pais` VALUES(210, NULL, 'Singapur', 'Singapore', 'Singapour', 'SG', 'SGP', '65');
+INSERT INTO `pais` VALUES(211, NULL, 'Siria', 'Syria', 'Syrie', 'SY', 'SYR', '963');
+INSERT INTO `pais` VALUES(212, NULL, 'Somalia', 'Somalia', 'Somalie', 'SO', 'SOM', '252');
+INSERT INTO `pais` VALUES(213, NULL, 'Sri lanka', 'Sri Lanka', 'Sri Lanka', 'LK', 'LKA', '94');
+INSERT INTO `pais` VALUES(214, NULL, 'Sudáfrica', 'South Africa', 'Afrique du Sud', 'ZA', 'ZAF', '27');
+INSERT INTO `pais` VALUES(215, NULL, 'Sudán', 'Sudan', 'Soudan', 'SD', 'SDN', '249');
+INSERT INTO `pais` VALUES(216, NULL, 'Suecia', 'Sweden', 'Suède', 'SE', 'SWE', '46');
+INSERT INTO `pais` VALUES(217, NULL, 'Suiza', 'Switzerland', 'Suisse', 'CH', 'CHE', '41');
+INSERT INTO `pais` VALUES(218, NULL, 'Surinám', 'Suriname', 'Surinam', 'SR', 'SUR', '597');
+INSERT INTO `pais` VALUES(219, NULL, 'Svalbard y Jan Mayen', 'Svalbard and Jan Mayen', 'Svalbard et Jan Mayen', 'SJ', 'SJM', '');
+INSERT INTO `pais` VALUES(220, NULL, 'Swazilandia', 'Swaziland', 'Swaziland', 'SZ', 'SWZ', '268');
+INSERT INTO `pais` VALUES(221, NULL, 'Tadjikistán', 'Tajikistan', 'Le Tadjikistan', 'TJ', 'TJK', '992');
+INSERT INTO `pais` VALUES(222, NULL, 'Tailandia', 'Thailand', 'Thaïlande', 'TH', 'THA', '66');
+INSERT INTO `pais` VALUES(223, NULL, 'Taiwán', 'Taiwan', 'Taiwan', 'TW', 'TWN', '886');
+INSERT INTO `pais` VALUES(224, NULL, 'Tanzania', 'Tanzania', 'Tanzanie', 'TZ', 'TZA', '255');
+INSERT INTO `pais` VALUES(225, NULL, 'Territorio Británico del Océano Índico', 'British Indian Ocean Territory', 'Territoire britannique de l''océan Indien', 'IO', 'IOT', '');
+INSERT INTO `pais` VALUES(226, NULL, 'Territorios Australes y Antárticas Franceses', 'French Southern Territories', 'Terres australes françaises', 'TF', 'ATF', '');
+INSERT INTO `pais` VALUES(227, NULL, 'Timor Oriental', 'East Timor', 'Timor-Oriental', 'TL', 'TLS', '670');
+INSERT INTO `pais` VALUES(228, NULL, 'Togo', 'Togo', 'Togo', 'TG', 'TGO', '228');
+INSERT INTO `pais` VALUES(229, NULL, 'Tokelau', 'Tokelau', 'Tokélaou', 'TK', 'TKL', '690');
+INSERT INTO `pais` VALUES(230, NULL, 'Tonga', 'Tonga', 'Tonga', 'TO', 'TON', '676');
+INSERT INTO `pais` VALUES(231, NULL, 'Trinidad y Tobago', 'Trinidad and Tobago', 'Trinidad et Tobago', 'TT', 'TTO', '1 868');
+INSERT INTO `pais` VALUES(232, NULL, 'Tunez', 'Tunisia', 'Tunisie', 'TN', 'TUN', '216');
+INSERT INTO `pais` VALUES(233, NULL, 'Turkmenistán', 'Turkmenistan', 'Le Turkménistan', 'TM', 'TKM', '993');
+INSERT INTO `pais` VALUES(234, NULL, 'Turquía', 'Turkey', 'Turquie', 'TR', 'TUR', '90');
+INSERT INTO `pais` VALUES(235, NULL, 'Tuvalu', 'Tuvalu', 'Tuvalu', 'TV', 'TUV', '688');
+INSERT INTO `pais` VALUES(236, NULL, 'Ucrania', 'Ukraine', 'L''Ukraine', 'UA', 'UKR', '380');
+INSERT INTO `pais` VALUES(237, NULL, 'Uganda', 'Uganda', 'Ouganda', 'UG', 'UGA', '256');
+INSERT INTO `pais` VALUES(238, NULL, 'Uruguay', 'Uruguay', 'Uruguay', 'UY', 'URY', '598');
+INSERT INTO `pais` VALUES(239, NULL, 'Uzbekistán', 'Uzbekistan', 'L''Ouzbékistan', 'UZ', 'UZB', '998');
+INSERT INTO `pais` VALUES(240, NULL, 'Vanuatu', 'Vanuatu', 'Vanuatu', 'VU', 'VUT', '678');
+INSERT INTO `pais` VALUES(241, NULL, 'Venezuela', 'Venezuela', 'Venezuela', 'VE', 'VEN', '58');
+INSERT INTO `pais` VALUES(242, NULL, 'Vietnam', 'Vietnam', 'Vietnam', 'VN', 'VNM', '84');
+INSERT INTO `pais` VALUES(243, NULL, 'Wallis y Futuna', 'Wallis and Futuna', 'Wallis et Futuna', 'WF', 'WLF', '681');
+INSERT INTO `pais` VALUES(244, NULL, 'Yemen', 'Yemen', 'Yémen', 'YE', 'YEM', '967');
+INSERT INTO `pais` VALUES(245, NULL, 'Yibuti', 'Djibouti', 'Djibouti', 'DJ', 'DJI', '253');
+INSERT INTO `pais` VALUES(246, NULL, 'Zambia', 'Zambia', 'Zambie', 'ZM', 'ZMB', '260');
+INSERT INTO `pais` VALUES(247, NULL, 'Zimbabue', 'Zimbabwe', 'Zimbabwe', 'ZW', 'ZWE', '263');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `post` text,
+  `categoria_post` int(11) DEFAULT NULL,
+  `img_url` varchar(100) DEFAULT NULL,
+  `caracteristica` text,
+  `pais_id` int(11) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `detalle_numero` enum('unidad','millar','metro','qg','yarda','zon','galones','barriles','litros','cajas','fulgones','otro') DEFAULT NULL,
+  `esto_provincia` varchar(100) DEFAULT NULL,
+  `localidad` text,
+  `fecha_entrega` date DEFAULT NULL,
+  `observaciones` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` VALUES(1, 18, NULL, NULL, '2017-01-01 07:30:32', '<p>Bienvenidos a nuestra red social, la red en donde convergen todos los sectores productivos de Republica Dominicana y el Mundo!</p>', 1, 'img_product/01012017073032.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(2, 21, NULL, NULL, '2017-01-04 10:57:45', '<p>&nbsp;Agimerca, abre tu negocio al mundo y el mundo a tu negocio.</p>', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(3, 21, NULL, NULL, '2017-01-05 16:25:18', '<h3 style="text-align: justify;">Para publicar y conocer Ofertas y Demandas conectate a Agimerca, eventos y actividades Agimerca te publica, gratis.</h3>', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(4, 21, NULL, NULL, '2017-01-05 16:31:16', '<h3><em>Agimerca, abre tu negocio al mundo y el mundo a tu negocio.</em></h3>', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(5, 21, NULL, NULL, '2017-01-07 07:35:46', '', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(6, 21, NULL, NULL, '2017-02-21 05:21:21', '', 1, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(7, 21, NULL, NULL, '2017-02-21 15:48:35', '<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 12.0pt; line-height: 115%;">QUE ES AGIMERCA.</span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">Es una red social de inteligencia de mercados, creada para dar apoyo al emprendedurismo y a las MIPYMES productivas y comerciales, &nbsp;mediante la publicaci&oacute;n e informaci&oacute;n de&nbsp; ofertas y demandas del mercado.</span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">En estos momentos de apertura de los mercados, las empresas MIPYMES no disponen recursos econ&oacute;micos ni de manejo en el uso de la&nbsp; tecnolog&iacute;a de la informaci&oacute;n para &nbsp;investigar mercados. Es de necesidad el apoyo de instituciones globales, para reducir inequidad en este proceso de libre mercado, en inter&eacute;s de promover la autogesti&oacute;n y la competitividad.</span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">El conocimiento de las ofertas y demandas del mercado permitir&aacute; la creaci&oacute;n y desarrollo de empresas MIPYMES y la &nbsp;dinamizaci&oacute;n&nbsp; y diversificaci&oacute;n de &nbsp;productos y mercados. </span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">Con esto apoyamos el desarrollo de los sectores productivos y comerciales, &nbsp;facilitando&nbsp; alcanzar&nbsp; crecimiento econ&oacute;mico sostenible. Es de oportunidad se&ntilde;alar, que el sector financiero tendr&aacute; en AGIMERCA un soporte muy v&aacute;lido para &nbsp;evaluar proyectos de inversi&oacute;n conforme a las ofertas y requerimientos de los mercados agropecuarios, industriales y comerciales.</span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">La labor de Agimerca permitir&aacute; a los sectores productivos y comerciales consolidar sus empresas con productos de oportunidad comercial, obtener cr&eacute;ditos con facilidad y lograr&nbsp; aumento en su cartera crediticia a tasa m&aacute;s baja. </span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">El sector diplom&aacute;tico en sus labores de promoci&oacute;n comercial en el mercado exterior, hallar&aacute; en Agimerca&nbsp; apoyo. Al tener en un sitio en l&iacute;nea &nbsp;las ofertas y demandas de los diferentes sectores productivos y comerciales de su pa&iacute;s, y el medio para publicar oportunidades de negocios.</span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12pt; line-height: 115%;">En ese sentido,</span><span style="font-size: 12.0pt; line-height: 115%;"> los encargados de comercio exterior de los diferentes pa&iacute;ses solo tendr&aacute;n que recurrir al portar de Agimerca para mostrar las ofertas y demandas de su mercado de inter&eacute;s, en tiempo real.</span></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">Despu&eacute;s de la crisis del 2007 Ha sido de gran inter&eacute;s promover el crecimiento econ&oacute;mico mediante&nbsp; la creaci&oacute;n y desarrollo de las PYMES y solo la informaci&oacute;n&nbsp; de mercado en tiempo real, &nbsp;permitir&aacute; que este importante sector empresarial genere empleos y crecimiento econ&oacute;mico de abajo as&iacute;a arriba para impactar positivamente todo el escenario socioecon&oacute;mico hacia el crecimiento generalizado &nbsp;de modo sostenido, para que la humanidad&nbsp; alcance el&nbsp; desarrollo socioecon&oacute;mico integral sostenible. &nbsp;</span></p>\r\n<p>&nbsp;</p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%;">&nbsp;&nbsp;&nbsp;</span></p>', 1, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(8, 21, NULL, NULL, '2017-02-21 15:58:41', '', 1, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `posts` VALUES(9, 57, NULL, NULL, '2017-02-27 20:04:27', '<p class="MsoNormal" style="text-align: center;" align="center"><strong><em><span style="font-size: 14.0pt; line-height: 106%; color: #0070c0; mso-ansi-language: ES;">INTELIGENCIA DE NEGOCIO.</span></em></strong></p>\r\n<p class="MsoNormal" style="text-align: justify;"><em><span style="font-size: 14.0pt; line-height: 106%; mso-ansi-language: ES;">La inteligencia de Negocio o Empresarial se basa en el an&aacute;lisis de datos para la toma de decisiones empresarial, que permita anticiparse a acontecimientos. Esta actividad para su efectividad requiere de sistemas de informaci&oacute;n de la producci&oacute;n y el comercio.</span></em></p>\r\n<p class="MsoNormal" style="text-align: justify;"><em><span style="font-size: 14.0pt; line-height: 106%; mso-ansi-language: ES;">En 1989 Howard Dresner propuso la inteligencia de negocio &ldquo;como un t&eacute;rmino general para describir&rdquo; los conceptos y m&eacute;todos para mejorar la toma de decisiones empresariales mediante el uso de sistemas basados en hechos de apoyo&rdquo;.</span></em></p>\r\n<p class="MsoNormal" style="text-align: justify;"><em><span style="font-size: 14.0pt; line-height: 106%; mso-ansi-language: ES;">Los datos extra&iacute;dos del mercado es la fuente principal en la labor de inteligencia de negocio, estos deben ser independiente, de modo que&nbsp; obedezcan&nbsp; a la realidad del mercado.</span></em></p>\r\n<p class="MsoNormal" style="text-align: justify;"><em><span style="font-size: 14.0pt; line-height: 106%; mso-ansi-language: ES;">La red Agimerca en su labor de apoyo al desarrollo del sector MIPYMES le da aseso para&nbsp; publicar sus ofertas y demandas, y la oportunidad de conocer&nbsp; requerimientos&nbsp; y ofertas &nbsp;del mercado nacional e internacional.&nbsp; </span></em></p>\r\n<p class="MsoNormal" style="text-align: justify;"><em><span style="font-size: 14.0pt; line-height: 106%; mso-ansi-language: ES;">La laborar de &nbsp;informaci&oacute;n de mercados&nbsp; que realiza la red Agimerca&nbsp; al sector MIPYMES aportar&aacute; conocimientos de actividades productivas o comerciales de la competencia e informaciones de requerimientos del mercado. Con la finalidad de que las empresas en la construcci&oacute;n&nbsp; de su estrategias de inteligencia de negocio, puedan posicionarse de modo competitivo&nbsp; en los mercados.</span></em></p>\r\n<p class="MsoNormal" style="text-align: justify;"><em><span style="font-size: 14.0pt; line-height: 106%; mso-ansi-language: ES;">El mercado presenta&nbsp; a todo productor o emprendedor el medio para conocer&nbsp; espacios que le permitir&aacute;n&nbsp; diversificar su oferta,&nbsp;&nbsp; cuando se est&aacute; infamado y Agimerca aporta el medio para que productor o comerciante MIPYMES pueda conocer su mercado o nuevos mercados, y prosperar en los mismos de modo competitivo. Porque seg&uacute;n el premio nobel en econom&iacute;a, J. F. Nash referenciando la teor&iacute;a del juego de Von Neumann dice, Nash: &ldquo;Si dos jugadores en escenarios competitivos&nbsp; tienen el mismo nivel de informaci&oacute;n ambos podr&aacute;n elaborar estrategias y sus resultados serian tan &oacute;ptimos que&nbsp; no tendr&iacute;an necesidad de cambiar de estrategia&rdquo;&nbsp;&nbsp;&nbsp;&nbsp; </span></em></p>\r\n<p class="MsoNormal" style="text-align: justify;"><span style="font-size: 18pt; line-height: 106%;">&nbsp;</span></p>\r\n<p>&nbsp;</p>\r\n<p class="MsoNormal">&nbsp;</p>', 1, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relacion_categoria_subcategoria`
+--
+
+CREATE TABLE `relacion_categoria_subcategoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `categoria_id` int(11) DEFAULT NULL,
+  `sub_categoria_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `relacion_categoria_subcategoria`
+--
+
+INSERT INTO `relacion_categoria_subcategoria` VALUES(1, 1, '2017-01-16 09:19:38', 1, 1);
+INSERT INTO `relacion_categoria_subcategoria` VALUES(2, 1, '2017-01-16 09:19:38', 1, 2);
+INSERT INTO `relacion_categoria_subcategoria` VALUES(3, 1, '2017-01-16 09:19:38', 1, 3);
+INSERT INTO `relacion_categoria_subcategoria` VALUES(4, 1, '2017-01-16 09:25:56', 2, 1);
+INSERT INTO `relacion_categoria_subcategoria` VALUES(5, 1, '2017-01-16 09:25:56', 2, 2);
+INSERT INTO `relacion_categoria_subcategoria` VALUES(6, 1, '2017-01-16 09:25:56', 2, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relacion_subcategorias_subsubcategoria`
+--
+
+CREATE TABLE `relacion_subcategorias_subsubcategoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `relacion_categoria_subcategoria_id` int(11) DEFAULT NULL,
+  `sub_of_sub_categoria_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+--
+-- Dumping data for table `relacion_subcategorias_subsubcategoria`
+--
+
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(1, 1, '2017-01-16 09:19:59', 1, 1);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(2, 1, '2017-01-16 09:19:59', 1, 2);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(3, 1, '2017-01-16 09:19:59', 1, 3);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(4, 1, '2017-01-16 09:19:59', 1, 4);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(5, 1, '2017-01-16 09:19:59', 1, 5);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(6, 1, '2017-01-16 09:19:59', 1, 6);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(7, 1, '2017-01-16 09:19:59', 1, 7);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(8, 1, '2017-01-16 09:19:59', 1, 8);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(9, 1, '2017-01-16 09:19:59', 1, 9);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(10, 1, '2017-01-16 09:26:50', 4, 1);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(11, 1, '2017-01-16 09:26:50', 4, 2);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(12, 1, '2017-01-16 09:26:50', 4, 3);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(13, 1, '2017-01-16 09:26:50', 4, 4);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(14, 1, '2017-01-16 09:26:50', 4, 5);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(15, 1, '2017-01-16 09:26:50', 4, 6);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(16, 1, '2017-01-16 09:26:50', 4, 7);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(17, 1, '2017-01-16 09:26:50', 4, 8);
+INSERT INTO `relacion_subcategorias_subsubcategoria` VALUES(18, 1, '2017-01-16 09:26:50', 4, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relacion_sub_of_sub_categoria_posts`
+--
+
+CREATE TABLE `relacion_sub_of_sub_categoria_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `relacion_subcategorias_subsubcategoria_id` int(11) DEFAULT NULL,
+  `posts_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `relacion_sub_of_sub_categoria_posts`
+--
+
+INSERT INTO `relacion_sub_of_sub_categoria_posts` VALUES(1, 21, '2017-02-21 05:21:21', 2, 6);
+INSERT INTO `relacion_sub_of_sub_categoria_posts` VALUES(2, 21, '2017-02-21 15:48:35', 2, 7);
+INSERT INTO `relacion_sub_of_sub_categoria_posts` VALUES(3, 21, '2017-02-21 15:58:41', 1, 8);
+INSERT INTO `relacion_sub_of_sub_categoria_posts` VALUES(4, 57, '2017-02-27 20:04:28', 0, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relacion_sub_of_sub_categoria_usuario`
+--
+
+CREATE TABLE `relacion_sub_of_sub_categoria_usuario` (
+  `id` int(11) NOT NULL,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `relacion_subcategorias_subsubcategoria_id` int(11) DEFAULT NULL,
+  `usuario_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `relacion_sub_of_sub_categoria_usuario`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `respuestas_mesajes_privados`
+--
+
+CREATE TABLE `respuestas_mesajes_privados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `mensaje` text,
+  `mensaje_privado` int(11) DEFAULT NULL,
+  `para_usuario_user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `respuestas_mesajes_privados`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_categorias`
+--
+
+CREATE TABLE `sub_categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_categoria` varchar(100) DEFAULT NULL,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `sub_categorias`
+--
+
+INSERT INTO `sub_categorias` VALUES(1, 'Agropecuarios', 1, NULL, NULL, '2017-01-16 09:06:38');
+INSERT INTO `sub_categorias` VALUES(2, 'Industrial', 1, NULL, NULL, '2017-01-16 09:06:50');
+INSERT INTO `sub_categorias` VALUES(3, 'Servicios', 1, NULL, NULL, '2017-01-16 09:07:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_of_sub_categorias`
+--
+
+CREATE TABLE `sub_of_sub_categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_categoria` varchar(100) DEFAULT NULL,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `sub_of_sub_categorias`
+--
+
+INSERT INTO `sub_of_sub_categorias` VALUES(1, 'Cultivo de granos y semillas oleaginosas', 1, NULL, NULL, '2017-01-16 09:11:39');
+INSERT INTO `sub_of_sub_categorias` VALUES(2, 'Cultivo de hortalizas', 1, NULL, NULL, '2017-01-16 09:11:51');
+INSERT INTO `sub_of_sub_categorias` VALUES(3, 'Cultivo de frutales y nueces', 1, NULL, NULL, '2017-01-16 09:12:00');
+INSERT INTO `sub_of_sub_categorias` VALUES(4, 'Cultivo en invernaderos y viveros, y floricultura', 1, NULL, NULL, '2017-01-16 09:12:15');
+INSERT INTO `sub_of_sub_categorias` VALUES(5, 'ExplotaciÃ³n de bovinos', 1, NULL, NULL, '2017-01-16 09:12:26');
+INSERT INTO `sub_of_sub_categorias` VALUES(6, 'ExplotaciÃ³n de porcinos', 1, NULL, NULL, '2017-01-16 09:12:35');
+INSERT INTO `sub_of_sub_categorias` VALUES(7, 'ExplotaciÃ³n avÃ­cola', 1, NULL, NULL, '2017-01-16 09:12:46');
+INSERT INTO `sub_of_sub_categorias` VALUES(8, 'ExplotaciÃ³n de ovinos y caprinos', 1, NULL, NULL, '2017-01-16 09:13:15');
+INSERT INTO `sub_of_sub_categorias` VALUES(9, 'RecolecciÃ³n de miel', 1, NULL, NULL, '2017-01-16 09:13:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(100) DEFAULT NULL,
+  `clave` varchar(250) DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `descripcion` text,
+  `embed_video` text,
+  `tipo_user` enum('admin','normal') DEFAULT NULL,
+  `estado` enum('activo','desactivado') NOT NULL,
+  `img_perfil` varchar(100) NOT NULL,
+  `telefono` varchar(100) DEFAULT NULL,
+  `correo` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` VALUES(1, 'eudy', '202cb962ac59075b964b07152d234b70', '2016-12-25 21:02:50', 'prueba', 'no tengo', 'admin', 'activo', 'img_perfil/1_1_recurso.png', NULL, NULL);
+INSERT INTO `usuarios` VALUES(2, 'alberto', '202cb962ac59075b964b07152d234b70', '2016-12-27 22:58:04', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016035804.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(3, 'alberto', '202cb962ac59075b964b07152d234b70', '2016-12-28 16:12:20', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016161220.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(4, 'alberto', '202cb962ac59075b964b07152d234b70', '2016-12-28 16:12:44', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016161244.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(5, 'alberto', '202cb962ac59075b964b07152d234b70', '2016-12-28 16:21:05', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016162105.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(6, 'alberto', '202cb962ac59075b964b07152d234b70', '2016-12-28 16:25:48', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016162548.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(7, 'q', '7694f4a66316e53c8cdd9d9954bd611d', '2016-12-28 16:33:12', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(8, 'q', '7694f4a66316e53c8cdd9d9954bd611d', '2016-12-28 16:34:22', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016163422.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(9, 'x', '9dd4e461268c8034f5c8564e155c67a6', '2016-12-28 16:34:42', NULL, NULL, 'normal', 'activo', 'img_perfil/28122016163442.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(10, 'Bigwell', 'f76514e2b1b678623408253b6dc7735c', '2016-12-29 05:32:38', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(11, 'manuel77@hotmail.com', '1397a3ee45cf6f66aeda70fcd493a154', '2016-12-29 06:37:20', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(12, 'elcomida@hotmail.com', '312b23c8e1bd461440ff1aadf3948df5', '2016-12-29 14:27:35', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(13, 'elcomida@hotmail.com', '312b23c8e1bd461440ff1aadf3948df5', '2016-12-29 14:31:20', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(14, 'agimerca12@hotmail.com', 'e88febd1ea904f224c3a79f5ddd8aa89', '2016-12-29 16:56:53', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(15, 'agimerca12@hotmail.com', 'e88febd1ea904f224c3a79f5ddd8aa89', '2016-12-29 17:04:13', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(16, 'elcomida@hotmail.com', 'e88febd1ea904f224c3a79f5ddd8aa89', '2016-12-29 17:17:12', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(17, 'elcomida@hotmail.com', 'e88febd1ea904f224c3a79f5ddd8aa89', '2016-12-30 17:29:45', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(18, 'bigwell', 'a5d0cfc693c880c08950774eb5533805', '2017-01-01 07:26:14', NULL, NULL, 'normal', 'activo', 'img_perfil/01012017072614.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(19, 'elcomida@hotmail.com', 'e88febd1ea904f224c3a79f5ddd8aa89', '2017-01-02 17:15:57', NULL, NULL, 'normal', 'activo', 'img/Imagen_no_disponible.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(20, 'm', '6f8f57715090da2632453988d9a1501b', '2017-01-03 09:53:13', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(21, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-04 10:50:06', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(22, 'manuel', 'ffda3ee9f688293c0aec7a754dd348f7', '2017-01-04 14:48:43', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(23, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-04 18:24:11', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(24, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-06 14:18:03', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(25, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-07 07:35:14', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(26, 'manuel', '87f52d218482d1b5f5de2ad68c597ee3', '2017-01-09 04:39:09', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(27, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-11 07:17:25', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(28, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-11 07:19:31', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(29, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-11 08:20:18', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(30, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-11 14:49:05', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(31, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-12 06:18:06', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(32, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-12 15:44:28', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(33, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-13 18:33:17', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(34, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-15 09:04:42', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(35, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-15 09:11:00', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(36, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-15 09:35:34', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(37, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-15 16:56:23', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(38, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-15 17:19:24', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(39, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-16 06:02:39', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(40, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-16 06:10:22', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(41, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-16 06:53:29', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(42, 'manuel', 'ec7cf58f61d30e9ddb2d6922bc1ae3e6', '2017-01-16 14:44:22', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(43, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-16 15:00:44', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(44, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-16 19:43:51', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(45, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-17 10:36:00', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(46, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-17 13:04:22', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(47, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-17 16:02:39', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(48, 'manuel', '479435176fe779e0e92c46cb5835fd57', '2017-01-18 06:20:11', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(49, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-20 10:47:52', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(50, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-20 11:22:54', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(51, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-23 11:42:08', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(52, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-27 16:41:08', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(53, 'manuel', 'cb7a1bd91544d08bddd602796edc31a6', '2017-01-31 05:30:43', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(54, 'earias', 'e10adc3949ba59abbe56e057f20f883e', '2017-02-09 08:57:25', NULL, NULL, 'admin', 'activo', 'img_perfil/09022017085725.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(55, 'manuel', '4068b37d7de20d637cea07de89416a55', '2017-02-10 14:43:18', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(56, 'Guillermo Dipre', '13630971a6e0e60ceb6e759e33f0079a', '2017-02-20 16:32:28', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(57, 'elcomida@hotmail.com', 'cb7a1bd91544d08bddd602796edc31a6', '2017-02-27 12:34:22', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+INSERT INTO `usuarios` VALUES(58, 'eudy1990@gmail.com', '202cb962ac59075b964b07152d234b70', '2017-02-27 19:46:46', NULL, NULL, 'normal', 'activo', 'img/foto_perfil.jpg', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `videos`
+--
+
+CREATE TABLE `videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id_creado` int(11) DEFAULT NULL,
+  `user_id_editado` int(11) DEFAULT NULL,
+  `fecha_editado` datetime DEFAULT NULL,
+  `fecha_creado` datetime DEFAULT NULL,
+  `url_video` text,
+  `carpeta_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` VALUES(1, 1, NULL, '2016-12-28 15:38:19', NULL, 'https://www.youtube.com/watch?v=ZbZSe6N_BXs', 0);
+INSERT INTO `videos` VALUES(2, 1, NULL, '2016-12-28 16:04:49', NULL, 'kwR5_8w4YGE', 0);
+INSERT INTO `videos` VALUES(3, 1, NULL, '2016-12-28 16:13:40', NULL, 'https://www.youtube.com/watch?v=7PCkvCPvDXk', 1);
+INSERT INTO `videos` VALUES(4, 1, NULL, '2016-12-28 16:14:02', NULL, 'https://www.youtube.com/watch?v=nfWlot6h_JM', 2);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `carpeta_gallerias`
+--
+ALTER TABLE `carpeta_gallerias`
+  ADD CONSTRAINT `carpeta_gallerias_ibfk_1` FOREIGN KEY (`user_id_creado`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `carpeta_videos`
+--
+ALTER TABLE `carpeta_videos`
+  ADD CONSTRAINT `carpeta_videos_ibfk_1` FOREIGN KEY (`user_id_creado`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
