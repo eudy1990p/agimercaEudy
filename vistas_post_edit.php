@@ -27,7 +27,7 @@ function   allpost($img_usuario,$nombre_usuario,$postCuerpo,$contador="1",$idPos
 	<div   title="Publicación detalle" class="col-xs-12" style="background-color: #fff;margin-top: 11px;">
 		<?php 
             if($detalleCorto){ 
-            echo substr( $postCuerpo , 0 , 200 ).'<a 
+            echo substr( strip_tags($postCuerpo) , 0 , 200 ).'<a 
             href="vista_detalle_post.php?id='.$idPost .'" >Leer Más </a>';
             }else{
             echo $postCuerpo ;                
