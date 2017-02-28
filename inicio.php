@@ -1,7 +1,7 @@
 <?php
     $tituloAgimerca="Red Social Inicio";
 	require_once("header.php");
-	
+	$usuario->validarEntradaIlegal();
 	 if(isset($_POST)){
 	 	if(isset($_POST["accion"]) && ($_POST["accion"] == "agregar_post")){
 	 		$post->setPost($_POST,$_FILES);

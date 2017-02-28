@@ -400,11 +400,11 @@ class Usuarios
 		}
 	}
 
-	function validarEntradaIlegal($s,$p){
+	function validarEntradaIlegal(){
 		if (!isset($_SESSION["id"])) {
-			return true;
+			echo "<script>window.location = 'index.php' </script>";	
 		}
-		if (isset($s)) {
+		/*if (isset($s)) {
 			if (isset($s[$p])) {
 				if (isset($s[$p]["leer"])) {
 					if ($s[$p]["leer"] == 0) {
@@ -418,8 +418,10 @@ class Usuarios
 			}
 		}else{
 			return true;
-		}
+		}*/
+		
 	}
+	
 }
 
 ?>
