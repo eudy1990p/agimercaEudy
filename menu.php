@@ -1,11 +1,13 @@
 <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header" style="width: 38%;">
             <div class="navbar-brand" style="padding-top: 0.5em;">
-                <a title="Clic para la página principal (www.agimerca.com)" href="http://www.agimerca.com">
-                    <img src="img/mm.png" width="50" />
+                <a  title="Clic para la página principal (www.agimerca.com)" href="http://www.agimerca.com">
+                    <img src="img/mm.png"  style="width: 20%;" />
                 </a>
+							<a  href="http://www.agimerca.com"  title="Clic para la página principal (www.agimerca.com)">
+               Agimerca</a>
             </div>
             
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -14,11 +16,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://www.agimerca.com"  title="Clic para la página principal (www.agimerca.com)">
-               Agimerca</a>
+          
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-right">
             
             <li class="active" id="idMenuFactura">
               <a href="inicio.php" title="Clic para ir al inicio de la red social"
@@ -111,68 +112,8 @@
               </ul>
 							 
             </li>
-						<?php if ( isset($_SESSION["id"]) ) { ?>
-							<li  title="Clic para salir de la red social" id="idMenuFactura">
-								<a href="index.php?deslogueo="
-								class=" ">
-								<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-								<?php echo "Salir"; ?>
-								</a>
-							</li>
-						<?php }else{ ?>
-							<li title="Clic para entrar a la red social" id="idMenuFactura">
-								<a href="index.php"
-								class=" ">
-								<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-								<?php echo "Entrar"; ?>
-								</a>
-							</li>
-						<?php } ?>
-					
-
-          </ul>
-					
-					<form action="busqueda_normal.php" method="post" class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<input type="text" title="Inserte el nombre del producto" name="busqueda_post" class="form-control" placeholder="Palabra a buscar">
-							</div>
-                            <?php require_once("vista_buscado_categoria.php"); ?>
-                            <!-- Single button -->
-                                <div class="btn-group">
-                                  <button title="Boton para buscar, cuenta con dos opciones, 1 normal que busca de manera generica tanto en las noticias como en los productos" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Busqueda <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu">
-                                    <li><button title="Clic para la busqueda normal" style="display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: 400;
-    line-height: 1.42857143;
-    color: #333;
-    white-space: nowrap;width: 100%;text-align: left;
-    text-decoration: none;" type="submit" class="btn-link">Normal</button></li>
-                                <li><a  title="Clic para ir a la busqueda avanzada" href="busqueda_normal.php?opcionesAvanzadas=si">Avanzada</a></li>
-                                    
-                                  </ul>
-                                </div>
-                            <!--div class="dropdown">
-                              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                               <span class="glyphicon glyphicon-search"></span> Busqueda
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><button type="submit" class="btn-link">Normal</button></li>
-                                <li><a href="busqueda_normal.php?opcionesAvanzadas=si">Avanzada</a></li>
-                              </ul>
-                            </div>
-							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-							<a href="busqueda_normal.php?opcionesAvanzadas=si"  class="btn btn-default">Busqueda Avanzada</a-->
-						</form>
-					
-                    </ul>
-          
-          <?php if ( isset($_SESSION["id"]) ) { ?>
-          <ul class="nav navbar-nav navbar-right">
+						 <?php if ( isset($_SESSION["id"]) ) { ?>
+          <!--ul class="nav navbar-nav navbar-right"-->
               
             <li>
               <a href="mensajeria.php" title="Clic para entrar a su mensajeria" class="btn btn-xs btn-link">mensajes <span class="glyphicon glyphicon-envelope"></span>
@@ -198,8 +139,63 @@
               <li>  <a href="publicaciones.php" title="Clic para ver mi perfil" ><img 
               width="20" height="20"
               class="img-circle" src="<?php echo $_SESSION["img_perfil"]; ?>" /> <?php   echo $_SESSION['usuario'];  ?></a></li>
-          </ul>
+          <!--/ul-->
           <?php } ?>
+						
+						<?php if ( isset($_SESSION["id"]) ) { ?>
+							<li  title="Clic para salir de la red social" id="idMenuFactura">
+								<a href="index.php?deslogueo="
+								class=" ">
+								<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+								<?php echo "Salir"; ?>
+								</a>
+							</li>
+						<?php }else{ ?>
+							<li title="Clic para entrar a la red social" id="idMenuFactura">
+								<a href="index.php"
+								class=" ">
+								<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								<?php echo "Entrar"; ?>
+								</a>
+							</li>
+						<?php } ?>
+					
+									
+          </ul>
+					<ul class="nav navbar-nav navbar-right" style="padding-left:10%">
+					
+					<li>
+										<form action="busqueda_normal.php" method="post" class="navbar-form navbar-left" role="search">
+											<div class="form-group">
+												<input type="text" title="Inserte el nombre del producto" name="busqueda_post" class="form-control" placeholder="Palabra a buscar">
+											</div>
+                       <?php require_once("vista_buscado_categoria.php"); ?>
+                            <!-- Single button -->
+                        <div class="btn-group">
+                        <button title="Boton para buscar, cuenta con dos opciones, 1 normal que busca de manera generica tanto en las noticias como en los productos" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Busqueda <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><button title="Clic para la busqueda normal" style="display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;width: 100%;text-align: left;
+    text-decoration: none;" type="submit" class="btn-link">Normal</button></li>
+                                <li><a  title="Clic para ir a la busqueda avanzada" href="busqueda_normal.php?opcionesAvanzadas=si">Avanzada</a></li>
+                                    
+                                  </ul>
+                                </div>
+    						</form>
+						
+						</li>
+					</ul>
+					
+					
+          
+         
 					
         </div><!--/.nav-collapse -->
       </div>

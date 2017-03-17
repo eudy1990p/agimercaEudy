@@ -185,7 +185,7 @@ class Labeles
 		$this->LoginBtnEntrar="Entrar";
 		$this->LoginTitle="Login";
 
-		$this->FooterDerechos="Todos los derechos reservados para Programador: Eudy Arias.";
+		$this->FooterDerechos="Agencia Global de Inteligencia de Mercados, Agimerca<br/>Todos los derechos reservados para AGIMERCA.";
 
 		$this->MenuFactura="Inicio";
 	    $this->MenuProducto="Productos";

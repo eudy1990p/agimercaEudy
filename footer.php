@@ -3,7 +3,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted"><a href="http://eudy.260mb.net"><?php echo $label->FooterDerechos; ?></a></p>
+        <p class="text-muted text-center"><a href="#"><?php echo $label->FooterDerechos; ?></a></p>
       </div>
     </footer>
 

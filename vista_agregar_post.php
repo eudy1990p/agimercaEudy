@@ -1,4 +1,4 @@
-<a href="javascript:void(0);" title="Clic para mostrar opciones o ocultarla " onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Opciones Avanzadas</a>
+<a href="javascript:void(0);" title="Clic para mostrar opciones o ocultarla " onclick="mostrarOpcinesAvanzadas();" id="enlaceA">Oferta y Demandas</a>
 <input type="hidden" value="0" id="agregarproducto" />
 <div id="post_basico" title="Aquí puede ingresar su noticias "> 
 <textarea name="post" id="post" class="form-control" rows="5"></textarea>
@@ -83,13 +83,13 @@
 			var activo = $("#post_avanzado").css("display");
 			if(activo == "none"){
 				$("#post_avanzado").show(4000);
-				$("#enlaceA").html("Opciones Basica");
+				$("#enlaceA").html("Noticias");
 				$("#post_basico").hide(4000);
                 $("#agregarproducto").val("1");
 				
 			}else{
 				$("#post_avanzado").hide(4000);
-				$("#enlaceA").html("Opciones Avanzadas");
+				$("#enlaceA").html("Oferta y Demandas");
 				$("#post_basico").show(4000);
                 $("#agregarproducto").val("0");
 			}

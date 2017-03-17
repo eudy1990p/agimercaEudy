@@ -22,6 +22,7 @@ $getPais = $post->getPais();
 <div class="page-header">
 	        <h1><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
                   <?php echo $label->MenuFactura; ?></h1>
+					<h5>Agimerca, abre tu negocio al mundo y el mundo a tu negocio</h5>
 </div>
 <div class="row">
 		<div class="col-xs-8">
